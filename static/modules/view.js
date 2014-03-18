@@ -15,27 +15,6 @@
 	}
 
 	/**
-	* Construtor de extensao de uma nova View
-	*
-	* @method extend
-	* @param {Object} config Definicoes da nova Classe
-	* @return {Object} Retorna a Classe View extendida da configuracao
-	*/
-	View.extend = function (config) {
-
-		var newView = View;
-
-		for (var name in config) {
-
-			newView.prototype[name] = config[name];
-
-		}
-
-		return new newView();
-
-	};
-
-	/**
 	* 
 	*/
 	Object.defineProperty(View.prototype, "_el", {

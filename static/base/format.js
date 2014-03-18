@@ -5,12 +5,7 @@
 	/**
 	* 
 	*/
-	function Str () {}
-
-	/**
-	* 
-	*/
-	Str.prototype.format = function () {
+	function format () {
 
 		var text = arguments[0],
 			itens = Array.prototype.slice.call(arguments, 1);
@@ -21,8 +16,8 @@
 
 		});
 
-	};
+	}
 
-	context.Bizzy.string = new Str();
+	context.Bizzy.format = format;
 
 })(window);

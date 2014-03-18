@@ -15,27 +15,6 @@
 	}
 
 	/**
-	* Construtor de extensao de uma novo Model
-	*
-	* @method extend
-	* @param {Object} config Definicoes da nova Classe
-	* @return {Object} Retorna a Classe Model extendida da configuracao
-	*/
-	Model.extend = function (config) {
-
-		var newModel = Model;
-
-		for (var name in config) {
-
-			newModel.prototype[name] = config[name];
-
-		}
-
-		return new newModel();
-
-	};
-
-	/**
 	* 
 	*/
 	Object.defineProperty(Model.prototype, "ajax", {
@@ -81,7 +60,7 @@
 
 		get: function () {
 
-			return context.Bizzy.string.format("{0}/{1}", this._url, this.data[this.idName]);
+			return context.Bizzy.format("{0}/{1}", this._url, this.data[this.idName]);
 
 		},
 
