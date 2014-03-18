@@ -35,7 +35,7 @@
 	});
 
 	/**
-	* 
+	* Trocar o nome de Path para Segments
 	*/
 	RouterModel.prototype.equalsPath = function (other) {
 
