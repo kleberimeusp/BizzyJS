@@ -81,7 +81,7 @@
 
 		get: function () {
 
-			return context.Bizzy.string.format("{0}/{1}", this._url, this.data[this.idName]);
+			return context.Bizzy.format("{0}/{1}", this._url, this.data[this.idName]);
 
 		},
 
