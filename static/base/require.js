@@ -7,7 +7,10 @@
 	*/
 	function Require () {}
 
-	Object.defineProperty(Require.prototype, "_ajax", {
+	/**
+	* 
+	*/
+	Object.defineProperty(Require.prototype, "__ajax", {
 
 		value: new context.Bizzy.Ajax()
 
@@ -16,7 +19,7 @@
 	/**
 	* 
 	*/
-	Object.defineProperty(Require.prototype, "_head", {
+	Object.defineProperty(Require.prototype, "__head", {
 
 		value: document.querySelector("head")
 
@@ -25,7 +28,7 @@
 	/**
 	* 
 	*/
-	Object.defineProperty(Require.prototype, "_script", {
+	Object.defineProperty(Require.prototype, "__script", {
 
 		value: document.createElement("script")
 
@@ -34,10 +37,10 @@
 	/**
 	* 
 	*/
-	Require.prototype._onCompleted = function (data) {
+	Require.prototype.__appendChild = function (data) {
 
-		this._script.text = data;
-		this._head.appendChild(this._script);
+		this.__script.text = data;
+		this.__head.appendChild(this.__script);
 
 	};
 
@@ -48,11 +51,11 @@
 
 		urlDocuments.forEach(function (url) {
 
-			this._ajax.request({
+			this.__ajax.request({
 
 				url: url,
 				sync: false,
-				onCompleted: this._onCompleted.bind(this)
+				onCompleted: this.__appendChild.bind(this)
 
 			});
 
@@ -60,6 +63,21 @@
 
 	};
 
-	context.Bizzy.require = new Require();
+	/**
+	* 
+	*/
+	function FacadeRequire	() {
+
+		var require =  new Require()
+
+		return {
+
+			use: require.use
+
+		}
+		
+	}
+
+	context.Bizzy.require = new FacadeRequire();
 
 })(window);
