@@ -10,14 +10,14 @@
 	*/
 	function Ajax () {
 
-		this._initialize();
+		this.__initialize();
 
 	}
 
 	/**
 	* 
 	*/
-	Object.defineProperty(Ajax.prototype, "method", {
+	Object.defineProperty(Ajax.prototype, "__method", {
 
 		enumerable: true,
 		writable: true,
@@ -28,7 +28,7 @@
 	/**
 	* 
 	*/
-	Object.defineProperty(Ajax.prototype, "url", {
+	Object.defineProperty(Ajax.prototype, "__url", {
 
 		enumerable: true,
 		writable: true,
@@ -39,7 +39,7 @@
 	/**
 	* 
 	*/
-	Object.defineProperty(Ajax.prototype, "sync", {
+	Object.defineProperty(Ajax.prototype, "__sync", {
 
 		enumerable: true,
 		writable: true,
@@ -50,7 +50,7 @@
 	/**
 	*
 	*/
-	Object.defineProperty(Ajax.prototype, "data", {
+	Object.defineProperty(Ajax.prototype, "__data", {
 
 		enumerable: true,
 		writable: true,
@@ -61,7 +61,7 @@
 	/**
 	* 
 	*/
-	Object.defineProperty(Ajax.prototype, "headers", {
+	Object.defineProperty(Ajax.prototype, "__headers", {
 
 		enumerable: true,
 		writable: true,
@@ -72,7 +72,7 @@
 	/**
 	* 
 	*/
-	Object.defineProperty(Ajax.prototype, "onSuccess", {
+	Object.defineProperty(Ajax.prototype, "__onCompleted", {
 
 		enumerable: true,
 		writable: true,
@@ -83,7 +83,7 @@
 	/**
 	* 
 	*/
-	Object.defineProperty(Ajax.prototype, "onError", {
+	Object.defineProperty(Ajax.prototype, "__onFailed", {
 
 		enumerable: true,
 		writable: true,
@@ -94,7 +94,7 @@
 	/**
 	* 
 	*/
-	Object.defineProperty(Ajax.prototype, "_xhr", {
+	Object.defineProperty(Ajax.prototype, "__xhr", {
 
 		writable: true,
 		value: {}
@@ -104,7 +104,7 @@
 	/**
 	* 
 	*/
-	Object.defineProperty(Ajax.prototype, "_readyState", {
+	Object.defineProperty(Ajax.prototype, "__readyState", {
 
 		writable: true,
 		value: []
@@ -114,7 +114,7 @@
 	/**
 	* 
 	*/
-	Object.defineProperty(Ajax.prototype, "_status", {
+	Object.defineProperty(Ajax.prototype, "__status", {
 
 		writable: true,
 		value: []
@@ -124,116 +124,116 @@
 	/**
 	* 
 	*/
-	Ajax.prototype._initialize = function () {
+	Ajax.prototype.__initialize = function () {
 
-		this._defineXhr();
-		this._defineReadyStateChange();
-		this._defineReadyState();
-		this._defineStatus();
-
-	};
-
-	/**
-	* 
-	*/
-	Ajax.prototype._defineXhr = function () {
-
-		this._xhr = bizzy.XHRFactory.create();
+		this.__defineXhr();
+		this.__defineReadyStateChange();
+		this.__defineReadyState();
+		this.__defineStatus();
 
 	};
 
 	/**
 	* 
 	*/
-	Ajax.prototype._defineReadyStateChange = function () {
+	Ajax.prototype.__defineXhr = function () {
 
-		this._xhr.onreadystatechange = this._onreadystatechange.bind(this);
+		this.__xhr = bizzy.XHRFactory.create();
 
 	};
 
 	/**
 	* 
 	*/
-	Ajax.prototype._defineReadyState = function () {
+	Ajax.prototype.__defineReadyStateChange = function () {
 
-		this._readyState[0] = function () {};							// request not initialized
-		this._readyState[1] = function () {};							// server connection established
-		this._readyState[2] = function () {};							// request received
-		this._readyState[3] = function () {};							// processing request
+		this.__xhr.onreadystatechange = this.__onreadystatechange.bind(this);
 
-		this._readyState[4] = this._finishedRequest.bind(this);			// request finished and response is ready
+	};
+
+	/**
+	* 
+	*/
+	Ajax.prototype.__defineReadyState = function () {
+
+		this.__readyState[0] = function () {};							// request not initialized
+		this.__readyState[1] = function () {};							// server connection established
+		this.__readyState[2] = function () {};							// request received
+		this.__readyState[3] = function () {};							// processing request
+
+		this.__readyState[4] = this.__finishedRequest.bind(this);			// request finished and response is ready
 
 	};
 
 	/**
 	*
 	*/
-	Ajax.prototype._defineStatus = function () {
+	Ajax.prototype.__defineStatus = function () {
 
-		this._status[200] = this._onSuccess.bind(this);
+		this.__status[200] = this.__completed.bind(this);
 
-		this._status[400] = this._onError.bind(this);
-		this._status[401] = this._onError.bind(this);
-		this._status[404] = this._onError.bind(this);
-		this._status[500] = this._onError.bind(this);
+		this.__status[400] = this.__failed.bind(this);
+		this.__status[401] = this.__failed.bind(this);
+		this.__status[404] = this.__failed.bind(this);
+		this.__status[500] = this.__failed.bind(this);
 
 	};
 
 	/**
 	* 
 	*/
-	Ajax.prototype._onSuccess = function () {
+	Ajax.prototype.__completed = function () {
 
-		this.onSuccess(this._xhr.responseText);
+		this.__onCompleted(this.__xhr.responseText);
 
 	};
 
 	/**
 	*
 	*/
-	Ajax.prototype._onError = function () {
+	Ajax.prototype.__failed = function () {
 
-		this.onError(this._xhr.responseText);
-
-	};
-
-	/**
-	* 
-	*/
-	Ajax.prototype._finishedRequest = function () {
-
-		this._status[this._xhr.status]();
+		this.__onFailed(this.__xhr.responseText);
 
 	};
 
 	/**
 	* 
 	*/
-	Ajax.prototype._onreadystatechange = function () {
+	Ajax.prototype.__finishedRequest = function () {
 
-		this._readyState[this._xhr.readyState]();
-
-	};
-
-	/**
-	* 
-	*/
-	Ajax.prototype._reset = function () {
-
-		this.method = "GET";
-		this.url = "";
-		this.sync = true;
-		this.data = {};
-		this.headers = [];
-		this.onSuccess = function () {};
-		this.onError = function () {};
+		this.__status[this.__xhr.status]();
 
 	};
 
 	/**
 	* 
 	*/
-	Ajax.prototype._extend = function (config) {
+	Ajax.prototype.__onreadystatechange = function () {
+
+		this.__readyState[this.__xhr.readyState]();
+
+	};
+
+	/**
+	* 
+	*/
+	Ajax.prototype.__reset = function () {
+
+		this.__method = "GET";
+		this.__url = "";
+		this.__sync = true;
+		this.__data = {};
+		this.__headers = [];
+		this.__onCompleted = function () {};
+		this.__onFailed = function () {};
+
+	};
+
+	/**
+	* 
+	*/
+	Ajax.prototype.__extend = function (config) {
 
 		for (var name in config) {
 
@@ -246,23 +246,23 @@
 	/**
 	* 
 	*/
-	Ajax.prototype._open = function () {
+	Ajax.prototype.__open = function () {
 
-		this._xhr.open(this.method, this.url, this.sync);
+		this.__xhr.open(this.__method, this.__url, this.__sync);
 
 	};
 
 	/**
 	* 
 	*/
-	Ajax.prototype._setRequestHeader = function () {
+	Ajax.prototype.__setRequestHeader = function () {
 
 		var i,
-			max = this.headers.length;
+			max = this.__headers.length;
 
 		for (i = 0; i < max; i += 1) {
 
-			this._xhr.setRequestHeader(this.headers[i].key, this.headers[i].value);
+			this.__xhr.setRequestHeader(this.__headers[i].key, this.__headers[i].value);
 
 		}
 
@@ -271,20 +271,20 @@
 	/**
 	* 
 	*/
-	Ajax.prototype._send = function () {
+	Ajax.prototype.__send = function () {
 
-		this._xhr.send(JSON.stringify(this.data));
+		this.__xhr.send(JSON.stringify(this.__data));
 
 	};
 
 	/**
 	* 
 	*/
-	Ajax.prototype._execute = function () {
+	Ajax.prototype.__execute = function () {
 
-		this._open();
-		this._setRequestHeader();
-		this._send();
+		this.__open();
+		this.__setRequestHeader();
+		this.__send();
 
 	};
 
@@ -293,11 +293,32 @@
 	*/
 	Ajax.prototype.request = function (config) {
 
-		this._reset();
-		this._extend(config);
-		this._execute();
+		this.__reset();
+		this.__extend(config);
+		this.__execute();
 
 	};
+
+	/**
+	* 
+	*/
+	function FacadeAjax function () {
+
+		if (!(this instanceof FacadeAjax)) {
+
+			return new FacadeAjax();
+
+		}
+
+		var ajax = new Ajax();
+
+		return {
+
+			request: aja.request
+
+		}
+
+	}
 
 	context.Bizzy.Ajax = Ajax;
 

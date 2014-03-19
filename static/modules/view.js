@@ -10,14 +10,14 @@
 	*/
 	function View () {
 
-		this.initialize();
+		this._initialize();
 
 	}
 
 	/**
 	* 
 	*/
-	Object.defineProperty(View.prototype, "_el", {
+	Object.defineProperty(View.prototype, "__el", {
 
 		writable: true,
 		value: {}
@@ -27,20 +27,20 @@
 	/**
 	* Container referente ao Objeto DOM criado no Navegador
 	* 
-	* @property el
+	* @property _el
 	* @type Object
 	*/
-	Object.defineProperty(View.prototype, "el", {
+	Object.defineProperty(View.prototype, "_el", {
 
 		get: function () {
 
-			return this._el;
+			return this.__el;
 
 		},
 
 		set: function (value) {
 
-			this._el = document.querySelector(value);
+			this.__el = document.querySelector(value);
 
 		}
 
@@ -49,10 +49,10 @@
 	/**
 	* Representacao do Modelo de Dados
 	* 
-	* @property model
+	* @property _model
 	* @type Object
 	*/
-	Object.defineProperty(View.prototype, "model", {
+	Object.defineProperty(View.prototype, "_model", {
 
 		writable: true,
 		value: {}
@@ -62,10 +62,10 @@
 	/**
 	* Micro Template que carrega o Modelo de Dados no Elemento DOM
 	* 
-	* @property template
+	* @property _template
 	* @type Function
 	*/
-	Object.defineProperty(View.prototype, "template", {
+	Object.defineProperty(View.prototype, "_template", {
 
 		writable: true,
 		value: function () { return {}; }
@@ -75,9 +75,9 @@
 	/**
 	* Metodo executado na inicializacao da Classe
 	*
-	* @method initialize
+	* @method _initialize
 	*/
-	View.prototype.initialize = function () {
+	View.prototype._initialize = function () {
 
 		// Este metodo nao foi implementado
 
@@ -90,7 +90,7 @@
 	*/
 	View.prototype.render = function () {
 
-		this.el.innerHTML = this.template(this.model.data);
+		this._el.innerHTML = this._template(this._model.data);
 
 	};
 
@@ -101,9 +101,35 @@
 	*/
 	View.prototype.destory = function () {
 
-		this.el.innerHTML = "";
+		this._el.innerHTML = "";
 
 	};
+
+	/**
+	* 
+	*/
+	function FacadeView () {
+
+		if (!(this instanceof FacadeView)) {
+
+			return new FacadeView();
+
+		}
+
+		var view = new View();
+
+		return {
+
+			_initialize: view._initialize,
+			_el: view._el,
+			_template: view._template,
+			_model: view._model,
+			render: view.render,
+			destory: view.destory
+
+		}
+
+	}
 
 	context.Bizzy.View = View;
 

@@ -10,23 +10,23 @@
 	*/
 	function Model () {
 
-		this.initialize();
+		this._initialize();
 
 	}
 
 	/**
 	* 
 	*/
-	Object.defineProperty(Model.prototype, "ajax", {
+	Object.defineProperty(Model.prototype, "_ajax", {
 
-		value: new bizzy.ajax();
+		value: new context.Bizzy.Ajax()
 
 	});
 
 	/**
 	* 
 	*/
-	Object.defineProperty(Model.prototype, "heaers", {
+	Object.defineProperty(Model.prototype, "_headers", {
 
 		writable: true,
 		value: [
@@ -43,7 +43,7 @@
 	/**
 	* 
 	*/
-	Object.defineProperty(Model.prototype, "_url", {
+	Object.defineProperty(Model.prototype, "__url", {
 
 		writable: true,
 		value: ""
@@ -53,20 +53,20 @@
 	/**
 	* Url para transferencia ou requisicao do Modelo de Dados
 	* 
-	* @property url
+	* @property _url
 	* @type String
 	*/
-	Object.defineProperty(Model.prototype, "url", {
+	Object.defineProperty(Model.prototype, "_url", {
 
 		get: function () {
 
-			return context.Bizzy.format("{0}/{1}", this._url, this.data[this.idName]);
+			return context.Bizzy.format("{0}/{1}", this.__url, this.data[this._idName]);
 
 		},
 
 		set: function (value) {
 
-			this._url = value;
+			this.__url = value;
 
 		}
 
@@ -88,10 +88,10 @@
 	/**
 	* Nome do identificador unico da representacao do Modelo de Dados
 	* 
-	* @property idName
+	* @property _idName
 	* @type String
 	*/
-	Object.definePrototype(Model.prototype, "idName", {
+	Object.definePrototype(Model.prototype, "_idName", {
 
 		writable: true
 
@@ -120,9 +120,9 @@
 	/**
 	* Metodo executado na inicializacao da Classe
 	*
-	* @method initialize
+	* @method _initialize
 	*/
-	Model.prototype.initialize = function () {
+	Model.prototype._initialize = function () {
 
 		// Este metodo nao foi implementado
 
@@ -141,7 +141,7 @@
 	/**
 	* 
 	*/
-	Model.prototype._onCompleted = function (data) {
+	Model.prototype.__completed = function (data) {
 
 		this.reset(JSON.parse(data));
 		this.onCompleted();
@@ -151,7 +151,7 @@
 	/**
 	* 
 	*/
-	Model.prototype._onFailed = function (data) {
+	Model.prototype.__failed = function (data) {
 
 		this.onFailed(JSON.parse(data));
 
@@ -160,27 +160,27 @@
 	/**
 	* 
 	*/
-	Model.prototype._request = function (method) {
+	Model.prototype.__request = function (method) {
 
-		this.ajax.request({
+		this._ajax.request({
 
 			method: method,
-			url: this.url,
+			url: this._url,
 			data: this.data,
-			headers: this.headers,
-			onCompleted: this._onCompleted.bind(this),
-			onFailed: this._onFailed.bind(this)
+			headers: this._headers,
+			onCompleted: this.__completed.bind(this),
+			onFailed: this.__failed.bind(this)
 
 		});
 
-	}; 
+	};
 
 	/**
 	* 
 	*/
 	Model.prototype.get = function () {
 
-		this._request("GET");
+		this.__request("GET");
 
 	};
 
@@ -189,7 +189,7 @@
 	*/
 	Model.prototype.post = function () {
 
-		this._request("POST");
+		this.__request("POST");
 
 	};
 
@@ -198,7 +198,7 @@
 	*/
 	Model.prototype.put = function () {
 
-		this._request("PUT");
+		this.__request("PUT");
 
 	};
 
@@ -207,10 +207,43 @@
 	*/
 	Model.prototype.delete = function() {
 
-		this._request("DELETE");
+		this.__request("DELETE");
 
 	};
 
-	context.Bizzy.Model = Model;
+	/**
+	* 
+	*/
+	function FacadeModel () {
+
+		if (!(this instanceof FacadeModel)) {
+
+			return new FacadeModel();
+
+		}
+
+		var model = new Model();
+
+		return {
+
+			_initialize: model._initialize,
+			_ajax: model._ajax,
+			_headers: model._headers,
+			_url: model._url,
+			_idName: model._idName,
+			data: model.data,
+			onCompleted: model.onCompleted,
+			onFailed: model.onFailed,
+			reset: model.reset,
+			get: model.get,
+			post: model.post,
+			put: model.put,
+			delete: model.delete
+
+		}
+
+	}
+
+	context.Bizzy.Model = FacadeModel;
 
 })(window);

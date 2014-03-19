@@ -7,14 +7,14 @@
 	*/
 	function XHRFactory () {
 
-		this._initialize();
+		this.__initialize();
 
 	}
 
 	/**
 	* 
 	*/
-	Object.defineProperty(XHRFactory.prototype, "_xmlHttpRequests", {
+	Object.defineProperty(XHRFactory.prototype, "__xmlHttpRequests", {
 
 		writable: true,
 		value: []
@@ -24,18 +24,18 @@
 	/**
 	* 
 	*/
-	XHRFactory.prototype._initialize = function () {
+	XHRFactory.prototype.__initialize = function () {
 
-		this._defineXmlHttpRequests();
+		this.__defineXmlHttpRequests();
 
 	};
 
 	/**
 	* 
 	*/
-	XHRFactory.prototype._defineXmlHttpRequests = function () {
+	XHRFactory.prototype.__defineXmlHttpRequests = function () {
 
-		this._xmlHttpRequests = [
+		this.__xmlHttpRequests = [
 
 			function () { return new window.XMLHttpRequest(); },
 
@@ -57,11 +57,11 @@
 	XHRFactory.prototype.create = function () {
 
 		var i = 0,
-			max = this._xmlHttpRequests.length;
+			max = this.__xmlHttpRequests.length;
 
 		while (i < max) {
 
-			try { return this._xmlHttpRequests[i](); }
+			try { return this.__xmlHttpRequests[i](); }
 			catch (e) { continue; }
 
 			i += 1;
@@ -70,6 +70,21 @@
 
 	}
 
-	context.Bizzy.xhrFactory = new XHRFactory();
+	/**
+	* 
+	*/
+	function FacadeXHRFactory () {
+
+		var xhrFactory = new XHRFactory();
+
+		return  {
+
+			create: xhrFactory.create
+
+		}
+
+	}
+
+	context.Bizzy.xhrFactory = new FacadeXHRFactory();
 
 })(window);

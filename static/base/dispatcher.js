@@ -8,15 +8,15 @@
 	* @namespace Bizzy
 	* @class Dispacher
 	*/
-	function Dispacher () {}
+	function Dispatcher () {}
 
 	/**
 	* Propriedade que contem os callbacks que serao tratados pelo dispatcher
 	*
-	* @property _listeners
+	* @property __listeners
 	* @default []
 	*/
-	Object.defineProperty(Dispacher.prototype, "_listeners", {
+	Object.defineProperty(Dispatcher.prototype, "__listeners", {
 
 		writable: true,
 		value: []
@@ -26,14 +26,14 @@
 	/**
 	* Recupera a lista de callbacks para um determinado evento
 	*
-	* @method _getEvent
+	* @method __getEvent
 	* @param {String} event Nome do evento
 	* @return {Array} Lista de callbacks registrados para o evento
 	*/
-	Dispacher.prototype._getEvent = function (event) {
+	Dispatcher.prototype.__getEvent = function (event) {
 
-		this._listeners[event] = this._listeners[event] || [];
-		return this._listeners[event];
+		this.__listeners[event] = this.__listeners[event] || [];
+		return this.__listeners[event];
 
 	};
 
@@ -45,9 +45,9 @@
 	* @param {Function} callback Funcao de callback que a ser registrada
 	* @return {Void}
 	*/
-	Dispacher.prototype.on = function (event, callback) {
+	Dispatcher.prototype.on = function (event, callback) {
 
-		this._getEvent(event).push(callback);
+		this.__getEvent(event).push(callback);
 
 	};
 
@@ -59,10 +59,10 @@
 	* @param {Function} callback Funcao de callback que a ser registrada
 	* @return {Void}
 	*/
-	Dispacher.prototype.off = function (event, callback) {
+	Dispatcher.prototype.off = function (event, callback) {
 
 		var i = 0,
-			listeners = this._getEvent(event),
+			listeners = this.__getEvent(event),
 			max = listeners.length;
 
 		while (i < max) {
@@ -87,10 +87,10 @@
 	* @param {Object} data Objeto contendo os dados que serao passados para o callbach
 	* @return {Void}
 	*/
-	Dispacher.prototype.trigger = function (event, data) {
+	Dispatcher.prototype.trigger = function (event, data) {
 
 		var i = 0,
-			listeners = this._getEvent(event),
+			listeners = this.__getEvent(event),
 			max = listeners.length;
 
 		while (i < max) {
@@ -102,6 +102,23 @@
 
 	};
 
-	context.Bizzy.dispacher = new Dispacher();
+	/**
+	* 
+	*/
+	function FacadeDispatcher () {
+
+		var dispatcher = new Dispatcher();
+
+		return {
+
+			on: dispatcher.on,
+			off: dispatcher.off,
+			trigger: dispatcher.trigger
+
+		}
+
+	}
+
+	context.Bizzy.dispatcher = new FacadeDispacher();
 	
 })(window);
