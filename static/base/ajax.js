@@ -120,8 +120,8 @@
 
 	/**
 	* Propriedade que contem uma lista de callbacks que serao executados durantes os status do readyState da requisicao
-  * @property __readyState
-  * @default []
+  	* @property __readyState
+  	* @default []
 	*/
 	Object.defineProperty(Ajax.prototype, "__readyState", {
 
@@ -185,10 +185,10 @@
 	*/
 	Ajax.prototype.__defineReadyState = function () {
 
-		this.__readyState[0] = function () {};												// request not initialized
-		this.__readyState[1] = function () {};												// server connection established
-		this.__readyState[2] = function () {};												// request received
-		this.__readyState[3] = function () {};												// processing request
+		this.__readyState[0] = function () {};								// request not initialized
+		this.__readyState[1] = function () {};								// server connection established
+		this.__readyState[2] = function () {};								// request received
+		this.__readyState[3] = function () {};								// processing request
 
 		this.__readyState[4] = this.__finishedRequest.bind(this);			// request finished and response is ready
 
