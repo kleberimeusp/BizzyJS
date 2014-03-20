@@ -161,3 +161,29 @@
 	context.Bizzy.RouterModel = FacadeRouterModel;
 
 })(window);
+
+
+/*
+
+var route = "home/post/{categoria}/{ano}/{id}"
+
+var url = "home/post/tecnologia/2014/0975234057";
+var callback = function () { console.log(arguments); };
+var validator = "";
+
+route = route.replace(/{(\w+)}/g, function (match, number) {
+
+    return "(\\w+)";
+
+});
+
+validator = "^(" + route + ")$";
+
+var re = new RegExp(validator);
+
+
+console.log(re.test(url));
+console.log(url);
+console.log(validator);
+
+*/
