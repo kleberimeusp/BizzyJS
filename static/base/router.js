@@ -7,59 +7,45 @@
 	*/
 	function Router () {
 
-		this._initialize();
+		this.__initialize();
 
 	}
 
 	/**
 	* 
 	*/
-	Object.defineProperty(Router.prototype, "_data", {
+	Object.defineProperty(Router.prototype, "__data", {
 
-		writable: true,
-		value: []
+		writable: true
 
 	});
 
 	/**
 	* 
 	*/
-	Router.prototype._initialize = function () {
+	Router.prototype.__initialize = function () {
 
-		context.Bizzy.event.on(window, "hashchange", this._hashchange.bind(this));
-
-	};
-
-	/**
-	* 
-	*/
-	Router.prototype._execute = function (route) {
-
-		var outher = context.Bizzy.RouterModel.builder({ url: window.location.hash.substr(1) });
-			
-		if (route.equalsPath(other)) {
-
-			route.callback()
-
-		} else if (route.equalsMax(other) && route.hasParameters(other)) {
-
-			route.data.callback(route.getParameters(other));
-
-		}
+		context.Bizzy.event.on(window, "hashchange", this.__hashchange.bind(this));
 
 	};
 
 	/**
 	* 
 	*/
-	Router.prototype._hashchange = function () {
+	Router.prototype.__hashchange = function () {
 
 		var i = 0,
-			max = this._data.length;
+			max = this.__data.length,
+			other = new context.Bizzy.RouterModel({ url: window.location.hash.substr(1) });
 
 		while (i < max) {
 
-			this._execute(this._data[i]);
+			if (this.__data[i].equals(other)) {
+
+				this.__data[i].callback(this.__data[i].getParameters(other));
+
+			}
+
 			i += 1;
 
 		}
@@ -76,7 +62,7 @@
 
 		while (i < max) {
 
-			this._data.push(contex.Bizzy.RouterModel.builder(routesDefination[i]));
+			this.__data.push(contex.Bizzy.RouterModel.builder(routesDefination[i]));
 			i += 1;
 
 		}
@@ -92,6 +78,22 @@
 
 	};
 
-	context.Bizzy.router = new Router();
+	/**
+	* 
+	*/
+	function FacadeRouter () {
+
+		var router = new Router();
+
+		return {
+
+			define: router.define,
+			start: router.start
+
+		}
+
+	}
+
+	context.Bizzy.router = new FacadeRouter();
 
 })(window);
