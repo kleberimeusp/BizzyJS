@@ -10,51 +10,49 @@
 	/**
 	* 
 	*/
-	RouterModel.builder = function (config) {
+	Object.defineProperty(RouterModel.prototype, "segments", {
 
-		var newRouterModel = new RouterModel();
+		writable: true
 
-		newRouterModel.data.url = config.url;
-		newRouterModel.data.path = config.url.split("/");
-		newRouterModel.data.max = newRouterModel.data.path.lengh;
+	});
 
-		newRouterModel.data.callback = (typeof config.callback === "function") ? config.callback : function () {};
+	Object.defineProperty(RouterModel.prototype, "callback", {
 
-		return newRouterModel;
-
-	};
-
-	/**
-	* 
-	*/
-	Object.defineProperty(RouterModel.prototype, "data", {
-
-		writable: true,
-		value: {}
+		writable: true
 
 	});
 
 	/**
-	* Trocar o nome de Path para Segments
-	*/
-	RouterModel.prototype.equalsPath = function (other) {
-
-		return this.data.path == other.data.path;
-	}
-
-	/**
 	* 
 	*/
-	RouterModel.prototype.equalsMax = function (other) {
+	RouterModel.prototype.__equalsSegments = function (other) {
 
-		return this.data.max == other.data.max;
+		return this.segments == other.segments;
 
 	};
 
 	/**
 	* 
 	*/
-	RouterModel.prototype.hasParameters = function (other) {
+	RouterModel.prototype.__equalsMax = function (other) {
+
+		return this.segments.length == other.segments.length;
+
+	};
+
+	/**
+	* 
+	*/
+	RouterModel.prototype.__isVariable = function (segment) {
+
+		return /^{(\d+)}$/i.test(segment);
+
+	};
+
+	/**
+	* 
+	*/
+	RouterModel.prototype.__hasParameters = function (other) {
 
 		return this.getParameters(other).length > 0;
 
@@ -66,22 +64,28 @@
 	RouterModel.prototype.getParameters = function (other) {
 
 		var i = 0,
-			max = other.data.max,
+			max = other.segments.length,
 			parameters = [];
+
+		if (!this.__equalsMax(other)) {
+
+			return [];
+
+		}
 
 		while (i < max) {
 		
-			if (/^{(\d+)}$/i.test(this.data.path[i])) {
+			if (this.__isVariable(this.segments[i])) {
 			
-				parameters.push(other.data.path[i]);
+				parameters.push(other.segments[i]);
 			
-			} else if (this.data.path[i] !== other.data.path[i]) {
+			} else if (this.segments[i] !== other.segments[i]) {
 			
-				return parameters;
+				return [];
 			
 			}
 
-			i += 1
+			i += 1;
 		
 		}
 
@@ -89,6 +93,71 @@
 
 	};
 
-	context.Bizzy.RouterModel = RouterModel;
+	/**
+	* 
+	*/
+	RouterModel.prototype.equals = function (other) {
+
+		var i = 0,
+			max = other.segments.length;
+
+		if (!this.__equalsSegments(other)) {
+
+			return false;
+
+		}
+
+		if (!this.__equalsMax(other)) {
+
+			return false;
+
+		}
+
+		while (i < max) {
+
+			if (this.__isVariable(this.segments[i])) {
+
+				continue;
+
+			} else if (this.segments[i] !== other.segments[i]) {
+
+				return false;
+
+			}
+
+			i += 1;
+
+		}
+
+		return true;
+
+	};
+
+	/**
+	* 
+	*/
+	function FacadeRouterModel (config) {
+
+		if (!(this instanceof FacadeRouterModel)) {
+
+			return new FacadeRouterModel(config);
+
+		}
+
+		var routerModel = new RouterModel();
+
+		routerModel.segments = config.url.split("/");
+		routerModel.callback = (typeof config.callback === "function") ? config.callback : function () {};
+
+		return {
+
+			equals: routerModel.equals,
+			getParameters: routerModel.getParameters
+
+		}
+
+	}
+
+	context.Bizzy.RouterModel = FacadeRouterModel;
 
 })(window);
