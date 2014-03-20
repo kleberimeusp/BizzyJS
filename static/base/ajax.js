@@ -15,7 +15,10 @@
 	}
 
 	/**
-	* 
+	* Propriedade que contem o verbo http da requisicao
+	*
+	* @property __method
+	* @default "GET"
 	*/
 	Object.defineProperty(Ajax.prototype, "__method", {
 
@@ -26,7 +29,9 @@
 	});
 
 	/**
-	* 
+	* Propriedade que contem a url da requisicao
+	* @property __url
+	* @default ""
 	*/
 	Object.defineProperty(Ajax.prototype, "__url", {
 
@@ -37,7 +42,9 @@
 	});
 
 	/**
-	* 
+	* Propriedade que indica se a requisica sera sync ou async
+	* @property __sync
+  * @default true
 	*/
 	Object.defineProperty(Ajax.prototype, "__sync", {
 
@@ -48,7 +55,9 @@
 	});
 
 	/**
-	*
+	* Propriedade que contem os dados que trafegados na requisicao
+	* @property __data
+	* @default {}
 	*/
 	Object.defineProperty(Ajax.prototype, "__data", {
 
@@ -59,7 +68,9 @@
 	});
 
 	/**
-	* 
+	* Propriedade que contem a lista de headers da requisicao
+	* @property __headers
+	* @default []
 	*/
 	Object.defineProperty(Ajax.prototype, "__headers", {
 
@@ -70,7 +81,9 @@
 	});
 
 	/**
-	* 
+	* Propriedade que contem o callback que sera executado quando a requisicao terminar
+	* @property __onCompleted
+	* @default function () {}
 	*/
 	Object.defineProperty(Ajax.prototype, "__onCompleted", {
 
@@ -81,7 +94,9 @@
 	});
 
 	/**
-	* 
+	* Propriedade que contem o callback que sera executado quando a requisicao falhar]
+	* @property __onFailed
+	* @default function () {}
 	*/
 	Object.defineProperty(Ajax.prototype, "__onFailed", {
 
@@ -92,7 +107,9 @@
 	});
 
 	/**
-	* 
+	* Propriedade que contem o objeto responsavel por tratar as requisicoes
+	* @property __xhr
+	* @default {}
 	*/
 	Object.defineProperty(Ajax.prototype, "__xhr", {
 
@@ -102,7 +119,9 @@
 	});
 
 	/**
-	* 
+	* Propriedade que contem uma lista de callbacks que serao executados durantes os status do readyState da requisicao
+  * @property __readyState
+  * @default []
 	*/
 	Object.defineProperty(Ajax.prototype, "__readyState", {
 
@@ -112,7 +131,9 @@
 	});
 
 	/**
-	* 
+	* Propriedade que contem uma lista de callbacks que serao executados conforme o status code da requisicao
+	* @property __status
+	* @default []
 	*/
 	Object.defineProperty(Ajax.prototype, "__status", {
 
@@ -122,7 +143,9 @@
 	});
 
 	/**
-	* 
+	* Metodo de initializacao da classe, responsavel pela configuracao inicial
+	* @method __initialize
+	* @return {void}
 	*/
 	Ajax.prototype.__initialize = function () {
 
@@ -134,7 +157,9 @@
 	};
 
 	/**
-	* 
+	* Metodo responsavel pela configuracao do xhr
+	* @method __defineXhr
+	* @return {void}
 	*/
 	Ajax.prototype.__defineXhr = function () {
 
@@ -143,7 +168,9 @@
 	};
 
 	/**
-	* 
+	* Metodo responsavel pela configuracao do evento do ready state
+	* @method __defineReadyStateChange
+	* @return {void}
 	*/
 	Ajax.prototype.__defineReadyStateChange = function () {
 
@@ -152,21 +179,25 @@
 	};
 
 	/**
-	* 
+	* Metodo responsavel pela configuracao dos callbacks do ready state
+	* @method __defineReadyState
+	* @return {void}
 	*/
 	Ajax.prototype.__defineReadyState = function () {
 
-		this.__readyState[0] = function () {};							// request not initialized
-		this.__readyState[1] = function () {};							// server connection established
-		this.__readyState[2] = function () {};							// request received
-		this.__readyState[3] = function () {};							// processing request
+		this.__readyState[0] = function () {};												// request not initialized
+		this.__readyState[1] = function () {};												// server connection established
+		this.__readyState[2] = function () {};												// request received
+		this.__readyState[3] = function () {};												// processing request
 
 		this.__readyState[4] = this.__finishedRequest.bind(this);			// request finished and response is ready
 
 	};
 
 	/**
-	*
+	* Metodo responsavel pela configuracao dos callbacks do status code da requisicao http
+	* @method __defineStatus
+	* @return {void}
 	*/
 	Ajax.prototype.__defineStatus = function () {
 
@@ -180,7 +211,9 @@
 	};
 
 	/**
-	* 
+	* Metodo que trata quando a requisicao completar
+	* @method __completed
+	* @return {void}
 	*/
 	Ajax.prototype.__completed = function () {
 
@@ -189,7 +222,9 @@
 	};
 
 	/**
-	*
+	* Metodo que trata quando a requisicao falhar
+	* @method __failed
+	* @return {void}
 	*/
 	Ajax.prototype.__failed = function () {
 
@@ -198,7 +233,9 @@
 	};
 
 	/**
-	* 
+	* Metodo que trata quando a requisicao terminar
+	* @method __finishedRequest
+	* @return {void}
 	*/
 	Ajax.prototype.__finishedRequest = function () {
 
@@ -207,7 +244,9 @@
 	};
 
 	/**
-	* 
+	* Metodo responsavel por disparar o callback conforme o status do ready state
+	* @method __onreadystatechange
+	* @return {void}
 	*/
 	Ajax.prototype.__onreadystatechange = function () {
 
@@ -216,9 +255,11 @@
 	};
 
 	/**
-	* 
+	* Metodo responsavel por resetar as propriedades da classe para os valores default
+	* @method __resetProperties
+	* @return {void}
 	*/
-	Ajax.prototype.__reset = function () {
+	Ajax.prototype.__resetProperties = function () {
 
 		this.__method = "GET";
 		this.__url = "";
@@ -231,9 +272,11 @@
 	};
 
 	/**
-	* 
+	* Metodo responsavel por setar as propriedades da classe
+	* @method __addProperties
+	* @return {void}
 	*/
-	Ajax.prototype.__extend = function (config) {
+	Ajax.prototype.__addProperties = function (config) {
 
 		for (var name in config) {
 
@@ -244,7 +287,9 @@
 	};
 
 	/**
-	* 
+	* Metodo responsavel por abrir a requisicao
+	* @method __open
+	* @return {void}
 	*/
 	Ajax.prototype.__open = function () {
 
@@ -253,7 +298,9 @@
 	};
 
 	/**
-	* 
+	* Metodo responsavel os headers da requisicao
+	* @method __setRequestHeader
+	* @return {void}
 	*/
 	Ajax.prototype.__setRequestHeader = function () {
 
@@ -269,7 +316,9 @@
 	};
 
 	/**
-	* 
+	* Metodo responsavel por enviar a requisicao http
+	* @method __send
+	* @return {void}
 	*/
 	Ajax.prototype.__send = function () {
 
@@ -278,7 +327,9 @@
 	};
 
 	/**
-	* 
+	* Metodo responsavel por executar a requisicao http (open, setRequestHeaders, send)
+	* @method __execute
+	* @return {void}
 	*/
 	Ajax.prototype.__execute = function () {
 
@@ -289,18 +340,20 @@
 	};
 
 	/**
-	* 
+	* Metodo responsavel por enviar a requisicao http (resetProperties, addProperties, execute)
 	*/
 	Ajax.prototype.request = function (config) {
 
-		this.__reset();
-		this.__extend(config);
+		this.__resetProperties();
+		this.__addProperties(config);
 		this.__execute();
 
 	};
 
 	/**
-	* 
+	* Construtor do padrão Facade, responsavel por expor apenas apenas o escopo necessario
+	* @method FacadeAjax
+	* @return { request: Ajax.request }
 	*/
 	function FacadeAjax function () {
 
@@ -314,7 +367,7 @@
 
 		return {
 
-			request: aja.request
+			request: ajax.request
 
 		}
 
