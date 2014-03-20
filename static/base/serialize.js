@@ -111,9 +111,16 @@
 		var i = 0,
 			max = this.__form.elements.length;
 
-		switch (i < max) {
+		while (i < max) {
+
+			if (this.__form.elements[i].name === "") {
+
+				continue;
+
+			}
 
 			this.__serachForNodeName(this.__form.elements[i]);
+
 			i += 1;
 
 		}
@@ -121,6 +128,12 @@
 	};
 
 	Serialize.prototype.toJSON = function (form)  {
+
+		if (!form || form.nodeName !== "FORM") {
+
+			return {};
+
+		}
 
 		this.__form = form;
 		this.__data = {};
