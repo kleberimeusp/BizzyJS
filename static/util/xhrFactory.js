@@ -42,9 +42,7 @@
 			function () { return new window.ActiveXObject("Msxml2.XMLHTTP"); },
 			function () { return new window.ActiveXObject("Msxml2.XMLHTTP.3.0"); },
 			function () { return new window.ActiveXObject("Msxml2.XMLHTTP.6.0"); },
-
 			function () { return new window.ActiveXObject("Msxml3.XMLHTTP"); },
-
 			function () { return new window.ActiveXObject("Microsoft.XMLHTTP"); }
 
 		];

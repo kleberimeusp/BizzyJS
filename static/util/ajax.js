@@ -3,6 +3,31 @@
 	"use strict";
 
 	/**
+	* 
+	*/
+	function XHRFactory () {
+
+		if (window.XMLHttpRequest) {
+
+			XHRFactory = function () {
+
+				return new XMLHttpRequest();
+
+			}();
+		    
+		} else {
+
+			XHRFactory = function () {
+				
+				return new window.ActiveXObject("Msxml2.XMLHTTP.3.0");
+
+			}();
+
+		}
+
+	}
+
+	/**
 	* Classe para requisicoes Ajax
 	* 
 	* @namespace App
@@ -114,7 +139,7 @@
 	Object.defineProperty(Ajax.prototype, "__xhr", {
 
 		writable: true,
-		value: {}
+		value: XHRFactory();
 
 	});
 
@@ -149,21 +174,9 @@
 	*/
 	Ajax.prototype.__initialize = function () {
 
-		this.__defineXhr();
 		this.__defineReadyStateChange();
 		this.__defineReadyState();
 		this.__defineStatus();
-
-	};
-
-	/**
-	* Metodo responsavel pela configuracao do xhr
-	* @method __defineXhr
-	* @return {void}
-	*/
-	Ajax.prototype.__defineXhr = function () {
-
-		this.__xhr = bizzy.XHRFactory.create();
 
 	};
 
