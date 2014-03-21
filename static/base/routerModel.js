@@ -16,6 +16,9 @@
 
 	});
 
+	/**
+	* 
+	*/
 	Object.defineProperty(RouterModel.prototype, "callback", {
 
 		writable: true
@@ -25,38 +28,29 @@
 	/**
 	* 
 	*/
-	RouterModel.prototype.__equalsSegments = function (other) {
+	Object.defineProperty(RouterModel.prototype, "__validator", {
 
-		return this.segments == other.segments;
+		writable: true
 
-	};
-
-	/**
-	* 
-	*/
-	RouterModel.prototype.__equalsMax = function (other) {
-
-		return this.segments.length == other.segments.length;
-
-	};
+	});
 
 	/**
 	* 
 	*/
-	RouterModel.prototype.__isVariable = function (segment) {
+	RouterModel.prototype.__buildValidator = function () {
 
-		return /^{(\d+)}$/i.test(segment);
+		var regularExpression = "",
+			url = this.segments.join("/");
 
-	};
+		regularExpression = url.replace(/{(\w+)}/g, function (match, number) {
 
-	/**
-	* 
-	*/
-	RouterModel.prototype.__hasParameters = function (other) {
+			return "(\\w+)";
 
-		return this.getParameters(other).length > 0;
+		});
 
-	};
+		this.__validator = new RegExp(context.Bizzy.format("^({0})$", regularExpression));
+
+	});
 
 	/**
 	* 
@@ -67,7 +61,7 @@
 			max = other.segments.length,
 			parameters = [];
 
-		if (!this.__equalsMax(other)) {
+		if (!this.equals(other)) {
 
 			return [];
 
@@ -75,13 +69,9 @@
 
 		while (i < max) {
 		
-			if (this.__isVariable(this.segments[i])) {
+			if (/^{(\d+)}$/i.test(this.segments[i])) {
 			
 				parameters.push(other.segments[i]);
-			
-			} else if (this.segments[i] !== other.segments[i]) {
-			
-				return [];
 			
 			}
 
@@ -98,38 +88,13 @@
 	*/
 	RouterModel.prototype.equals = function (other) {
 
-		var i = 0,
-			max = other.segments.length;
+		this.__buildValidator();
 
-		if (!this.__equalsSegments(other)) {
+		this.equals = function (other) {
 
-			return false;
+			return this.__validator.test(other.url);
 
-		}
-
-		if (!this.__equalsMax(other)) {
-
-			return false;
-
-		}
-
-		while (i < max) {
-
-			if (this.__isVariable(this.segments[i])) {
-
-				continue;
-
-			} else if (this.segments[i] !== other.segments[i]) {
-
-				return false;
-
-			}
-
-			i += 1;
-
-		}
-
-		return true;
+		}.bind(this)(other);
 
 	};
 
@@ -145,7 +110,7 @@
 		}
 
 		var routerModel = new RouterModel();
-
+		
 		routerModel.segments = config.url.split("/");
 		routerModel.callback = (typeof config.callback === "function") ? config.callback : function () {};
 
@@ -161,29 +126,3 @@
 	context.Bizzy.RouterModel = FacadeRouterModel;
 
 })(window);
-
-
-/*
-
-var route = "home/post/{categoria}/{ano}/{id}"
-
-var url = "home/post/tecnologia/2014/0975234057";
-var callback = function () { console.log(arguments); };
-var validator = "";
-
-route = route.replace(/{(\w+)}/g, function (match, number) {
-
-    return "(\\w+)";
-
-});
-
-validator = "^(" + route + ")$";
-
-var re = new RegExp(validator);
-
-
-console.log(re.test(url));
-console.log(url);
-console.log(validator);
-
-*/
