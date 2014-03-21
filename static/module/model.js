@@ -178,7 +178,7 @@
 	/**
 	* 
 	*/
-	Model.prototype.get = function () {
+	Model.prototype.fetch = function () {
 
 		this.__request("GET");
 
@@ -187,18 +187,9 @@
 	/**
 	* 
 	*/
-	Model.prototype.post = function () {
+	Model.prototype.save = function () {
 
-		this.__request("POST");
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.put = function () {
-
-		this.__request("PUT");
+		this.__request(this.data[this._idName] ? "POST" : "PUT");
 
 	};
 
@@ -235,9 +226,8 @@
 			onCompleted: model.onCompleted,
 			onFailed: model.onFailed,
 			reset: model.reset,
-			get: model.get,
-			post: model.post,
-			put: model.put,
+			fetch: model.fetch,
+			save: model.save,
 			delete: model.delete
 
 		}
