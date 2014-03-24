@@ -1,0 +1,19 @@
+{
+  "name": "Bizzy",
+  "description": "Micro Framework MV*",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Cleber de Moraes Goncalves <cleber.goncalves@rgm.com.br>",
+  "engines": {
+    "node": "0.x",
+    "npm": "1.x"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-cli": "0.x",
+    "grunt-contrib-concat": "0.x",
+    "grunt-contrib-jshint": "0.x",
+    "grunt-contrib-uglify": "0.x",
+    "grunt-contrib-watch": "0.x"
+  }
+}
