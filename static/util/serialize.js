@@ -1,4 +1,4 @@
-;(function (context) {
+;(function (window, undefined) {
 
 	"use strict";
 
@@ -108,10 +108,9 @@
 
 	Serialize.prototype.__execute = function () {
 
-		var i = 0,
-			max = this.__form.elements.length;
+		var i = this.__form.elements.length;
 
-		while (i < max) {
+		while (--i) {
 
 			if (this.__form.elements[i].name === "") {
 
@@ -120,8 +119,6 @@
 			}
 
 			this.__serachForNodeName(this.__form.elements[i]);
-
-			i += 1;
 
 		}
 
@@ -156,7 +153,7 @@
 
 	}
 
-	context.Bizzy.serialize = new FacadeSerialize();
+	Bizzy.uitl.serialize = new FacadeSerialize();
 
 })(window);
 

@@ -1,4 +1,4 @@
-;(function (context) {
+;(function (window, undefined) {
 
 	"use strict";
 
@@ -14,31 +14,17 @@
 
 		if (window.addEventListener) {
             
-            this.on = function (el, type, fn) {
-                
-                el.addEventListener(type, fn, false);
-                
-            };
+            this.on = function (el, type, fn) { el.addEventListener(type, fn, false); }();
             
         } else if (window.attachEvent) {
             
-            this.on = function (el, type, fn) {
-                
-                el.attachEvent("on" + type, fn);
-                
-            };
+            this.on = function (el, type, fn) { el.attachEvent("on" + type, fn); }();
             
         } else {
             
-            this.on = function (el, type, fn) {
-                
-                el["on" + type] =  fn;
-                
-            };
+            this.on = function (el, type, fn) { el["on" + type] =  fn; }();
             
         }
-        
-        this.on(el, type, fn);
 
 	};
 
@@ -49,31 +35,17 @@
         
         if (window.removeEventListener) {
             
-            this.off = function (el, type, fn) {
-                
-                el.removeEventListener(type, fn, false);
-                
-            };
+            this.off = function (el, type, fn) { el.removeEventListener(type, fn, false); }();
             
         } else if (window.detachEvent) {
             
-            this.off = function (el, type, fn) {
-                
-                el.detachEvent("on" + type, fn);
-                
-            };
+            this.off = function (el, type, fn) { el.detachEvent("on" + type, fn); }();
             
         } else {
             
-            this.off = function (el, type, fn) {
-                
-                el["on" + type] =  null;
-                
-            };
+            this.off = function (el, type, fn) { el["on" + type] =  null; }();
             
         }
-        
-        this.off(el, type, fn);
         
     };
 
@@ -89,6 +61,6 @@
         
     };
 
-    context.Bizzy.event = new Event();
+    Bizzy.util.event = new Event();
 
 })(window);

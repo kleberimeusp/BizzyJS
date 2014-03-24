@@ -1,4 +1,4 @@
-;(function (context) {
+;(function (window, undefined) {
 
 	"use strict";
 
@@ -18,8 +18,7 @@
 	*/
 	Object.defineProperty(Dispatcher.prototype, "__listeners", {
 
-		writable: true,
-		value: []
+		writable: true
 
 	});
 
@@ -61,19 +60,16 @@
 	*/
 	Dispatcher.prototype.off = function (event, callback) {
 
-		var i = 0,
-			listeners = this.__getEvent(event),
-			max = listeners.length;
+		var listeners = this.__getEvent(event),
+			i = listeners.length;
 
-		while (i < max) {
+		while (--i) {
 
 			if (listeners[i] === callback) {
 
 				delete listeners[i];
 
 			}
-
-			i += 1;
 
 		}
 
@@ -89,14 +85,12 @@
 	*/
 	Dispatcher.prototype.trigger = function (event, data) {
 
-		var i = 0,
-			listeners = this.__getEvent(event),
-			max = listeners.length;
+		var listeners = this.__getEvent(event),
+			i = listeners.length;
 
-		while (i < max) {
+		while (--i) {
 
 			listeners[i](data);
-			i += 1;
 
 		}
 
@@ -119,6 +113,6 @@
 
 	}
 
-	context.Bizzy.dispatcher = new FacadeDispacher();
+	Bizzy.util.dispatcher = new FacadeDispacher();
 	
 })(window);

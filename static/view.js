@@ -1,4 +1,4 @@
-;(function (context) {
+;(function (window, undefined) {
 
 	"use strict";
 
@@ -131,6 +131,6 @@
 
 	}
 
-	context.Bizzy.View = View;
+	Bizzy.View = View;
 
 })(window);
