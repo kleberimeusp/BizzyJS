@@ -1,4 +1,4 @@
-;(function (context) {
+;(function (window, undefined) {
 
 	"use strict";
 
@@ -19,7 +19,7 @@
 	*/
 	Object.defineProperty(Model.prototype, "_ajax", {
 
-		value: new context.Bizzy.Ajax()
+		value: new Bizzy.Ajax()
 
 	});
 
@@ -234,6 +234,6 @@
 
 	}
 
-	context.Bizzy.Model = FacadeModel;
+	Bizzy.Model = FacadeModel;
 
 })(window);
