@@ -162,13 +162,15 @@
 			_el: view._el,
 			_template: view._template,
 			_model: view._model,
+			_subscribeEvents: view._subscribeEvents,
+			_deleteEvents: view._deleteEvents,
 			render: view.render,
 			destory: view.destory
 
-		}
+		};
 
 	}
 
-	Bizzy.View = View;
+	Bizzy.View = FacadeView;
 
 })(window);

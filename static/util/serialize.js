@@ -22,7 +22,8 @@
 
 	Object.defineProperty(Serialize.prototype, "__nodeName", {
 
-		writable: true
+		writable: true,
+		value: {}
 
 	});
 
@@ -41,30 +42,38 @@
 
 	Serialize.prototype.__defineNodeName = function () {
 
-		this.__nodeName["INPUT"] = this.__searchForNodeType.bind(this);
-		this.__nodeName["BUTTON"] = this.__searchForNodeType.bind(this);
-		this.__nodeName["SELECT"] = this.__searchForNodeType.bind(this);
+		this.__nodeName = {
 
-		this.__nodeName["TEXTAREA"] = this.__push.bind(this);
+			"INPUT": this.__searchForNodeType.bind(this),
+			"BUTTON": this.__searchForNodeType.bind(this),
+			"SELECT": this.__searchForNodeType.bind(this),
+
+			"TEXTAREA": this.__push.bind(this)
+
+		};
 
 	};
 
 	Serialize.prototype.__defineType = function () {
 
-		this.__type["button"] = this.__push.bind(this);
-		this.__type["hidden"] = this.__push.bind(this);
-		this.__type["text"] = this.__push.bind(this);
-		this.__type["password"] = this.__push.bind(this);
-		this.__type["reset"] = this.__push.bind(this);
-		this.__type["select-one"] = this.__push.bind(this);
-		this.__type["submit"] = this.__push.bind(this);
+		this.__type = {
 
-		this.__type["checkbox"] = this.__pushChecked.bind(this);
-		this.__type["radio"] = this.__pushChecked.bind(this);
+			"button": this.__push.bind(this),
+			"hidden": this.__push.bind(this),
+			"text": this.__push.bind(this),
+			"password": this.__push.bind(this),
+			"reset": this.__push.bind(this),
+			"select-one": this.__push.bind(this),
+			"submit": this.__push.bind(this),
 
-		this.__type["select-multiple"] = this.__pushSelectMultiple.bind(this);
+			"checkbox": this.__pushChecked.bind(this),
+			"radio": this.__pushChecked.bind(this),
 
-		this.__type["file"] = function () {};
+			"select-multiple": this.__pushSelectMultiple.bind(this),
+
+			"file": function () {}
+
+		};
 
 	};
 
@@ -149,7 +158,7 @@
 
 			toJSON: serialize.toJSON
 
-		}
+		};
 
 	}
 

@@ -20,7 +20,15 @@ module.exports = function (grunt) {
 
         jshint: {
 
-            files: ["static/**/*.js"]
+            ignore_warning: {
+
+                options: {
+
+                },
+
+                src: ["static/**/*.js"],
+
+            },
 
         },
 

@@ -47,6 +47,6 @@
 
 	});
 
-	Bizzy = new Bizzy();
+	window.Bizzy = new Bizzy();
 
 })(window);

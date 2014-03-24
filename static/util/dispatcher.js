@@ -101,7 +101,7 @@
 	*/
 	function FacadeDispatcher () {
 
-		if (!(this typeof FacadeDispatcher) {
+		if (!(this instanceof FacadeDispatcher)) {
 
 			return new FacadeDispatcher();
 
@@ -115,7 +115,7 @@
 			off: dispatcher.off,
 			trigger: dispatcher.trigger
 
-		}
+		};
 
 	}
 
