@@ -101,6 +101,12 @@
 	*/
 	function FacadeDispatcher () {
 
+		if (!(this typeof FacadeDispatcher) {
+
+			return new FacadeDispatcher();
+
+		}
+
 		var dispatcher = new Dispatcher();
 
 		return {
@@ -113,6 +119,6 @@
 
 	}
 
-	Bizzy.util.dispatcher = new FacadeDispacher();
+	Bizzy.util.dispatcher = new FacadeDispatcher();
 	
 })(window);

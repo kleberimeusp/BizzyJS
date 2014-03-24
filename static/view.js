@@ -73,6 +73,42 @@
 	});
 
 	/**
+	* 
+	*/
+	Object.defineProperty(View.prototype, "events", {
+
+		writable: true,
+		value: []
+
+	});
+
+	/**
+	* 
+	*/
+	View.prototype._subscribeEvents = function () {
+
+		for (var name in this.events) {
+
+			Bizzy.util.event.on(document.querySelector(name.split(" ")[1]), name.split(" ")[0], this.events[name]);
+
+		}
+
+	};
+
+	/**
+	* 
+	*/
+	View.prototype._deleteEvents = function () {
+
+		for (var name in this.events) {
+
+			Bizzy.util.event.off(document.querySelector(name.split(" ")[1]), name.split(" ")[0], this.events[name]);
+
+		}
+
+	};
+
+	/**
 	* Metodo executado na inicializacao da Classe
 	*
 	* @method _initialize
@@ -91,6 +127,7 @@
 	View.prototype.render = function () {
 
 		this._el.innerHTML = this._template(this._model.data);
+		this._subscribeEvents();
 
 	};
 
@@ -102,6 +139,7 @@
 	View.prototype.destory = function () {
 
 		this._el.innerHTML = "";
+		this._deleteEvents();
 
 	};
 
