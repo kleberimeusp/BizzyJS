@@ -1,4 +1,4 @@
-;(function (context) {
+;(function (window, undefined) {
 
 	"use string";
 
@@ -18,6 +18,6 @@
 
 	}
 
-	context.Bizzy.format = format;
+	Bizzy.util.format = format;
 
 })(window);

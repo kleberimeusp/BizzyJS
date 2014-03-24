@@ -1,6 +1,59 @@
-;(function (context) {
+;(function (window, undefined) {
 
 	"use strict";
+
+	/**
+	* 
+	*/
+	function xhrFactory () {
+
+		if (window.XMLHttpRequest) {
+
+			xhrFactory = function () { return new XMLHttpRequest(); };
+			return xhrFactory();
+		    
+		} else if (window.ActiveXObject) {
+
+			try {
+
+				xhrFactory = function () { return new window.ActiveXObject("Msxml2.XMLHTTP"); };
+				return xhrFactory();
+
+			} catch () {}
+
+			try {
+
+				xhrFactory = function () { return new window.ActiveXObject("Msxml2.XMLHTTP.3.0"); };
+				return xhrFactory();
+
+			} catch () {}
+
+			try {
+
+				xhrFactory = function () { return new window.ActiveXObject("Msxml2.XMLHTTP.6.0"); };
+				return xhrFactory();
+
+			} catch () {}
+
+			try {
+
+				xhrFactory = function () { return new window.ActiveXObject("Msxml3.XMLHTTP"); };
+				return xhrFactory();
+
+			} catch () {}
+
+			try {
+
+				xhrFactory = function () { return new window.ActiveXObject("Microsoft.XMLHTTP"); };
+				return xhrFactory();
+
+			} catch () {}
+
+		}
+
+		return {};
+
+	}
 
 	/**
 	* Classe para requisicoes Ajax
@@ -22,9 +75,7 @@
 	*/
 	Object.defineProperty(Ajax.prototype, "__method", {
 
-		enumerable: true,
-		writable: true,
-		value: "GET"
+		writable: true
 
 	});
 
@@ -35,9 +86,7 @@
 	*/
 	Object.defineProperty(Ajax.prototype, "__url", {
 
-		enumerable: true,
-		writable: true,
-		value: ""
+		writable: true
 
 	});
 
@@ -48,9 +97,7 @@
 	*/
 	Object.defineProperty(Ajax.prototype, "__sync", {
 
-		enumerable: true,
-		writable: true,
-		value: true
+		writable: true
 
 	});
 
@@ -61,9 +108,7 @@
 	*/
 	Object.defineProperty(Ajax.prototype, "__data", {
 
-		enumerable: true,
-		writable: true,
-		value: {}
+		writable: true
 
 	});
 
@@ -74,9 +119,7 @@
 	*/
 	Object.defineProperty(Ajax.prototype, "__headers", {
 
-		enumerable: true,
-		writable: true,
-		value: []
+		writable: true
 
 	});
 
@@ -87,9 +130,7 @@
 	*/
 	Object.defineProperty(Ajax.prototype, "__onCompleted", {
 
-		enumerable: true,
-		writable: true,
-		value: function () {}
+		writable: true
 
 	});
 
@@ -100,9 +141,7 @@
 	*/
 	Object.defineProperty(Ajax.prototype, "__onFailed", {
 
-		enumerable: true,
-		writable: true,
-		value: function () {}
+		writable: true
 
 	});
 
@@ -113,8 +152,7 @@
 	*/
 	Object.defineProperty(Ajax.prototype, "__xhr", {
 
-		writable: true,
-		value: XHRFactory();
+		writable: true
 
 	});
 
@@ -125,8 +163,7 @@
 	*/
 	Object.defineProperty(Ajax.prototype, "__readyState", {
 
-		writable: true,
-		value: []
+		writable: true
 
 	});
 
@@ -137,8 +174,7 @@
 	*/
 	Object.defineProperty(Ajax.prototype, "__status", {
 
-		writable: true,
-		value: []
+		writable: true
 
 	});
 
@@ -163,23 +199,7 @@
 	*/
 	Ajax.prototype.__defineXhr = function () {
 
-		if (window.XMLHttpRequest) {
-
-			this.__defineXhr = function () {
-
-				this.__xhr = new XMLHttpRequest();
-
-			}.bind(this)();
-		    
-		} else {
-
-			this.__defineXhr = function () {
-
-				this.__xhr = new window.ActiveXObject("Msxml2.XMLHTTP.3.0");
-
-			}.bind(this)();
-
-		}
+		this.__xhr = xhrFactory();
 
 	};
 
@@ -296,7 +316,11 @@
 
 		for (var name in config) {
 
-			this[name] = config[name];
+			if (this.hasOwnProperty(name)) {
+
+				this[name] = config[name];
+
+			}
 
 		}
 
@@ -320,10 +344,9 @@
 	*/
 	Ajax.prototype.__setRequestHeader = function () {
 
-		var i,
-			max = this.__headers.length;
+		var i = this.__headers.length;
 
-		for (i = 0; i < max; i += 1) {
+		while (--i) {
 
 			this.__xhr.setRequestHeader(this.__headers[i].key, this.__headers[i].value);
 
@@ -389,6 +412,6 @@
 
 	}
 
-	context.Bizzy.Ajax = Ajax;
+	Bizzy.util.Ajax = Ajax;
 
 })(window);

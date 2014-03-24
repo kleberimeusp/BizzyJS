@@ -1,4 +1,4 @@
-;(function (contex) {
+;(function (window, undefined) {
 
 	"use strict";
 
@@ -37,6 +37,16 @@
 
 	});
 
-	contex.Bizzy = new Bizzy();
+	/**
+	* 
+	*/
+	Object.defineProperty(Bizzy.prototype, "util", {
+
+		writable: true,
+		value: {}
+
+	});
+
+	Bizzy = new Bizzy();
 
 })(window);

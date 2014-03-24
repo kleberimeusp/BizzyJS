@@ -1,4 +1,4 @@
-;(function (context) {
+;(function (window, undefined) {
 
 	"use strict";
 
@@ -12,7 +12,7 @@
 	*/
 	Object.defineProperty(Require.prototype, "__ajax", {
 
-		value: new context.Bizzy.Ajax()
+		value: new Bizzy.Ajax()
 
 	});
 
@@ -78,6 +78,6 @@
 		
 	}
 
-	context.Bizzy.require = new FacadeRequire();
+	Bizzy.util.require = new FacadeRequire();
 
 })(window);

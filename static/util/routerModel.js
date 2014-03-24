@@ -57,8 +57,7 @@
 	*/
 	RouterModel.prototype.getParameters = function (other) {
 
-		var i = 0,
-			max = other.segments.length,
+		var i = other.segments.length,
 			parameters = [];
 
 		if (!this.equals(other)) {
@@ -67,15 +66,13 @@
 
 		}
 
-		while (i < max) {
+		while (--i) {
 		
 			if (/^{(\d+)}$/i.test(this.segments[i])) {
 			
 				parameters.push(other.segments[i]);
 			
 			}
-
-			i += 1;
 		
 		}
 
