@@ -50,7 +50,7 @@
 
 		this.__validator = new RegExp(context.Bizzy.format("^({0})$", regularExpression));
 
-	});
+	};
 
 	/**
 	* 
@@ -116,7 +116,7 @@
 			equals: routerModel.equals,
 			getParameters: routerModel.getParameters
 
-		}
+		};
 
 	}
 
@@ -203,7 +203,7 @@
 			define: router.define,
 			start: router.start
 
-		}
+		};
 
 	}
 

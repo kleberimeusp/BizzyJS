@@ -5,13 +5,13 @@
 	/**
 	* 
 	*/
-	function xhrFactory () {
+	var xhrFactory = function () {
 
 		if (window.XMLHttpRequest) {
 
 			xhrFactory = function () { return new XMLHttpRequest(); };
 			return xhrFactory();
-		    
+
 		} else if (window.ActiveXObject) {
 
 			try {
@@ -19,41 +19,41 @@
 				xhrFactory = function () { return new window.ActiveXObject("Msxml2.XMLHTTP"); };
 				return xhrFactory();
 
-			} catch () {}
+			} catch (err) {}
 
 			try {
 
 				xhrFactory = function () { return new window.ActiveXObject("Msxml2.XMLHTTP.3.0"); };
 				return xhrFactory();
 
-			} catch () {}
+			} catch (err) {}
 
 			try {
 
 				xhrFactory = function () { return new window.ActiveXObject("Msxml2.XMLHTTP.6.0"); };
 				return xhrFactory();
 
-			} catch () {}
+			} catch (err) {}
 
 			try {
 
 				xhrFactory = function () { return new window.ActiveXObject("Msxml3.XMLHTTP"); };
 				return xhrFactory();
 
-			} catch () {}
+			} catch (err) {}
 
 			try {
 
 				xhrFactory = function () { return new window.ActiveXObject("Microsoft.XMLHTTP"); };
 				return xhrFactory();
 
-			} catch () {}
+			} catch (err) {}
 
 		}
 
 		return {};
 
-	}
+	};
 
 	/**
 	* Classe para requisicoes Ajax
@@ -158,8 +158,8 @@
 
 	/**
 	* Propriedade que contem uma lista de callbacks que serao executados durantes os status do readyState da requisicao
-  	* @property __readyState
-  	* @default []
+	* @property __readyState
+	* @default []
 	*/
 	Object.defineProperty(Ajax.prototype, "__readyState", {
 
@@ -394,7 +394,7 @@
 	* @method FacadeAjax
 	* @return { request: Ajax.request }
 	*/
-	function FacadeAjax function () {
+	function FacadeAjax () {
 
 		if (!(this instanceof FacadeAjax)) {
 
@@ -408,10 +408,10 @@
 
 			request: ajax.request
 
-		}
+		};
 
 	}
 
-	Bizzy.util.Ajax = Ajax;
+	Bizzy.util.Ajax = FacadeAjax;
 
 })(window);

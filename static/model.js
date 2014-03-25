@@ -230,7 +230,7 @@
 			save: model.save,
 			delete: model.delete
 
-		}
+		};
 
 	}
 

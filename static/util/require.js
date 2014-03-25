@@ -68,13 +68,13 @@
 	*/
 	function FacadeRequire	() {
 
-		var require =  new Require()
+		var require =  new Require();
 
 		return {
 
 			use: require.use
 
-		}
+		};
 		
 	}
 

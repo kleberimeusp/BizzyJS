@@ -3,7 +3,11 @@
   "description": "Micro Framework MV*",
   "version": "0.0.1",
   "private": true,
-  "author": "Cleber de Moraes Goncalves <cleber.goncalves@rgm.com.br>",
+  "author": {
+    "name": "Cleber de Moraes Goncalves",
+    "email": "cleber.programmer@hotmail.com",
+    "url": "https://github.com/cleber-programmer"
+  },
   "engines": {
     "node": "0.x",
     "npm": "1.x"
