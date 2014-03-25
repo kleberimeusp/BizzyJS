@@ -1,6 +1,6 @@
 {
   "name": "Bizzy",
-  "description": "Micro Framework MV*",
+  "description": "Biblioteca para desenvolvimento de aplicacoes Web",
   "version": "0.0.1",
   "private": true,
   "author": {
