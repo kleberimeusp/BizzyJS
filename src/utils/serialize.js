@@ -91,13 +91,11 @@
 
 	Serialize.prototype.__pushSelectMultiple = function (element) {
 
-		var i = 0,
-			max = element.options.length;
+		var i = element.options.length;
 
-		while (i < max) {
+		while (--i) {
 
 			this.__data[element.name] = element.options[i].selected ? element.options[i].value : null;
-			i += 1;
 
 		}
 

@@ -1,3 +1,12 @@
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Cleber de Moraes Gonçalves
+ * Licensed under the MIT license.
+ *
+ */
+
 ;(function (window, undefined) {
 
 	"use strict";
@@ -40,7 +49,7 @@
 	/**
 	* 
 	*/
-	Object.defineProperty(Bizzy.prototype, "util", {
+	Object.defineProperty(Bizzy.prototype, "utils", {
 
 		writable: true,
 		value: {}
@@ -50,3 +59,7 @@
 	window.Bizzy = new Bizzy();
 
 })(window);
+
+/*
+ * BizzyJS
+ */
