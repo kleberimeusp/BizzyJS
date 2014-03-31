@@ -241,6 +241,6 @@
 
 	}
 
-	Bizzy.Model = Facade;
+	Bizzy.models.Model = Facade;
 
 })(window);

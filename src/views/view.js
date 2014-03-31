@@ -178,6 +178,6 @@
 
 	}
 
-	Bizzy.View = Facade;
+	Bizzy.views.View = Facade;
 
 })(window);
