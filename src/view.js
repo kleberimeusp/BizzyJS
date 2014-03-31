@@ -11,8 +11,14 @@
 	function View () {
 
 		this._initialize();
+		window.Bizzy.utils.Dispatcher.call(this);
 
 	}
+
+	/**
+	* 
+	*/
+	View.prototype = Object.create(window.Bizzy.utils.Dispatcher.prototype);
 
 	/**
 	* 

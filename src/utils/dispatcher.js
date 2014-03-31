@@ -99,7 +99,7 @@
 	/**
 	* 
 	*/
-	function FacadeDispatcher () {
+	function Facade () {
 
 		if (!(this instanceof FacadeDispatcher)) {
 
@@ -107,18 +107,18 @@
 
 		}
 
-		var dispatcher = new Dispatcher();
+		var dispatcher = new Dispatcher(),
+			revelation = {};
 
-		return {
+		// Revelation Pattern
+		revelation.on = dispatcher.on;
+		revelation.off = dispatcher.off;
+		revelation.trigger = dispatcher.trigger;
 
-			on: dispatcher.on,
-			off: dispatcher.off,
-			trigger: dispatcher.trigger
-
-		};
+		return revelation;
 
 	}
 
-	Bizzy.util.dispatcher = new FacadeDispatcher();
+	Bizzy.util.Dispatcher = Facade;
 	
 })(window);
