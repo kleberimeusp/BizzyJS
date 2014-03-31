@@ -146,7 +146,7 @@
 	/**
 	* 
 	*/
-	function FacadeView () {
+	function Facade () {
 
 		if (!(this instanceof FacadeView)) {
 
@@ -154,23 +154,24 @@
 
 		}
 
-		var view = new View();
+		var view = new View(),
+			revelation = {};
 
-		return {
+		// Revelaton Pattern
+		revelation._initialize = view._initialize;
+		revelation._el = view._el;
+		revelation._template = view._template;
+		revelation._model = view._model;
+		revelation._subscribeEvents = view._subscribeEvents;
+		revelation._deleteEvents = view._deleteEvents;
 
-			_initialize: view._initialize,
-			_el: view._el,
-			_template: view._template,
-			_model: view._model,
-			_subscribeEvents: view._subscribeEvents,
-			_deleteEvents: view._deleteEvents,
-			render: view.render,
-			destory: view.destory
+		revelation.render = view.render;
+		revelation.destory = view.destory;
 
-		};
+		return revelation;
 
 	}
 
-	Bizzy.View = FacadeView;
+	Bizzy.View = Facade;
 
 })(window);

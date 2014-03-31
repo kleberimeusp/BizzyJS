@@ -205,7 +205,7 @@
 	/**
 	* 
 	*/
-	function FacadeModel () {
+	function Facade () {
 
 		if (!(this instanceof FacadeModel)) {
 
@@ -213,27 +213,28 @@
 
 		}
 
-		var model = new Model();
+		var model = new Model(),
+			revelation = {};
 
-		return {
+		// Revelation Pattern
+		revelation._initialize: model._initialize;
+		revelation._ajax: model._ajax;
+		revelation._headers: model._headers;
+		revelation._url: model._url;
+		revelation._idName: model._idName;
+		
+		revelation.data: model.data;
+		revelation.onCompleted: model.onCompleted;
+		revelation.onFailed: model.onFailed;
+		revelation.reset: model.reset;
+		revelation.fetch: model.fetch;
+		revelation.save: model.save;
+		revelation.delete: model.delete;
 
-			_initialize: model._initialize,
-			_ajax: model._ajax,
-			_headers: model._headers,
-			_url: model._url,
-			_idName: model._idName,
-			data: model.data,
-			onCompleted: model.onCompleted,
-			onFailed: model.onFailed,
-			reset: model.reset,
-			fetch: model.fetch,
-			save: model.save,
-			delete: model.delete
-
-		};
+		return revelation;
 
 	}
 
-	Bizzy.Model = FacadeModel;
+	Bizzy.Model = Facade;
 
 })(window);
