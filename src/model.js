@@ -11,8 +11,14 @@
 	function Model () {
 
 		this._initialize();
+		window.Bizzy.utils.Dispatcher.call(this);
 
 	}
+
+	/**
+	* 
+	*/
+	Model.prototype = Object.create(window.Bizzy.utils.Dispatcher.prototype);
 
 	/**
 	* 
