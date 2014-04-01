@@ -26,7 +26,7 @@
 
 			while(--i) {
 
-				rule = new this.__ruleMap[defaults[name].validations[i].rule](rule);
+				rule = new this.__ruleMap[defaults[name].rules[i].operator](rule);
 
 			}
 
@@ -44,30 +44,27 @@
 
 var defaults = {
 
-	id: {
-
-		value: 0,
-		type: Number,
-		validations: [
-
-			{ rule: "lenght", value: 10, message: ""},
-			{ rule: "range", value: [0, 10], message: "" },
-			{ rule: "required", message: "" },
-			{ rule: "pattern", value: "email", message: "" }
-
-		]
-
-	},
-
 	nome: {
 
 		value: "",
 		type: String,
-		required: true,
-		lenght: 10,
-		range: [0, 2],
-		pattern: "email",
-		message: ""
+		rules: [
+
+			{ operator: "Lenght", toCompare: "", value: "", message: "" },
+
+			
+			{ operator: "Required", toCompare: "", value: true, message: "" },
+			{ operator: "Equal", toCompare: "",  value: "", message: "" },
+			{ operator: "NotEqual", toCompare: "", value: "", message: "" },
+			{ operator: "GreaterThan", toCompare: "", value: "", message: "" },
+			{ operator: "GreaterThanEqual" toCompare: "", value: "", message: "" },
+			{ operator: "LessThan", toCompare: "", value: "", message: "" },
+			{ operator: "LessThanEqual", toCompare: "", value: "", message: "" },
+			{ operator: "Between", toCompare: ["", ""], value: ["", ""], message: "" },
+			{ operator: "TypeCheck", toCompare: "", value: "", message: "" },
+			{ operator: "Pattern", toCompare: "", value: "", message: "" }
+
+		]
 
 	}
 
