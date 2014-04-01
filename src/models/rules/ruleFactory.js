@@ -9,7 +9,16 @@
 		value: {
 
 			Lenght: function () {},
-			Required: function () {}
+			Required: function () {},
+			Equal: function () {},
+			NotEqual: function () {},
+			GreaterThan: function () {},
+			GreaterThanEqual: function () {},
+			LessThan: function () {},
+			LessThanEqual: function () {},
+			Between: function () {},
+			TypeCheck: function () {},
+			Pattern: function () {}
 
 		}
 
@@ -37,12 +46,22 @@
 
 	};
 
+	function Facade () {
 
-	window.Bizzy.models.rules.RuleFactory = new RuleFactory();
+		var ruleFactory = new RuleFactory(),
+			revelation = {};
+
+		revelation.create = ruleFactory.revelation;
+
+		return revelation;
+
+	}
+
+	window.Bizzy.models.rules.RuleFactory = new Facade();
 
 })(window);
 
-
+/*
 var defaults = {
 
 	nome: {
@@ -68,3 +87,4 @@ var defaults = {
 	}
 
 };
+*/
