@@ -18,14 +18,18 @@
 	/**
 	* 
 	*/
-	Model.prototype = Object.create(window.Bizzy.utils.Dispatcher.prototype);
+	Object.defineProperty(Model.prototype, "__dispatcher", {
+
+		value: new window.Bizzy.utils.Dispatcher()
+
+	});
 
 	/**
 	* 
 	*/
 	Object.defineProperty(Model.prototype, "_ajax", {
 
-		value: new Bizzy.Ajax()
+		value: new window.Bizzy.utils.Ajax()
 
 	});
 
@@ -104,26 +108,6 @@
 	});
 
 	/**
-	* 
-	*/
-	Object.definePrototype(Model.prototype, "onCompleted", {
-
-		writable: true,
-		value: function () {}
-
-	});
-
-	/**
-	* 
-	*/
-	Object.definePrototype(Model.prototype, "onFailed", {
-
-		writable: true,
-		value: function () {}
-
-	});
-
-	/**
 	* Metodo executado na inicializacao da Classe
 	*
 	* @method _initialize
@@ -139,8 +123,28 @@
 	*/
 	Model.prototype.reset = function (data) {
 
-		delete this.data;
+		delete thid.data;
 		this.data = data;
+
+		this.__dispatcher.trigger("model:reset", data);
+
+	};
+
+	/**
+	* 
+	*/
+	Model.prototype.on = function (event, callback) {
+
+		this.__dispatcher.on(event, callback);
+
+	};
+
+	/**
+	* 
+	*/
+	Model.prototype.off = function (event, callback) {
+
+		this.__dispatcher.off(event, callback);
 
 	};
 
@@ -150,7 +154,7 @@
 	Model.prototype.__completed = function (data) {
 
 		this.reset(JSON.parse(data));
-		this.onCompleted();
+		this.__dispatcher.trigger("model:completed", JSON.parse(data));
 
 	};
 
@@ -159,7 +163,7 @@
 	*/
 	Model.prototype.__failed = function (data) {
 
-		this.onFailed(JSON.parse(data));
+		this.__dispatcher.trigger("model:failed", JSON.parse(data));
 
 	};
 
@@ -186,6 +190,7 @@
 	*/
 	Model.prototype.fetch = function () {
 
+		this.__dispatcher.trigger("model:fetch", this.data);
 		this.__request("GET");
 
 	};
@@ -195,6 +200,7 @@
 	*/
 	Model.prototype.save = function () {
 
+		this.__dispatcher.trigger("model:save", this.data);
 		this.__request(this.data[this._idName] ? "POST" : "PUT");
 
 	};
@@ -204,6 +210,7 @@
 	*/
 	Model.prototype.delete = function() {
 
+		this.__dispatcher.trigger("model:delete", this.data);
 		this.__request("DELETE");
 
 	};

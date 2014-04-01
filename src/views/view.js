@@ -18,11 +18,6 @@
 	/**
 	* 
 	*/
-	View.prototype = Object.create(window.Bizzy.utils.Dispatcher.prototype);
-
-	/**
-	* 
-	*/
 	Object.defineProperty(View.prototype, "__el", {
 
 		writable: true,
