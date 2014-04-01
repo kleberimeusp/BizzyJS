@@ -8,7 +8,8 @@
 
 		value: {
 
-
+			Lenght: function () {},
+			Required: function () {}
 
 		}
 
@@ -26,7 +27,7 @@
 
 			while(--i) {
 
-				rule = new this.__ruleMap[defaults[name].rules[i].operator](rule);
+				rule = new this.__ruleMap[defaults[name].rules[i].operator](rule, defaults[name], defaults[name].rules[i]);
 
 			}
 
@@ -51,8 +52,6 @@ var defaults = {
 		rules: [
 
 			{ operator: "Lenght", toCompare: "", value: "", message: "" },
-
-			
 			{ operator: "Required", toCompare: "", value: true, message: "" },
 			{ operator: "Equal", toCompare: "",  value: "", message: "" },
 			{ operator: "NotEqual", toCompare: "", value: "", message: "" },
