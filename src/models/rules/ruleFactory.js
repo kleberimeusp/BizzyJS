@@ -33,3 +33,24 @@
 	window.Bizzy.models.rules.RuleFactory = new RuleFactory();
 
 })(window);
+
+
+var defaults = {
+
+	id: {
+
+		value: 0,
+
+		type: Number,
+
+		range: [8, 90],
+
+		required: true,
+
+		pattern: "email",
+
+
+
+	}
+
+};
