@@ -83,6 +83,18 @@
 	});
 
 	/**
+	* Nome do identificador unico da representacao do Modelo de Dados
+	* 
+	* @property _idName
+	* @type String
+	*/
+	Object.definePrototype(Model.prototype, "_idName", {
+
+		writable: true
+
+	});
+
+	/**
 	* Container que transporta a representacao do Modelo de Dados
 	* 
 	* @property data
@@ -96,14 +108,12 @@
 	});
 
 	/**
-	* Nome do identificador unico da representacao do Modelo de Dados
 	* 
-	* @property _idName
-	* @type String
 	*/
-	Object.definePrototype(Model.prototype, "_idName", {
+	Object.definePrototype(Model.prototype, "defaults", {
 
-		writable: true
+		writable: true,
+		value: {}
 
 	});
 
@@ -114,19 +124,24 @@
 	*/
 	Model.prototype._initialize = function () {
 
-		// Este metodo nao foi implementado
+		this.reset();
 
 	};
 
 	/**
 	* 
 	*/
-	Model.prototype.reset = function (data) {
+	Model.prototype.reset = function () {
 
-		delete thid.data;
-		this.data = data;
+		var name = "";
 
-		this.__dispatcher.trigger("model:reset", data);
+		for (name in this.defaults) {
+
+			this.data[name] = this.defaults[name].value;
+
+		}
+
+		this.__dispatcher.trigger("model:reset", this.data);
 
 	};
 
@@ -153,8 +168,8 @@
 	*/
 	Model.prototype.__completed = function (data) {
 
-		this.reset(JSON.parse(data));
-		this.__dispatcher.trigger("model:completed", JSON.parse(data));
+		this.data = JSON.parse(data);
+		this.__dispatcher.trigger("model:completed", this.data);
 
 	};
 
