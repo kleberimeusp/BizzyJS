@@ -47,9 +47,7 @@ var defaults = {
 	id: {
 
 		value: 0,
-
 		type: Number,
-
 		validations: [
 
 			{ rule: "lenght", value: 10, message: ""},
@@ -57,15 +55,19 @@ var defaults = {
 			{ rule: "required", message: "" },
 			{ rule: "pattern", value: "email", message: "" }
 
-		],
+		]
 
-		range: [8, 90],
+	},
 
+	nome: {
+
+		value: "",
+		type: String,
 		required: true,
-
+		lenght: 10,
+		range: [0, 2],
 		pattern: "email",
-
-
+		message: ""
 
 	}
 
