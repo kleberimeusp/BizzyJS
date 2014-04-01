@@ -17,11 +17,18 @@
 	RuleFactory.prototype.create = function (defaults) {
 
 		var rule = new window.Bizzy.models.rules.Rule(),
-			name = "";
+			name = "",
+			i = 0;
 
 		for (name in defaults) {
 
-			rule = new this.__ruleMap[defaults[name].rule](rule);
+			i = defaults[name].validations.length;
+
+			while(--i) {
+
+				rule = new this.__ruleMap[defaults[name].validations[i].rule](rule);
+
+			}
 
 		}
 
@@ -42,6 +49,15 @@ var defaults = {
 		value: 0,
 
 		type: Number,
+
+		validations: [
+
+			{ rule: "lenght", value: 10, message: ""},
+			{ rule: "range", value: [0, 10], message: "" },
+			{ rule: "required", message: "" },
+			{ rule: "pattern", value: "email", message: "" }
+
+		],
 
 		range: [8, 90],
 
