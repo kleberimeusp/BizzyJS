@@ -1,11 +1,24 @@
-;(function (window, undefined) {
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+window.B.utils.router = (function (BIZZY) {
 
 	"use strict";
 
 	/**
 	* 
 	*/
-	function RouterModel () {}
+	function RouterModel (config) {
+
+		this.__initialize(config);
+
+	}
 
 	/**
 	* 
@@ -37,6 +50,16 @@
 	/**
 	* 
 	*/
+	RouterModel.prototype.__initialize = function (config) {
+
+		this.segments = config.url.split("/");
+		this.callback = (typeof config.callback === "function") ? config.callback : function () {};
+
+	};
+
+	/**
+	* 
+	*/
 	RouterModel.prototype.__buildValidator = function () {
 
 		var regularExpression = "",
@@ -48,7 +71,7 @@
 
 		});
 
-		this.__validator = new RegExp(context.Bizzy.format("^({0})$", regularExpression));
+		this.__validator = new RegExp(BIZZY.uitls.format("^({0})$", regularExpression));
 
 	};
 
@@ -98,31 +121,6 @@
 	/**
 	* 
 	*/
-	function FacadeRouterModel (config) {
-
-		if (!(this instanceof FacadeRouterModel)) {
-
-			return new FacadeRouterModel(config);
-
-		}
-
-		var routerModel = new RouterModel();
-		
-		routerModel.segments = config.url.split("/");
-		routerModel.callback = (typeof config.callback === "function") ? config.callback : function () {};
-
-		return {
-
-			equals: routerModel.equals,
-			getParameters: routerModel.getParameters
-
-		};
-
-	}
-
-	/**
-	* 
-	*/
 	function Router () {
 
 		this.__initialize();
@@ -143,7 +141,7 @@
 	*/
 	Router.prototype.__initialize = function () {
 
-		Bizzy.event.on(window, "hashchange", this.__hashchange.bind(this));
+		window.addEventListener("hashchange", this.__hashchange.bind(this), false);
 
 	};
 
@@ -153,7 +151,7 @@
 	Router.prototype.__hashchange = function () {
 
 		var i = this.__data.length,
-			other = new Bizzy.RouterModel({ url: window.location.hash.substr(1) });
+			other = new RouterModel({ url: window.location.hash.substr(1) });
 
 		while (--i) {
 
@@ -176,7 +174,7 @@
 
 		while (--i) {
 
-			this.__data.push(new FacadeRouterModel(routesDefination[i]));
+			this.__data.push(new RouterModel(routesDefination[i]));
 
 		}
 
@@ -187,26 +185,26 @@
 	*/
 	Router.prototype.start = function () {
 
-		Bizzy.event.trigger("hashchange");
+		window.dispatchEvent(new Event("hashchange"));
 
 	};
 
 	/**
 	* 
 	*/
-	function FacadeRouter () {
+	function Facade () {
 
-		var router = new Router();
+		var router = new Router(),
+			revelation = {};
 
-		return {
+		/* Revelation pattern */
+		revelation.define = router.define;
+		revelation.start = router.start;
 
-			define: router.define,
-			start: router.start
-
-		};
+		return revelation;
 
 	}
 
-	Bizzy.util.router = new FacadeRouter();
+	return new Facade();
 
-})(window);
+})(window.B || {});
