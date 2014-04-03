@@ -1389,6 +1389,12 @@ window.B.Model = (function (BIZZY) {
  *
  */
 
+/**
+* 
+* 
+* @namespace B
+* @module View
+*/
 window.B.View = (function (BIZZY) {
 
 	"use strict";
@@ -1396,7 +1402,8 @@ window.B.View = (function (BIZZY) {
 	/**
 	* Classe Base View que representa Modelo de Dados no DOM
 	* 
-	* @namespace Bizzy
+	* @namespace B
+	* @module View
 	* @class View
 	*/
 	function View () {
@@ -1408,6 +1415,10 @@ window.B.View = (function (BIZZY) {
 
 	/**
 	* 
+	* 
+	* @property __el
+	* @type Object
+	* @private
 	*/
 	Object.defineProperty(View.prototype, "__el", {
 
@@ -1421,6 +1432,7 @@ window.B.View = (function (BIZZY) {
 	* 
 	* @property _el
 	* @type Object
+	* @protected
 	*/
 	Object.defineProperty(View.prototype, "_el", {
 
@@ -1508,6 +1520,7 @@ window.B.View = (function (BIZZY) {
 	* Metodo executado na inicializacao da Classe
 	*
 	* @method _initialize
+	* @protected
 	*/
 	View.prototype._initialize = function () {
 
@@ -1519,6 +1532,7 @@ window.B.View = (function (BIZZY) {
 	* Renderiza o Micro Template no Elemento Container
 	* 
 	* @method render
+	* @public
 	*/
 	View.prototype.render = function () {
 
@@ -1531,6 +1545,7 @@ window.B.View = (function (BIZZY) {
 	* Destroi o Micro Template renderizado no Elemento Container
 	* 
 	* @method destroy
+	* @public
 	*/
 	View.prototype.destory = function () {
 
@@ -1540,13 +1555,16 @@ window.B.View = (function (BIZZY) {
 	};
 
 	/**
+	* Revelation pattern
 	* 
+	* @namespace B
+	* @class FacadeView
 	*/
-	function Facade () {
+	function FacadeView () {
 
-		if (!(this instanceof Facade)) {
+		if (!(this instanceof FacadeView)) {
 
-			return new Facade();
+			return new FacadeView();
 
 		}
 
@@ -1568,6 +1586,6 @@ window.B.View = (function (BIZZY) {
 
 	}
 
-	return Facade;
+	return FacadeView;
 
 })(window.B || {});

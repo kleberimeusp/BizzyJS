@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Bizzy.View - BizzyJS</title>
+    <title>B.View - BizzyJS</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -43,15 +43,19 @@
             
                 <li><a href="../classes/App.Ajax.html">App.Ajax</a></li>
             
+                <li><a href="../classes/B.FacadeView.html">B.FacadeView</a></li>
+            
+                <li><a href="../classes/B.View.html">B.View</a></li>
+            
                 <li><a href="../classes/Bizzy.Dispacher.html">Bizzy.Dispacher</a></li>
             
                 <li><a href="../classes/Bizzy.Model.html">Bizzy.Model</a></li>
             
-                <li><a href="../classes/Bizzy.View.html">Bizzy.View</a></li>
-            
             </ul>
 
             <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/View.html">View</a></li>
             
             </ul>
         </div>
@@ -88,7 +92,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Bizzy.View Class</h1>
+                        <h1>B.View Class</h1>
 <div class="box meta">
     
 
@@ -96,10 +100,14 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/src_view.js.html#l14"><code>src\view.js:14</code></a>
+            Defined in: <a href="../files/src_view.js.html#l20"><code>src\view.js:20</code></a>
         </div>
     
 
+    
+        
+            Module: <a href="../modules/View.html">View</a>
+        
     
 
     
@@ -138,21 +146,21 @@
 
                     <ul class="index-list methods">
                         
-                            <li class="index-item method">
+                            <li class="index-item method protected">
                                 <a href="#method__initialize">_initialize</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method public">
                                 <a href="#method_destroy">destroy</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method public">
                                 <a href="#method_render">render</a>
 
                                 
@@ -169,7 +177,14 @@
 
                     <ul class="index-list properties">
                         
-                            <li class="index-item property">
+                            <li class="index-item property private">
+                                <a href="#property___el">__el</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected">
                                 <a href="#property__el">_el</a>
 
                                 
@@ -204,7 +219,7 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method__initialize" class="method item">
+                    <div id="method__initialize" class="method item protected">
     <h3 class="name"><code>_initialize</code></h3>
 
     
@@ -215,6 +230,8 @@
 
     
 
+    
+        <span class="flag protected">protected</span>
     
 
     
@@ -236,7 +253,7 @@
             
         
         
-        <a href="../files/src_view.js.html#l125"><code>src\view.js:125</code></a>
+        <a href="../files/src_view.js.html#l137"><code>src\view.js:137</code></a>
         
         </p>
 
@@ -259,7 +276,7 @@
 </div>
 
                 
-                    <div id="method_destroy" class="method item">
+                    <div id="method_destroy" class="method item public">
     <h3 class="name"><code>destroy</code></h3>
 
     
@@ -270,6 +287,8 @@
 
     
 
+    
+        <span class="flag public">public</span>
     
 
     
@@ -291,7 +310,7 @@
             
         
         
-        <a href="../files/src_view.js.html#l148"><code>src\view.js:148</code></a>
+        <a href="../files/src_view.js.html#l162"><code>src\view.js:162</code></a>
         
         </p>
 
@@ -314,7 +333,7 @@
 </div>
 
                 
-                    <div id="method_render" class="method item">
+                    <div id="method_render" class="method item public">
     <h3 class="name"><code>render</code></h3>
 
     
@@ -325,6 +344,8 @@
 
     
 
+    
+        <span class="flag public">public</span>
     
 
     
@@ -346,7 +367,7 @@
             
         
         
-        <a href="../files/src_view.js.html#l136"><code>src\view.js:136</code></a>
+        <a href="../files/src_view.js.html#l149"><code>src\view.js:149</code></a>
         
         </p>
 
@@ -377,12 +398,14 @@
                 <h2 class="off-left">Properties</h2>
 
                 
-                    <div id="property__el" class="property item">
-    <h3 class="name"><code>_el</code></h3>
+                    <div id="property___el" class="property item private">
+    <h3 class="name"><code>__el</code></h3>
     <span class="type">Object</span>
 
     
 
+    
+        <span class="flag private">private</span>
     
 
     
@@ -400,7 +423,53 @@
             
         
         
-        <a href="../files/src_view.js.html#l37"><code>src\view.js:37</code></a>
+        <a href="../files/src_view.js.html#l34"><code>src\view.js:34</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property__el" class="property item protected">
+    <h3 class="name"><code>_el</code></h3>
+    <span class="type">Object</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_view.js.html#l48"><code>src\view.js:48</code></a>
         
         </p>
 
@@ -445,7 +514,7 @@
             
         
         
-        <a href="../files/src_view.js.html#l59"><code>src\view.js:59</code></a>
+        <a href="../files/src_view.js.html#l71"><code>src\view.js:71</code></a>
         
         </p>
 
@@ -490,7 +559,7 @@
             
         
         
-        <a href="../files/src_view.js.html#l72"><code>src\view.js:72</code></a>
+        <a href="../files/src_view.js.html#l84"><code>src\view.js:84</code></a>
         
         </p>
 

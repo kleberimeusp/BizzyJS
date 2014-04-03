@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\view.js - BizzyJS</title>
+    <title>View - BizzyJS</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -92,220 +92,73 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\view.js</h1>
+                        <h1>View Module</h1>
+<div class="box clearfix meta">
+    
 
-<div class="file">
-    <pre class="code prettyprint linenums">
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+    
 
-/**
-* 
-* 
-* @namespace B
-* @module View
-*/
-window.B.View = (function (BIZZY) {
+    
+        <div class="foundat">
+            Defined in: <a href="../files/src_view.js.html#l175"><code>src\view.js:175</code></a>
+        </div>
+    
 
-	&quot;use strict&quot;;
+    
+</div>
 
-	/**
-	* Classe Base View que representa Modelo de Dados no DOM
-	* 
-	* @namespace B
-	* @module View
-	* @class View
-	*/
-	function View () {
 
-		this._initialize();
-		BIZZY.utils.Dispatcher.call(this);
 
-	}
+<div class="box intro">
+    
+</div>
 
-	/**
-	* 
-	* 
-	* @property __el
-	* @type Object
-	* @private
-	*/
-	Object.defineProperty(View.prototype, &quot;__el&quot;, {
 
-		writable: true,
-		value: {}
 
-	});
+<div class="yui3-g">
+    <div class="yui3-u-1-2">
+        
+            <p>This module provides the following classes:</p>
 
-	/**
-	* Container referente ao Objeto DOM criado no Navegador
-	* 
-	* @property _el
-	* @type Object
-	* @protected
-	*/
-	Object.defineProperty(View.prototype, &quot;_el&quot;, {
+            <ul class="module-classes">
+            
+                <li class="module-class">
+                    <a href="../classes/App.Ajax.html">
+                        App.Ajax
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="../classes/B.FacadeView.html">
+                        B.FacadeView
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="../classes/B.View.html">
+                        B.View
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="../classes/Bizzy.Dispacher.html">
+                        Bizzy.Dispacher
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="../classes/Bizzy.Model.html">
+                        Bizzy.Model
+                    </a>
+                </li>
+            
+            </ul>
+        
+    </div>
 
-		get: function () {
-
-			return this.__el;
-
-		},
-
-		set: function (value) {
-
-			this.__el = document.querySelector(value);
-
-		}
-
-	});
-
-	/**
-	* Representacao do Modelo de Dados
-	* 
-	* @property _model
-	* @type Object
-	*/
-	Object.defineProperty(View.prototype, &quot;_model&quot;, {
-
-		writable: true,
-		value: {}
-
-	});
-
-	/**
-	* Micro Template que carrega o Modelo de Dados no Elemento DOM
-	* 
-	* @property _template
-	* @type Function
-	*/
-	Object.defineProperty(View.prototype, &quot;_template&quot;, {
-
-		writable: true,
-		value: function () { return {}; }
-
-	});
-
-	/**
-	* 
-	*/
-	Object.defineProperty(View.prototype, &quot;events&quot;, {
-
-		writable: true,
-		value: []
-
-	});
-
-	/**
-	* 
-	*/
-	View.prototype._subscribeEvents = function () {
-
-		var name = &quot;&quot;;
-
-		for (name in this.events) {
-
-			document.querySelector(name.split(&quot; &quot;)[1]).addEventListener(name.split(&quot; &quot;)[0], this.events[name], false);
-
-		}
-
-	};
-
-	/**
-	* 
-	*/
-	View.prototype._deleteEvents = function () {
-
-		var name = &quot;&quot;;
-
-		for (name in this.events) {
-
-			document.querySelector(name.split(&quot; &quot;)[1]).removeEventListener(name.split(&quot; &quot;)[0], this.events[name], false);
-
-		}
-
-	};
-
-	/**
-	* Metodo executado na inicializacao da Classe
-	*
-	* @method _initialize
-	* @protected
-	*/
-	View.prototype._initialize = function () {
-
-		// Este metodo nao foi implementado
-
-	};
-
-	/**
-	* Renderiza o Micro Template no Elemento Container
-	* 
-	* @method render
-	* @public
-	*/
-	View.prototype.render = function () {
-
-		this._el.innerHTML = this._template(this._model.data);
-		this._subscribeEvents();
-
-	};
-
-	/**
-	* Destroi o Micro Template renderizado no Elemento Container
-	* 
-	* @method destroy
-	* @public
-	*/
-	View.prototype.destory = function () {
-
-		this._el.innerHTML = &quot;&quot;;
-		this._deleteEvents();
-
-	};
-
-	/**
-	* Revelation pattern
-	* 
-	* @namespace B
-	* @class FacadeView
-	*/
-	function FacadeView () {
-
-		if (!(this instanceof FacadeView)) {
-
-			return new FacadeView();
-
-		}
-
-		var view = new View(),
-			revelation = {};
-
-		// Revelaton Pattern
-		revelation._initialize = view._initialize;
-		revelation._el = view._el;
-		revelation._template = view._template;
-		revelation._model = view._model;
-		revelation._subscribeEvents = view._subscribeEvents;
-		revelation._deleteEvents = view._deleteEvents;
-
-		revelation.render = view.render;
-		revelation.destory = view.destory;
-
-		return revelation;
-
-	}
-
-	return FacadeView;
-
-})(window.B || {});
-    </pre>
+    <div class="yui3-u-1-2">
+        
+    </div>
 </div>
 
                     </div>
