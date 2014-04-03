@@ -1,25 +1,46 @@
-;(function (window, undefined) {
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+window.B.utils.serialize = (function (BIZZY) {
 
 	"use strict";
 
+	/**
+	* 
+	*/
 	function Serialize () {
 
 		this.__initialize();
 
 	}
 
+	/**
+	* 
+	*/
 	Object.defineProperty(Serialize.prototype, "__form", {
 
 		writable: true
 
 	});
 
+	/**
+	* 
+	*/
 	Object.defineProperty(Serialize.prototype, "__data", {
 
 		writable: true
 
 	});
 
+	/**
+	* 
+	*/
 	Object.defineProperty(Serialize.prototype, "__nodeName", {
 
 		writable: true,
@@ -27,12 +48,18 @@
 
 	});
 
+	/**
+	* 
+	*/
 	Object.defineProperty(Serialize.prototype, "_type", {
 
 		writable: true
 
 	});
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__initialize = function () {
 
 		this.__defineNodeName();
@@ -40,6 +67,9 @@
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__defineNodeName = function () {
 
 		this.__nodeName = {
@@ -54,6 +84,9 @@
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__defineType = function () {
 
 		this.__type = {
@@ -77,18 +110,27 @@
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__push = function (element) {
 
 		this.__data[element.name] = element.value;
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__pushChecked = function (element) {
 
 		this.__data[element.name] = element.checked ? element.value : null;
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__pushSelectMultiple = function (element) {
 
 		var i = element.options.length;
@@ -101,18 +143,27 @@
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__searchForNodeType = function (element) {
 
 		this.__type[element.name](element);
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__serachForNodeName = function (element) {
 
 		this.__nodeName[element.name](element);
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__execute = function () {
 
 		var i = this.__form.elements.length;
@@ -131,6 +182,9 @@
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.toJSON = function (form)  {
 
 		if (!form || form.nodeName !== "FORM") {
@@ -148,21 +202,24 @@
 
 	};
 
-	function FacadeSerialize () {
+	/**
+	* 
+	*/
+	function Facade () {
 
 		var serialize = new Serialize();
+			revelation = {};
 
-		return {
+		/* Revelation pattern */
+		revelation.toJSON = serialize.toJSON;
 
-			toJSON: serialize.toJSON
-
-		};
+		return revelation;
 
 	}
 
-	Bizzy.uitl.serialize = new FacadeSerialize();
+	return new Facade();
 
-})(window);
+})(window.B || {});
 
 
 /*
