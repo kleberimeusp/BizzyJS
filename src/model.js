@@ -254,19 +254,19 @@ window.B.Model = (function (BIZZY) {
 			revelation = {};
 
 		// Revelation Pattern
-		revelation._initialize: model._initialize;
-		revelation._ajax: model._ajax;
-		revelation._headers: model._headers;
-		revelation._url: model._url;
-		revelation._idName: model._idName;
+		revelation._initialize = model._initialize;
+		revelation._ajax = model._ajax;
+		revelation._headers = model._headers;
+		revelation._url = model._url;
+		revelation._idName = model._idName;
 		
-		revelation.data: model.data;
-		revelation.onCompleted: model.onCompleted;
-		revelation.onFailed: model.onFailed;
-		revelation.reset: model.reset;
-		revelation.fetch: model.fetch;
-		revelation.save: model.save;
-		revelation.delete: model.delete;
+		revelation.data = model.data;
+		revelation.onCompleted = model.onCompleted;
+		revelation.onFailed = model.onFailed;
+		revelation.reset = model.reset;
+		revelation.fetch = model.fetch;
+		revelation.save = model.save;
+		revelation.delete = model.delete;
 
 		return revelation;
 
