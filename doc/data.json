@@ -1,0 +1,1288 @@
+{
+    "project": {
+        "name": "Bizzy",
+        "description": "Biblioteca para desenvolvimento de aplicacoes Web",
+        "version": "0.0.1",
+        "url": ""
+    },
+    "files": {
+        "src\\utils\\ajax.js": {
+            "name": "src\\utils\\ajax.js",
+            "modules": {},
+            "classes": {
+                "App.Ajax": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "App": 1
+            }
+        },
+        "src\\utils\\dispatcher.js": {
+            "name": "src\\utils\\dispatcher.js",
+            "modules": {},
+            "classes": {
+                "Bizzy.Dispacher": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Bizzy": 1
+            }
+        },
+        "src\\utils\\format.js": {
+            "name": "src\\utils\\format.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\utils\\require.js": {
+            "name": "src\\utils\\require.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\utils\\router.js": {
+            "name": "src\\utils\\router.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\utils\\serialize.js": {
+            "name": "src\\utils\\serialize.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\bizzy.js": {
+            "name": "src\\bizzy.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\model.js": {
+            "name": "src\\model.js",
+            "modules": {},
+            "classes": {
+                "Bizzy.Model": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Bizzy": 1
+            }
+        },
+        "src\\view.js": {
+            "name": "src\\view.js",
+            "modules": {},
+            "classes": {
+                "Bizzy.View": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Bizzy": 1
+            }
+        }
+    },
+    "modules": {},
+    "classes": {
+        "App.Ajax": {
+            "name": "App.Ajax",
+            "shortname": "App.Ajax",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "App",
+            "file": "src\\utils\\ajax.js",
+            "line": 14,
+            "description": "Classe para requisicoes Ajax"
+        },
+        "Bizzy.Dispacher": {
+            "name": "Bizzy.Dispacher",
+            "shortname": "Bizzy.Dispacher",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Bizzy",
+            "file": "src\\utils\\dispatcher.js",
+            "line": 14,
+            "description": "Classe que implementa o padrao PubSub"
+        },
+        "Bizzy.Model": {
+            "name": "Bizzy.Model",
+            "shortname": "Bizzy.Model",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Bizzy",
+            "file": "src\\model.js",
+            "line": 14,
+            "description": "Classe Base Model que representa o Modelo de Dados"
+        },
+        "Bizzy.View": {
+            "name": "Bizzy.View",
+            "shortname": "Bizzy.View",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "Bizzy",
+            "file": "src\\view.js",
+            "line": 14,
+            "description": "Classe Base View que representa Modelo de Dados no DOM"
+        }
+    },
+    "classitems": [
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 26,
+            "description": "Propriedade que contem o verbo http da requisicao",
+            "itemtype": "property",
+            "name": "__method",
+            "default": "\"GET\"",
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 38,
+            "description": "Propriedade que contem a url da requisicao",
+            "itemtype": "property",
+            "name": "__url",
+            "default": "\"\"",
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 49,
+            "description": "Propriedade que indica se a requisica sera sync ou async",
+            "itemtype": "property",
+            "name": "__sync",
+            "default": "true",
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 60,
+            "description": "Propriedade que contem os dados que trafegados na requisicao",
+            "itemtype": "property",
+            "name": "__data",
+            "default": "{}",
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 71,
+            "description": "Propriedade que contem a lista de headers da requisicao",
+            "itemtype": "property",
+            "name": "__headers",
+            "default": "[]",
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 82,
+            "description": "Propriedade que contem o callback que sera executado quando a requisicao terminar",
+            "itemtype": "property",
+            "name": "__onCompleted",
+            "default": "function () {}",
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 93,
+            "description": "Propriedade que contem o callback que sera executado quando a requisicao falhar]",
+            "itemtype": "property",
+            "name": "__onFailed",
+            "default": "function () {}",
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 104,
+            "description": "Propriedade que contem o objeto responsavel por tratar as requisicoes",
+            "itemtype": "property",
+            "name": "__xhr",
+            "default": "{}",
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 115,
+            "description": "Propriedade que contem uma lista de callbacks que serao executados durantes os status do readyState da requisicao",
+            "itemtype": "property",
+            "name": "__readyState",
+            "default": "[]",
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 126,
+            "description": "Propriedade que contem uma lista de callbacks que serao executados conforme o status code da requisicao",
+            "itemtype": "property",
+            "name": "__status",
+            "default": "[]",
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 137,
+            "description": "Metodo de initializacao da classe, responsavel pela configuracao inicial",
+            "itemtype": "method",
+            "name": "__initialize",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 151,
+            "description": "Metodo responsavel pela configuracao do xhr",
+            "itemtype": "method",
+            "name": "__defineXhr",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 162,
+            "description": "Metodo responsavel pela configuracao do evento do ready state",
+            "itemtype": "method",
+            "name": "__defineReadyStateChange",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 173,
+            "description": "Metodo responsavel pela configuracao dos callbacks do ready state",
+            "itemtype": "method",
+            "name": "__defineReadyState",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 189,
+            "description": "Metodo responsavel pela configuracao dos callbacks do status code da requisicao http",
+            "itemtype": "method",
+            "name": "__defineStatus",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 205,
+            "description": "Metodo que trata quando a requisicao completar",
+            "itemtype": "method",
+            "name": "__completed",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 216,
+            "description": "Metodo que trata quando a requisicao falhar",
+            "itemtype": "method",
+            "name": "__failed",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 227,
+            "description": "Metodo que trata quando a requisicao terminar",
+            "itemtype": "method",
+            "name": "__finishedRequest",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 238,
+            "description": "Metodo responsavel por disparar o callback conforme o status do ready state",
+            "itemtype": "method",
+            "name": "__onreadystatechange",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 249,
+            "description": "Metodo responsavel por resetar as propriedades da classe para os valores default",
+            "itemtype": "method",
+            "name": "__resetProperties",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 266,
+            "description": "Metodo responsavel por setar as propriedades da classe",
+            "itemtype": "method",
+            "name": "__addProperties",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 285,
+            "description": "Metodo responsavel por abrir a requisicao",
+            "itemtype": "method",
+            "name": "__open",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 296,
+            "description": "Metodo responsavel os headers da requisicao",
+            "itemtype": "method",
+            "name": "__setRequestHeader",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 313,
+            "description": "Metodo responsavel por enviar a requisicao http",
+            "itemtype": "method",
+            "name": "__send",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 324,
+            "description": "Metodo responsavel por executar a requisicao http (open, setRequestHeaders, send)",
+            "itemtype": "method",
+            "name": "__execute",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 337,
+            "description": "Metodo responsavel por enviar a requisicao http (resetProperties, addProperties, execute)",
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\ajax.js",
+            "line": 348,
+            "description": "Construtor do padrão Facade, responsavel por expor apenas apenas o escopo necessario",
+            "itemtype": "method",
+            "name": "FacadeAjax",
+            "return": {
+                "description": "",
+                "type": "request: Ajax.request"
+            },
+            "class": "App.Ajax",
+            "namespace": "App"
+        },
+        {
+            "file": "src\\utils\\dispatcher.js",
+            "line": 22,
+            "description": "Propriedade que contem os callbacks que serao tratados pelo dispatcher",
+            "itemtype": "property",
+            "name": "__listeners",
+            "default": "[]",
+            "class": "Bizzy.Dispacher",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\dispatcher.js",
+            "line": 34,
+            "description": "Recupera a lista de callbacks para um determinado evento",
+            "itemtype": "method",
+            "name": "__getEvent",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Nome do evento",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Lista de callbacks registrados para o evento",
+                "type": "Array"
+            },
+            "class": "Bizzy.Dispacher",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\dispatcher.js",
+            "line": 48,
+            "description": "Registra um novo callback de um determinado evento",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Nome do evento",
+                    "type": "String"
+                },
+                {
+                    "name": "callback",
+                    "description": "Funcao de callback que a ser registrada",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "Bizzy.Dispacher",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\dispatcher.js",
+            "line": 62,
+            "description": "Deleta um callback de um determinado evento",
+            "itemtype": "method",
+            "name": "off",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Nome do evento",
+                    "type": "String"
+                },
+                {
+                    "name": "callback",
+                    "description": "Funcao de callback que a ser registrada",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "Bizzy.Dispacher",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\dispatcher.js",
+            "line": 87,
+            "description": "Dispara os callbacks de um determinado evento",
+            "itemtype": "method",
+            "name": "trigger",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Nome do evento",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "Objeto contendo os dados que serao passados para o callbach",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "Bizzy.Dispacher",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\dispatcher.js",
+            "line": 108,
+            "class": "Bizzy.Dispacher",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\format.js",
+            "line": 14,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\require.js",
+            "line": 14,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\require.js",
+            "line": 19,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\require.js",
+            "line": 28,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\require.js",
+            "line": 37,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\require.js",
+            "line": 46,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\require.js",
+            "line": 56,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\require.js",
+            "line": 75,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 14,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 23,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 32,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 41,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 50,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 60,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 78,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 106,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 121,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 130,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 139,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 148,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 168,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 183,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\router.js",
+            "line": 192,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 14,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 23,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 32,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 41,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 51,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 60,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 70,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 87,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 113,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 122,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 131,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 146,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 155,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 164,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 185,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\utils\\serialize.js",
+            "line": 205,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\bizzy.js",
+            "line": 14,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\bizzy.js",
+            "line": 19,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 27,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 36,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 45,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 62,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 72,
+            "description": "Url para transferencia ou requisicao do Modelo de Dados",
+            "itemtype": "property",
+            "name": "_url",
+            "type": "String",
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 94,
+            "description": "Nome do identificador unico da representacao do Modelo de Dados",
+            "itemtype": "property",
+            "name": "_idName",
+            "type": "String",
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 106,
+            "description": "Container que transporta a representacao do Modelo de Dados",
+            "itemtype": "property",
+            "name": "data",
+            "type": "Object",
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 119,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 129,
+            "description": "Metodo executado na inicializacao da Classe",
+            "itemtype": "method",
+            "name": "_initialize",
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 140,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 157,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 166,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 175,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 185,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 194,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 212,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 222,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 232,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 242,
+            "class": "Bizzy.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 27,
+            "class": "Bizzy.View",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 37,
+            "description": "Container referente ao Objeto DOM criado no Navegador",
+            "itemtype": "property",
+            "name": "_el",
+            "type": "Object",
+            "class": "Bizzy.View",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 59,
+            "description": "Representacao do Modelo de Dados",
+            "itemtype": "property",
+            "name": "_model",
+            "type": "Object",
+            "class": "Bizzy.View",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 72,
+            "description": "Micro Template que carrega o Modelo de Dados no Elemento DOM",
+            "itemtype": "property",
+            "name": "_template",
+            "type": "Function",
+            "class": "Bizzy.View",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 85,
+            "class": "Bizzy.View",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 95,
+            "class": "Bizzy.View",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 110,
+            "class": "Bizzy.View",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 125,
+            "description": "Metodo executado na inicializacao da Classe",
+            "itemtype": "method",
+            "name": "_initialize",
+            "class": "Bizzy.View",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 136,
+            "description": "Renderiza o Micro Template no Elemento Container",
+            "itemtype": "method",
+            "name": "render",
+            "class": "Bizzy.View",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 148,
+            "description": "Destroi o Micro Template renderizado no Elemento Container",
+            "itemtype": "method",
+            "name": "destroy",
+            "class": "Bizzy.View",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 160,
+            "class": "Bizzy.View",
+            "namespace": "Bizzy"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nMetodo responsavel por enviar a requisicao http (resetProperties, addProperties, execute)",
+            "line": " src\\utils\\ajax.js:337"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\dispatcher.js:108"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\format.js:14"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\require.js:14"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\require.js:19"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\require.js:28"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\require.js:37"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\require.js:46"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\require.js:56"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\require.js:75"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:14"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:23"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:32"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:41"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:50"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:60"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:78"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:106"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:121"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:130"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:139"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:148"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:168"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:183"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\router.js:192"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:14"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:23"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:32"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:41"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:51"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:60"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:70"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:87"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:113"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:122"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:131"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:146"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:155"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:164"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:185"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\utils\\serialize.js:205"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\bizzy.js:14"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\bizzy.js:19"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:27"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:36"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:45"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:62"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:119"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:140"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:157"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:166"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:175"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:185"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:194"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:212"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:222"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:232"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\model.js:242"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\view.js:27"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\view.js:85"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\view.js:95"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\view.js:110"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\view.js:160"
+        }
+    ]
+}

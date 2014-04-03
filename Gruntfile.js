@@ -57,6 +57,25 @@ module.exports = function (grunt) {
             files: ["<%= jshint.files %>"],
             tasks: ["jshint"]
 
+        },
+
+        yuidoc: {
+
+            compile: {
+
+                name: "<%= pkg.name %>",
+                description: "<%= pkg.description %>",
+                version: "<%= pkg.version %>",
+                url: "",
+                options: {
+
+                    paths: "src/",
+                    outdir: "doc/"
+
+                }
+
+            }
+
         }
 
     });
@@ -65,7 +84,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks("grunt-contrib-yuidoc");
 
-    grunt.registerTask("default", ["jshint", "concat", "uglify"]);
+    grunt.registerTask("default", ["jshint", "concat", "uglify", "yuidoc"]);
 
 };
