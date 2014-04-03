@@ -1,59 +1,43 @@
-;(function (window, undefined) {
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+window.B = (function (BIZZY) {
 
 	"use strict";
 
 	/**
 	* 
+	*/	
+	BIZZY.utils = {};
+
+	/**
+	* 
 	*/
-	var xhrFactory = function () {
+	BIZZY.templates = {};
+	BIZZY.views = {};
+	BIZZY.models = {};
 
-		if (window.XMLHttpRequest) {
+	return BIZZY;
 
-			xhrFactory = function () { return new XMLHttpRequest(); };
-			return xhrFactory();
+})(window.B || {});
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
 
-		} else if (window.ActiveXObject) {
+window.B.utils.Ajax = (function (BIZZY) {
 
-			try {
-
-				xhrFactory = function () { return new window.ActiveXObject("Msxml2.XMLHTTP"); };
-				return xhrFactory();
-
-			} catch (err) {}
-
-			try {
-
-				xhrFactory = function () { return new window.ActiveXObject("Msxml2.XMLHTTP.3.0"); };
-				return xhrFactory();
-
-			} catch (err) {}
-
-			try {
-
-				xhrFactory = function () { return new window.ActiveXObject("Msxml2.XMLHTTP.6.0"); };
-				return xhrFactory();
-
-			} catch (err) {}
-
-			try {
-
-				xhrFactory = function () { return new window.ActiveXObject("Msxml3.XMLHTTP"); };
-				return xhrFactory();
-
-			} catch (err) {}
-
-			try {
-
-				xhrFactory = function () { return new window.ActiveXObject("Microsoft.XMLHTTP"); };
-				return xhrFactory();
-
-			} catch (err) {}
-
-		}
-
-		return {};
-
-	};
+	"use strict";
 
 	/**
 	* Classe para requisicoes Ajax
@@ -199,7 +183,7 @@
 	*/
 	Ajax.prototype.__defineXhr = function () {
 
-		this.__xhr = xhrFactory();
+		this.__xhr = new XMLHttpRequest();
 
 	};
 
@@ -394,28 +378,36 @@
 	* @method FacadeAjax
 	* @return { request: Ajax.request }
 	*/
-	function FacadeAjax () {
+	function Facade () {
 
-		if (!(this instanceof FacadeAjax)) {
+		if (!(this instanceof Facade)) {
 
-			return new FacadeAjax();
+			return new Facade();
 
 		}
 
-		var ajax = new Ajax();
+		var ajax = new Ajax(),
+			revelation = {};
 
-		return {
+		revelation.request = ajax.request;
 
-			request: ajax.request
-
-		};
+		return revelation;
 
 	}
 
-	Bizzy.util.Ajax = FacadeAjax;
+	return Facade;
 
-})(window);
-;(function (window, undefined) {
+})(window.B || {});
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+ 
+window.B.utils.Dispatcher = (function (BIZZY) {
 
 	"use strict";
 
@@ -477,14 +469,14 @@
 	*/
 	Dispatcher.prototype.off = function (event, callback) {
 
-		var listeners = this.__getEvent(event),
-			i = listeners.length;
+		var listener = this.__getEvent(event),
+			i = listener.length;
 
 		while (--i) {
 
-			if (listeners[i] === callback) {
+			if (listener[i] === callback) {
 
-				delete listeners[i];
+				delete listener[i];
 
 			}
 
@@ -502,12 +494,12 @@
 	*/
 	Dispatcher.prototype.trigger = function (event, data) {
 
-		var listeners = this.__getEvent(event),
-			i = listeners.length;
+		var listener = this.__getEvent(event),
+			i = listener.length;
 
 		while (--i) {
 
-			listeners[i](data);
+			listener[i](data);
 
 		}
 
@@ -516,96 +508,39 @@
 	/**
 	* 
 	*/
-	function FacadeDispatcher () {
+	function Facade () {
 
-		if (!(this instanceof FacadeDispatcher)) {
+		if (!(this instanceof Facade)) {
 
-			return new FacadeDispatcher();
+			return new Facade();
 
 		}
 
-		var dispatcher = new Dispatcher();
+		var dispatcher = new Dispatcher(),
+			revelation = {};
 
-		return {
+		// Revelation Pattern
+		revelation.on = dispatcher.on;
+		revelation.off = dispatcher.off;
+		revelation.trigger = dispatcher.trigger;
 
-			on: dispatcher.on,
-			off: dispatcher.off,
-			trigger: dispatcher.trigger
-
-		};
+		return revelation;
 
 	}
 
-	Bizzy.util.dispatcher = new FacadeDispatcher();
+	return Facade;
 	
-})(window);
-;(function (window, undefined) {
+})(window.B || {});
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
 
-	"use strict";
-
-	/**
-	* 
-	*/
-	function Event () {}
-
-	/**
-	* 
-	*/
-	Event.prototype.on = function (el, type, fn) {
-
-		if (window.addEventListener) {
-            
-            this.on = function (el, type, fn) { el.addEventListener(type, fn, false); }();
-            
-        } else if (window.attachEvent) {
-            
-            this.on = function (el, type, fn) { el.attachEvent("on" + type, fn); }();
-            
-        } else {
-            
-            this.on = function (el, type, fn) { el["on" + type] =  fn; }();
-            
-        }
-
-	};
-
-	/**
-	* 
-	*/
-	Event.prototype.off = function (el, type, fn) {
-        
-        if (window.removeEventListener) {
-            
-            this.off = function (el, type, fn) { el.removeEventListener(type, fn, false); }();
-            
-        } else if (window.detachEvent) {
-            
-            this.off = function (el, type, fn) { el.detachEvent("on" + type, fn); }();
-            
-        } else {
-            
-            this.off = function (el, type, fn) { el["on" + type] =  null; }();
-            
-        }
-        
-    };
-
-    /**
-    * 
-    */
-     Event.prototype.trigger = function (eventName) {
-        
-        var e = document.createEvent("Event");
-            e.initEvent(eventName, true, true);
-        
-        window.dispatchEvent(e);
-        
-    };
-
-    Bizzy.util.event = new Event();
-
-})(window);
-;(function (window, undefined) {
+window.B.utils.format = (function (BIZZY) {
 
 	"use string";
 
@@ -625,10 +560,19 @@
 
 	}
 
-	Bizzy.util.format = format;
+	return format;
 
-})(window);
-;(function (window, undefined) {
+})(window.B || {});
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+window.B.utils.Require = (function (BIZZY) {
 
 	"use strict";
 
@@ -642,7 +586,7 @@
 	*/
 	Object.defineProperty(Require.prototype, "__ajax", {
 
-		value: new Bizzy.Ajax()
+		value: new BIZZY.uitls.Ajax()
 
 	});
 
@@ -696,29 +640,42 @@
 	/**
 	* 
 	*/
-	function FacadeRequire	() {
+	function Facade	() {
 
-		var require =  new Require();
+		var require =  new Require(),
+			revelation = {};
 
-		return {
+		/* Revelation pattern */
+		revelation.use = require.use;
 
-			use: require.use
-
-		};
+		return revelation;
 		
 	}
 
-	Bizzy.util.require = new FacadeRequire();
+	return new Facade();
 
-})(window);
-;(function (window, undefined) {
+})(window.B || {});
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+window.B.utils.router = (function (BIZZY) {
 
 	"use strict";
 
 	/**
 	* 
 	*/
-	function RouterModel () {}
+	function RouterModel (config) {
+
+		this.__initialize(config);
+
+	}
 
 	/**
 	* 
@@ -750,6 +707,16 @@
 	/**
 	* 
 	*/
+	RouterModel.prototype.__initialize = function (config) {
+
+		this.segments = config.url.split("/");
+		this.callback = (typeof config.callback === "function") ? config.callback : function () {};
+
+	};
+
+	/**
+	* 
+	*/
 	RouterModel.prototype.__buildValidator = function () {
 
 		var regularExpression = "",
@@ -761,7 +728,7 @@
 
 		});
 
-		this.__validator = new RegExp(context.Bizzy.format("^({0})$", regularExpression));
+		this.__validator = new RegExp(BIZZY.uitls.format("^({0})$", regularExpression));
 
 	};
 
@@ -811,31 +778,6 @@
 	/**
 	* 
 	*/
-	function FacadeRouterModel (config) {
-
-		if (!(this instanceof FacadeRouterModel)) {
-
-			return new FacadeRouterModel(config);
-
-		}
-
-		var routerModel = new RouterModel();
-		
-		routerModel.segments = config.url.split("/");
-		routerModel.callback = (typeof config.callback === "function") ? config.callback : function () {};
-
-		return {
-
-			equals: routerModel.equals,
-			getParameters: routerModel.getParameters
-
-		};
-
-	}
-
-	/**
-	* 
-	*/
 	function Router () {
 
 		this.__initialize();
@@ -856,7 +798,7 @@
 	*/
 	Router.prototype.__initialize = function () {
 
-		Bizzy.event.on(window, "hashchange", this.__hashchange.bind(this));
+		window.addEventListener("hashchange", this.__hashchange.bind(this), false);
 
 	};
 
@@ -866,7 +808,7 @@
 	Router.prototype.__hashchange = function () {
 
 		var i = this.__data.length,
-			other = new Bizzy.RouterModel({ url: window.location.hash.substr(1) });
+			other = new RouterModel({ url: window.location.hash.substr(1) });
 
 		while (--i) {
 
@@ -889,7 +831,7 @@
 
 		while (--i) {
 
-			this.__data.push(new FacadeRouterModel(routesDefination[i]));
+			this.__data.push(new RouterModel(routesDefination[i]));
 
 		}
 
@@ -900,51 +842,72 @@
 	*/
 	Router.prototype.start = function () {
 
-		Bizzy.event.trigger("hashchange");
+		window.dispatchEvent(new Event("hashchange"));
 
 	};
 
 	/**
 	* 
 	*/
-	function FacadeRouter () {
+	function Facade () {
 
-		var router = new Router();
+		var router = new Router(),
+			revelation = {};
 
-		return {
+		/* Revelation pattern */
+		revelation.define = router.define;
+		revelation.start = router.start;
 
-			define: router.define,
-			start: router.start
-
-		};
+		return revelation;
 
 	}
 
-	Bizzy.util.router = new FacadeRouter();
+	return new Facade();
 
-})(window);
-;(function (window, undefined) {
+})(window.B || {});
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+window.B.utils.serialize = (function (BIZZY) {
 
 	"use strict";
 
+	/**
+	* 
+	*/
 	function Serialize () {
 
 		this.__initialize();
 
 	}
 
+	/**
+	* 
+	*/
 	Object.defineProperty(Serialize.prototype, "__form", {
 
 		writable: true
 
 	});
 
+	/**
+	* 
+	*/
 	Object.defineProperty(Serialize.prototype, "__data", {
 
 		writable: true
 
 	});
 
+	/**
+	* 
+	*/
 	Object.defineProperty(Serialize.prototype, "__nodeName", {
 
 		writable: true,
@@ -952,12 +915,18 @@
 
 	});
 
+	/**
+	* 
+	*/
 	Object.defineProperty(Serialize.prototype, "_type", {
 
 		writable: true
 
 	});
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__initialize = function () {
 
 		this.__defineNodeName();
@@ -965,6 +934,9 @@
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__defineNodeName = function () {
 
 		this.__nodeName = {
@@ -979,6 +951,9 @@
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__defineType = function () {
 
 		this.__type = {
@@ -1002,44 +977,60 @@
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__push = function (element) {
 
 		this.__data[element.name] = element.value;
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__pushChecked = function (element) {
 
 		this.__data[element.name] = element.checked ? element.value : null;
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__pushSelectMultiple = function (element) {
 
-		var i = 0,
-			max = element.options.length;
+		var i = element.options.length;
 
-		while (i < max) {
+		while (--i) {
 
 			this.__data[element.name] = element.options[i].selected ? element.options[i].value : null;
-			i += 1;
 
 		}
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__searchForNodeType = function (element) {
 
 		this.__type[element.name](element);
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__serachForNodeName = function (element) {
 
 		this.__nodeName[element.name](element);
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.__execute = function () {
 
 		var i = this.__form.elements.length;
@@ -1058,6 +1049,9 @@
 
 	};
 
+	/**
+	* 
+	*/
 	Serialize.prototype.toJSON = function (form)  {
 
 		if (!form || form.nodeName !== "FORM") {
@@ -1075,21 +1069,24 @@
 
 	};
 
-	function FacadeSerialize () {
+	/**
+	* 
+	*/
+	function Facade () {
 
 		var serialize = new Serialize();
+			revelation = {};
 
-		return {
+		/* Revelation pattern */
+		revelation.toJSON = serialize.toJSON;
 
-			toJSON: serialize.toJSON
-
-		};
+		return revelation;
 
 	}
 
-	Bizzy.uitl.serialize = new FacadeSerialize();
+	return new Facade();
 
-})(window);
+})(window.B || {});
 
 
 /*
@@ -1171,7 +1168,32 @@
 }
 
 */
-;(function (window, undefined) {
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+ window.B.Mediator = (function (BIZZY) {
+
+	"use strict";
+
+	return new BIZZY.utils.Dispatcher();
+
+ })(window.B || {});
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+window.B.Model = (function (BIZZY) {
 
 	"use strict";
 
@@ -1184,15 +1206,25 @@
 	function Model () {
 
 		this._initialize();
+		BIZZY.utils.Dispatcher.call(this);
 
 	}
 
 	/**
 	* 
 	*/
+	Object.defineProperty(Model.prototype, "__dispatcher", {
+
+		value: new BIZZY.utils.Dispatcher()
+
+	});
+
+	/**
+	* 
+	*/
 	Object.defineProperty(Model.prototype, "_ajax", {
 
-		value: new Bizzy.Ajax()
+		value: new BIZZY.utils.Ajax()
 
 	});
 
@@ -1246,6 +1278,18 @@
 	});
 
 	/**
+	* Nome do identificador unico da representacao do Modelo de Dados
+	* 
+	* @property _idName
+	* @type String
+	*/
+	Object.definePrototype(Model.prototype, "_idName", {
+
+		writable: true
+
+	});
+
+	/**
 	* Container que transporta a representacao do Modelo de Dados
 	* 
 	* @property data
@@ -1259,34 +1303,12 @@
 	});
 
 	/**
-	* Nome do identificador unico da representacao do Modelo de Dados
-	* 
-	* @property _idName
-	* @type String
-	*/
-	Object.definePrototype(Model.prototype, "_idName", {
-
-		writable: true
-
-	});
-
-	/**
 	* 
 	*/
-	Object.definePrototype(Model.prototype, "onCompleted", {
+	Object.definePrototype(Model.prototype, "defaults", {
 
 		writable: true,
-		value: function () {}
-
-	});
-
-	/**
-	* 
-	*/
-	Object.definePrototype(Model.prototype, "onFailed", {
-
-		writable: true,
-		value: function () {}
+		value: {}
 
 	});
 
@@ -1297,17 +1319,42 @@
 	*/
 	Model.prototype._initialize = function () {
 
-		// Este metodo nao foi implementado
+		this.reset();
 
 	};
 
 	/**
 	* 
 	*/
-	Model.prototype.reset = function (data) {
+	Model.prototype.reset = function () {
 
-		delete this.data;
-		this.data = data;
+		var name = "";
+
+		for (name in this.defaults) {
+
+			this.data[name] = this.defaults[name].value;
+
+		}
+
+		this.__dispatcher.trigger("model:reset", this.data);
+
+	};
+
+	/**
+	* 
+	*/
+	Model.prototype.on = function (event, callback) {
+
+		this.__dispatcher.on(event, callback);
+
+	};
+
+	/**
+	* 
+	*/
+	Model.prototype.off = function (event, callback) {
+
+		this.__dispatcher.off(event, callback);
 
 	};
 
@@ -1316,8 +1363,8 @@
 	*/
 	Model.prototype.__completed = function (data) {
 
-		this.reset(JSON.parse(data));
-		this.onCompleted();
+		this.data = JSON.parse(data);
+		this.__dispatcher.trigger("model:completed", this.data);
 
 	};
 
@@ -1326,7 +1373,7 @@
 	*/
 	Model.prototype.__failed = function (data) {
 
-		this.onFailed(JSON.parse(data));
+		this.__dispatcher.trigger("model:failed", JSON.parse(data));
 
 	};
 
@@ -1353,6 +1400,7 @@
 	*/
 	Model.prototype.fetch = function () {
 
+		this.__dispatcher.trigger("model:fetch", this.data);
 		this.__request("GET");
 
 	};
@@ -1362,6 +1410,7 @@
 	*/
 	Model.prototype.save = function () {
 
+		this.__dispatcher.trigger("model:save", this.data);
 		this.__request(this.data[this._idName] ? "POST" : "PUT");
 
 	};
@@ -1371,6 +1420,7 @@
 	*/
 	Model.prototype.delete = function() {
 
+		this.__dispatcher.trigger("model:delete", this.data);
 		this.__request("DELETE");
 
 	};
@@ -1378,39 +1428,49 @@
 	/**
 	* 
 	*/
-	function FacadeModel () {
+	function Facade () {
 
-		if (!(this instanceof FacadeModel)) {
+		if (!(this instanceof Facade)) {
 
-			return new FacadeModel();
+			return new Facade();
 
 		}
 
-		var model = new Model();
+		var model = new Model(),
+			revelation = {};
 
-		return {
+		// Revelation Pattern
+		revelation._initialize = model._initialize;
+		revelation._ajax = model._ajax;
+		revelation._headers = model._headers;
+		revelation._url = model._url;
+		revelation._idName = model._idName;
+		
+		revelation.data = model.data;
+		revelation.onCompleted = model.onCompleted;
+		revelation.onFailed = model.onFailed;
+		revelation.reset = model.reset;
+		revelation.fetch = model.fetch;
+		revelation.save = model.save;
+		revelation.delete = model.delete;
 
-			_initialize: model._initialize,
-			_ajax: model._ajax,
-			_headers: model._headers,
-			_url: model._url,
-			_idName: model._idName,
-			data: model.data,
-			onCompleted: model.onCompleted,
-			onFailed: model.onFailed,
-			reset: model.reset,
-			fetch: model.fetch,
-			save: model.save,
-			delete: model.delete
-
-		};
+		return revelation;
 
 	}
 
-	Bizzy.Model = FacadeModel;
+	return Facade;
 
-})(window);
-;(function (window, undefined) {
+})(window.B || {});
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+window.B.View = (function (BIZZY) {
 
 	"use strict";
 
@@ -1423,6 +1483,7 @@
 	function View () {
 
 		this._initialize();
+		BIZZY.utils.Dispatcher.call(this);
 
 	}
 
@@ -1499,9 +1560,11 @@
 	*/
 	View.prototype._subscribeEvents = function () {
 
-		for (var name in this.events) {
+		var name = "";
 
-			Bizzy.util.event.on(document.querySelector(name.split(" ")[1]), name.split(" ")[0], this.events[name]);
+		for (name in this.events) {
+
+			document.querySelector(name.split(" ")[1]).addEventListener(name.split(" ")[0], this.events[name], false);
 
 		}
 
@@ -1512,9 +1575,11 @@
 	*/
 	View.prototype._deleteEvents = function () {
 
-		for (var name in this.events) {
+		var name = "";
 
-			Bizzy.util.event.off(document.querySelector(name.split(" ")[1]), name.split(" ")[0], this.events[name]);
+		for (name in this.events) {
+
+			document.querySelector(name.split(" ")[1]).removeEventListener(name.split(" ")[0], this.events[name], false);
 
 		}
 
@@ -1558,31 +1623,32 @@
 	/**
 	* 
 	*/
-	function FacadeView () {
+	function Facade () {
 
-		if (!(this instanceof FacadeView)) {
+		if (!(this instanceof Facade)) {
 
-			return new FacadeView();
+			return new Facade();
 
 		}
 
-		var view = new View();
+		var view = new View(),
+			revelation = {};
 
-		return {
+		// Revelaton Pattern
+		revelation._initialize = view._initialize;
+		revelation._el = view._el;
+		revelation._template = view._template;
+		revelation._model = view._model;
+		revelation._subscribeEvents = view._subscribeEvents;
+		revelation._deleteEvents = view._deleteEvents;
 
-			_initialize: view._initialize,
-			_el: view._el,
-			_template: view._template,
-			_model: view._model,
-			_subscribeEvents: view._subscribeEvents,
-			_deleteEvents: view._deleteEvents,
-			render: view.render,
-			destory: view.destory
+		revelation.render = view.render;
+		revelation.destory = view.destory;
 
-		};
+		return revelation;
 
 	}
 
-	Bizzy.View = FacadeView;
+	return Facade;
 
-})(window);
+})(window.B || {});

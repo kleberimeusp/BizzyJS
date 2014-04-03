@@ -77,7 +77,7 @@ window.B.utils.Require = (function (BIZZY) {
 	*/
 	function Facade	() {
 
-		var require =  new Require()
+		var require =  new Require(),
 			revelation = {};
 
 		/* Revelation pattern */
