@@ -10,7 +10,7 @@ module.exports = function (grunt) {
 
                 files: [
 
-                    { src: ["static/_config.js", "static/util/*.js", "static/model.js", "static/view.js"], dest: "public/bizzy.js" }
+                    { src: ["src/bizzy.js", "src/utils/*.js", "src/mediator.js", "src/model.js", "src/view.js"], dest: "build/bizzy.js" }
 
                 ]
 
@@ -26,7 +26,7 @@ module.exports = function (grunt) {
 
                 },
 
-                src: ["static/**/*.js"],
+                src: ["src/**/*.js"],
 
             },
 
@@ -44,7 +44,7 @@ module.exports = function (grunt) {
 
                 files: [
 
-                    { src: "public/bizzy.js", dest: "public/bizzy.min.js" }
+                    { src: "build/bizzy.js", dest: "build/bizzy.min.js" }
 
                 ]
 
