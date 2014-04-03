@@ -1,4 +1,13 @@
-;(function (window, undefined) {
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+window.B.utils.Require = (function (BIZZY) {
 
 	"use strict";
 
@@ -12,7 +21,7 @@
 	*/
 	Object.defineProperty(Require.prototype, "__ajax", {
 
-		value: new Bizzy.Ajax()
+		value: new BIZZY.uitls.Ajax()
 
 	});
 
@@ -66,18 +75,18 @@
 	/**
 	* 
 	*/
-	function FacadeRequire	() {
+	function Facade	() {
 
-		var require =  new Require();
+		var require =  new Require()
+			revelation = {};
 
-		return {
+		/* Revelation pattern */
+		revelation.use = require.use;
 
-			use: require.use
-
-		};
+		return revelation;
 		
 	}
 
-	Bizzy.util.require = new FacadeRequire();
+	return new Facade();
 
-})(window);
+})(window.B || {});
