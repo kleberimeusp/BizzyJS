@@ -97,9 +97,11 @@ window.B.View = (function (BIZZY) {
 	*/
 	View.prototype._subscribeEvents = function () {
 
-		for (var name in this.events) {
+		var name = "";
 
-			BIZZY.utils.event.on(document.querySelector(name.split(" ")[1]), name.split(" ")[0], this.events[name]);
+		for (name in this.events) {
+
+			document.querySelector(name.split(" ")[1]).addEventListener(name.split(" ")[0], this.events[name], false);
 
 		}
 
@@ -110,9 +112,11 @@ window.B.View = (function (BIZZY) {
 	*/
 	View.prototype._deleteEvents = function () {
 
-		for (var name in this.events) {
+		var name = "";
 
-			BIZZY.utils.event.off(document.querySelector(name.split(" ")[1]), name.split(" ")[0], this.events[name]);
+		for (name in this.events) {
+
+			document.querySelector(name.split(" ")[1]).removeEventListener(name.split(" ")[0], this.events[name], false);
 
 		}
 
