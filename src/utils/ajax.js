@@ -7,62 +7,9 @@
  *
  */
 
-;(function (window, undefined) {
+window.B.utils.Ajax = (function (BIZZY) {
 
 	"use strict";
-
-	/**
-	* 
-	*/
-	var xhrFactory = function () {
-
-		if (window.XMLHttpRequest) {
-
-			xhrFactory = function () { return new XMLHttpRequest(); };
-			return xhrFactory();
-
-		} else if (window.ActiveXObject) {
-
-			try {
-
-				xhrFactory = function () { return new window.ActiveXObject("Msxml2.XMLHTTP"); };
-				return xhrFactory();
-
-			} catch (err) {}
-
-			try {
-
-				xhrFactory = function () { return new window.ActiveXObject("Msxml2.XMLHTTP.3.0"); };
-				return xhrFactory();
-
-			} catch (err) {}
-
-			try {
-
-				xhrFactory = function () { return new window.ActiveXObject("Msxml2.XMLHTTP.6.0"); };
-				return xhrFactory();
-
-			} catch (err) {}
-
-			try {
-
-				xhrFactory = function () { return new window.ActiveXObject("Msxml3.XMLHTTP"); };
-				return xhrFactory();
-
-			} catch (err) {}
-
-			try {
-
-				xhrFactory = function () { return new window.ActiveXObject("Microsoft.XMLHTTP"); };
-				return xhrFactory();
-
-			} catch (err) {}
-
-		}
-
-		return {};
-
-	};
 
 	/**
 	* Classe para requisicoes Ajax
@@ -208,7 +155,7 @@
 	*/
 	Ajax.prototype.__defineXhr = function () {
 
-		this.__xhr = xhrFactory();
+		this.__xhr = new XMLHttpRequest();
 
 	};
 
@@ -403,24 +350,23 @@
 	* @method FacadeAjax
 	* @return { request: Ajax.request }
 	*/
-	function FacadeAjax () {
+	function Facade () {
 
-		if (!(this instanceof FacadeAjax)) {
+		if (!(this instanceof Facade)) {
 
-			return new FacadeAjax();
+			return new Facade();
 
 		}
 
-		var ajax = new Ajax();
+		var ajax = new Ajax(),
+			revelation = {};
 
-		return {
+		revelation.request = ajax.request;
 
-			request: ajax.request
-
-		};
+		return revelation;
 
 	}
 
-	Bizzy.util.Ajax = FacadeAjax;
+	return Facade;
 
-})(window);
+})(window.B || {});

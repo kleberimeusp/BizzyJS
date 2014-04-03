@@ -1,4 +1,4 @@
-;(function (window, undefined) {
+window.B.utils.Dispatcher = (function (BIZZY) {
 
 	"use strict";
 
@@ -60,14 +60,14 @@
 	*/
 	Dispatcher.prototype.off = function (event, callback) {
 
-		var listeners = this.__getEvent(event),
-			i = listeners.length;
+		var listener = this.__getEvent(event),
+			i = listener.length;
 
 		while (--i) {
 
-			if (listeners[i] === callback) {
+			if (listener[i] === callback) {
 
-				delete listeners[i];
+				delete listener[i];
 
 			}
 
@@ -85,12 +85,12 @@
 	*/
 	Dispatcher.prototype.trigger = function (event, data) {
 
-		var listeners = this.__getEvent(event),
-			i = listeners.length;
+		var listener = this.__getEvent(event),
+			i = listener.length;
 
 		while (--i) {
 
-			listeners[i](data);
+			listener[i](data);
 
 		}
 
@@ -101,9 +101,9 @@
 	*/
 	function Facade () {
 
-		if (!(this instanceof FacadeDispatcher)) {
+		if (!(this instanceof Facade)) {
 
-			return new FacadeDispatcher();
+			return new Facade();
 
 		}
 
@@ -119,6 +119,6 @@
 
 	}
 
-	Bizzy.util.Dispatcher = Facade;
+	return Facade;
 	
-})(window);
+})(window.B || {});
