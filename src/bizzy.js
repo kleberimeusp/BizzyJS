@@ -14,7 +14,9 @@
 	/**
 	* 
 	*/
-	function Bizzy () {}
+	var Bizzy = {
+
+	};
 
 	/**
 	* 
