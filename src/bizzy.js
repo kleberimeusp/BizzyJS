@@ -2,66 +2,27 @@
  * BizzyJS
  * https://github.com/Bibizzy/BizzyJS
  *
- * Copyright (c) 2014 Cleber de Moraes Gonçalves
+ * Copyright (c) 2014 Bibizzy
  * Licensed under the MIT license.
  *
  */
 
-;(function (window, undefined) {
+window.B = (function (BIZZY) {
 
 	"use strict";
 
 	/**
 	* 
-	*/
-	var Bizzy = {
-
-	};
+	*/	
+	BIZZY.utils = {};
 
 	/**
 	* 
 	*/
-	Object.defineProperty(Bizzy.prototype, "views", {
+	BIZZY.templates = {};
+	BIZZY.views = {};
+	BIZZY.models = {};
 
-		writable: true,
-		value: {}
+	return BIZZY;
 
-	});
-
-	/**
-	* 
-	*/
-	Object.defineProperty(Bizzy.prototype, "templates", {
-
-		writable: true,
-		value: {}
-
-	});
-
-	/**
-	* 
-	*/
-	Object.defineProperty(Bizzy.prototype, "models", {
-
-		writable: true,
-		value: {}
-
-	});
-
-	/**
-	* 
-	*/
-	Object.defineProperty(Bizzy.prototype, "utils", {
-
-		writable: true,
-		value: {}
-
-	});
-
-	window.Bizzy = new Bizzy();
-
-})(window);
-
-/*
- * BizzyJS
- */
+})(window.B || {});

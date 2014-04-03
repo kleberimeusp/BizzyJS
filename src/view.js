@@ -1,4 +1,13 @@
-;(function (window, undefined) {
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+window.B.View = (function (BIZZY) {
 
 	"use strict";
 
@@ -11,7 +20,7 @@
 	function View () {
 
 		this._initialize();
-		window.Bizzy.utils.Dispatcher.call(this);
+		BIZZY.utils.Dispatcher.call(this);
 
 	}
 
@@ -90,7 +99,7 @@
 
 		for (var name in this.events) {
 
-			Bizzy.util.event.on(document.querySelector(name.split(" ")[1]), name.split(" ")[0], this.events[name]);
+			BIZZY.utils.event.on(document.querySelector(name.split(" ")[1]), name.split(" ")[0], this.events[name]);
 
 		}
 
@@ -103,7 +112,7 @@
 
 		for (var name in this.events) {
 
-			Bizzy.util.event.off(document.querySelector(name.split(" ")[1]), name.split(" ")[0], this.events[name]);
+			BIZZY.utils.event.off(document.querySelector(name.split(" ")[1]), name.split(" ")[0], this.events[name]);
 
 		}
 
@@ -149,9 +158,9 @@
 	*/
 	function Facade () {
 
-		if (!(this instanceof FacadeView)) {
+		if (!(this instanceof Facade)) {
 
-			return new FacadeView();
+			return new Facade();
 
 		}
 
@@ -173,6 +182,6 @@
 
 	}
 
-	Bizzy.views.View = Facade;
+	return Facade;
 
-})(window);
+})(window.B || {});

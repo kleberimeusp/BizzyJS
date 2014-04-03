@@ -1,4 +1,13 @@
-;(function (window, undefined) {
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+window.B.Model = (function (BIZZY) {
 
 	"use strict";
 
@@ -11,7 +20,7 @@
 	function Model () {
 
 		this._initialize();
-		window.Bizzy.utils.Dispatcher.call(this);
+		BIZZY.utils.Dispatcher.call(this);
 
 	}
 
@@ -20,7 +29,7 @@
 	*/
 	Object.defineProperty(Model.prototype, "__dispatcher", {
 
-		value: new window.Bizzy.utils.Dispatcher()
+		value: new BIZZY.utils.Dispatcher()
 
 	});
 
@@ -29,7 +38,7 @@
 	*/
 	Object.defineProperty(Model.prototype, "_ajax", {
 
-		value: new window.Bizzy.utils.Ajax()
+		value: new BIZZY.utils.Ajax()
 
 	});
 
@@ -235,9 +244,9 @@
 	*/
 	function Facade () {
 
-		if (!(this instanceof FacadeModel)) {
+		if (!(this instanceof Facade)) {
 
-			return new FacadeModel();
+			return new Facade();
 
 		}
 
@@ -263,6 +272,6 @@
 
 	}
 
-	Bizzy.models.Model = Facade;
+	return Facade;
 
-})(window);
+})(window.B || {});

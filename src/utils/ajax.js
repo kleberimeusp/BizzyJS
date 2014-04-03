@@ -1,3 +1,12 @@
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
 ;(function (window, undefined) {
 
 	"use strict";
