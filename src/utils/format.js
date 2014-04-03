@@ -1,4 +1,13 @@
-;(function (window, undefined) {
+/*
+ * BizzyJS
+ * https://github.com/Bibizzy/BizzyJS
+ *
+ * Copyright (c) 2014 Bibizzy
+ * Licensed under the MIT license.
+ *
+ */
+
+window.B.utils.format = (function (BIZZY) {
 
 	"use string";
 
@@ -18,6 +27,6 @@
 
 	}
 
-	Bizzy.util.format = format;
+	return format;
 
-})(window);
+})(window.B || {});
