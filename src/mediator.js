@@ -9,8 +9,8 @@
 
  window.B.Mediator = (function (BIZZY) {
 
- 	"use strict";
+	"use strict";
 
- 	return new BIZZY.utils.Dispatcher();
+	return new BIZZY.utils.Dispatcher();
 
  })(window.B || {});
