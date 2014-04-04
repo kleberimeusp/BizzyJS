@@ -1403,7 +1403,6 @@ window.B.View = (function (BIZZY) {
 	* Classe Base View que representa Modelo de Dados no DOM
 	* 
 	* @namespace B
-	* @module View
 	* @class View
 	*/
 	function View () {
@@ -1417,8 +1416,9 @@ window.B.View = (function (BIZZY) {
 	* 
 	* 
 	* @property __el
-	* @type Object
 	* @private
+	* @type Object
+	* @default Objeto literal vazio
 	*/
 	Object.defineProperty(View.prototype, "__el", {
 
@@ -1431,8 +1431,9 @@ window.B.View = (function (BIZZY) {
 	* Container referente ao Objeto DOM criado no Navegador
 	* 
 	* @property _el
-	* @type Object
 	* @protected
+	* @type Object
+	* @default Objeto literal vazio
 	*/
 	Object.defineProperty(View.prototype, "_el", {
 
@@ -1454,7 +1455,9 @@ window.B.View = (function (BIZZY) {
 	* Representacao do Modelo de Dados
 	* 
 	* @property _model
+	* @protected
 	* @type Object
+	* @default Objeto literal vazio
 	*/
 	Object.defineProperty(View.prototype, "_model", {
 
@@ -1467,7 +1470,9 @@ window.B.View = (function (BIZZY) {
 	* Micro Template que carrega o Modelo de Dados no Elemento DOM
 	* 
 	* @property _template
+	* @protected
 	* @type Function
+	* @default Expressao de funcao/funcao anonima que retorna um objeto literal vazio
 	*/
 	Object.defineProperty(View.prototype, "_template", {
 
@@ -1478,6 +1483,11 @@ window.B.View = (function (BIZZY) {
 
 	/**
 	* 
+	* 
+	* @property events
+	* @public
+	* @type Array
+	* @default Array literal vazio
 	*/
 	Object.defineProperty(View.prototype, "events", {
 
@@ -1488,6 +1498,10 @@ window.B.View = (function (BIZZY) {
 
 	/**
 	* 
+	* 
+	* @method _subscribeEvents
+	* @protected
+	* returnt {void}
 	*/
 	View.prototype._subscribeEvents = function () {
 

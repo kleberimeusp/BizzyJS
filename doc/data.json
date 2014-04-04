@@ -106,7 +106,7 @@
             },
             "tag": "module",
             "file": "src\\view.js",
-            "line": 175
+            "line": 189
         }
     },
     "classes": {
@@ -177,7 +177,7 @@
             "module": "View",
             "namespace": "B",
             "file": "src\\view.js",
-            "line": 175,
+            "line": 189,
             "description": "Revelation pattern"
         }
     },
@@ -985,12 +985,13 @@
         },
         {
             "file": "src\\view.js",
-            "line": 34,
+            "line": 33,
             "itemtype": "property",
             "name": "__el",
-            "type": "Object",
             "access": "private",
             "tagname": "",
+            "type": "Object",
+            "default": "Objeto literal vazio",
             "class": "B.View",
             "module": "View",
             "namespace": "B"
@@ -1001,59 +1002,76 @@
             "description": "Container referente ao Objeto DOM criado no Navegador",
             "itemtype": "property",
             "name": "_el",
-            "type": "Object",
             "access": "protected",
             "tagname": "",
+            "type": "Object",
+            "default": "Objeto literal vazio",
             "class": "B.View",
             "module": "View",
             "namespace": "B"
         },
         {
             "file": "src\\view.js",
-            "line": 71,
+            "line": 72,
             "description": "Representacao do Modelo de Dados",
             "itemtype": "property",
             "name": "_model",
+            "access": "protected",
+            "tagname": "",
             "type": "Object",
+            "default": "Objeto literal vazio",
             "class": "B.View",
             "module": "View",
             "namespace": "B"
         },
         {
             "file": "src\\view.js",
-            "line": 84,
+            "line": 87,
             "description": "Micro Template que carrega o Modelo de Dados no Elemento DOM",
             "itemtype": "property",
             "name": "_template",
+            "access": "protected",
+            "tagname": "",
             "type": "Function",
+            "default": "Expressao de funcao/funcao anonima que retorna um objeto literal vazio",
             "class": "B.View",
             "module": "View",
             "namespace": "B"
         },
         {
             "file": "src\\view.js",
-            "line": 97,
+            "line": 102,
+            "itemtype": "property",
+            "name": "events",
+            "access": "public",
+            "tagname": "",
+            "type": "Array",
+            "default": "Array literal vazio",
             "class": "B.View",
             "module": "View",
             "namespace": "B"
         },
         {
             "file": "src\\view.js",
-            "line": 107,
+            "line": 117,
+            "itemtype": "method",
+            "name": "_subscribeEvents",
+            "access": "protected",
+            "tagname": "returnt {void}",
             "class": "B.View",
             "module": "View",
             "namespace": "B"
         },
         {
             "file": "src\\view.js",
-            "line": 122,
+            "line": 136,
             "class": "B.View",
             "module": "View",
             "namespace": "B"
         },
         {
             "file": "src\\view.js",
-            "line": 137,
+            "line": 151,
             "description": "Metodo executado na inicializacao da Classe",
             "itemtype": "method",
             "name": "_initialize",
@@ -1065,7 +1083,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 149,
+            "line": 163,
             "description": "Renderiza o Micro Template no Elemento Container",
             "itemtype": "method",
             "name": "render",
@@ -1077,7 +1095,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 162,
+            "line": 176,
             "description": "Destroi o Micro Template renderizado no Elemento Container",
             "itemtype": "method",
             "name": "destroy",
@@ -1323,15 +1341,7 @@
         },
         {
             "message": "Missing item type",
-            "line": " src\\view.js:97"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\view.js:107"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\view.js:122"
+            "line": " src\\view.js:136"
         }
     ]
 }
