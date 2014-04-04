@@ -64,7 +64,7 @@ window.B.View = (function (BIZZY) {
 
 		set: function (value) {
 
-			this.__el = document.querySelector(value);
+			this.__el = window.document.querySelector(value);
 
 		}
 
@@ -128,7 +128,7 @@ window.B.View = (function (BIZZY) {
 
 		for (name in this.events) {
 
-			document.querySelector(name.split(" ")[1]).addEventListener(name.split(" ")[0], this.events[name], false);
+			window.document.querySelector(name.split(" ")[1]).addEventListener(name.split(" ")[0], this.events[name], false);
 
 		}
 
@@ -147,7 +147,7 @@ window.B.View = (function (BIZZY) {
 
 		for (name in this.events) {
 
-			document.querySelector(name.split(" ")[1]).removeEventListener(name.split(" ")[0], this.events[name], false);
+			window.document.querySelector(name.split(" ")[1]).removeEventListener(name.split(" ")[0], this.events[name], false);
 
 		}
 

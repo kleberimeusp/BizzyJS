@@ -155,7 +155,7 @@ window.B.utils.Ajax = (function (BIZZY) {
 	*/
 	Ajax.prototype.__defineXhr = function () {
 
-		this.__xhr = new XMLHttpRequest();
+		this.__xhr = new window.XMLHttpRequest();
 
 	};
 

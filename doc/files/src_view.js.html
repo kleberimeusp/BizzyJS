@@ -162,7 +162,7 @@ window.B.View = (function (BIZZY) {
 
 		set: function (value) {
 
-			this.__el = document.querySelector(value);
+			this.__el = window.document.querySelector(value);
 
 		}
 
@@ -226,7 +226,7 @@ window.B.View = (function (BIZZY) {
 
 		for (name in this.events) {
 
-			document.querySelector(name.split(&quot; &quot;)[1]).addEventListener(name.split(&quot; &quot;)[0], this.events[name], false);
+			window.document.querySelector(name.split(&quot; &quot;)[1]).addEventListener(name.split(&quot; &quot;)[0], this.events[name], false);
 
 		}
 
@@ -245,7 +245,7 @@ window.B.View = (function (BIZZY) {
 
 		for (name in this.events) {
 
-			document.querySelector(name.split(&quot; &quot;)[1]).removeEventListener(name.split(&quot; &quot;)[0], this.events[name], false);
+			window.document.querySelector(name.split(&quot; &quot;)[1]).removeEventListener(name.split(&quot; &quot;)[0], this.events[name], false);
 
 		}
 
@@ -316,8 +316,9 @@ window.B.View = (function (BIZZY) {
 		/**
 		* Revelation pattern
 		*/
-		revelation._initialize = view._initialize;
 		revelation._el = view._el;
+
+		revelation._initialize = view._initialize;
 		revelation._template = view._template;
 		revelation._model = view._model;
 		revelation._subscribeEvents = view._subscribeEvents;

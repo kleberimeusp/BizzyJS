@@ -30,7 +30,7 @@ window.B.utils.Require = (function (BIZZY) {
 	*/
 	Object.defineProperty(Require.prototype, "__head", {
 
-		value: document.querySelector("head")
+		value: window.document.querySelector("head")
 
 	});
 
@@ -39,7 +39,7 @@ window.B.utils.Require = (function (BIZZY) {
 	*/
 	Object.defineProperty(Require.prototype, "__script", {
 
-		value: document.createElement("script")
+		value: window.document.createElement("script")
 
 	});
 

@@ -185,7 +185,7 @@ window.B.utils.router = (function (BIZZY) {
 	*/
 	Router.prototype.start = function () {
 
-		window.dispatchEvent(new Event("hashchange"));
+		window.dispatchEvent(new window.Event("hashchange"));
 
 	};
 

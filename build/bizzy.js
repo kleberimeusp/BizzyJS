@@ -183,7 +183,7 @@ window.B.utils.Ajax = (function (BIZZY) {
 	*/
 	Ajax.prototype.__defineXhr = function () {
 
-		this.__xhr = new XMLHttpRequest();
+		this.__xhr = new window.XMLHttpRequest();
 
 	};
 
@@ -595,7 +595,7 @@ window.B.utils.Require = (function (BIZZY) {
 	*/
 	Object.defineProperty(Require.prototype, "__head", {
 
-		value: document.querySelector("head")
+		value: window.document.querySelector("head")
 
 	});
 
@@ -604,7 +604,7 @@ window.B.utils.Require = (function (BIZZY) {
 	*/
 	Object.defineProperty(Require.prototype, "__script", {
 
-		value: document.createElement("script")
+		value: window.document.createElement("script")
 
 	});
 
@@ -842,7 +842,7 @@ window.B.utils.router = (function (BIZZY) {
 	*/
 	Router.prototype.start = function () {
 
-		window.dispatchEvent(new Event("hashchange"));
+		window.dispatchEvent(new window.Event("hashchange"));
 
 	};
 
@@ -1074,7 +1074,7 @@ window.B.utils.serialize = (function (BIZZY) {
 	*/
 	function Facade () {
 
-		var serialize = new Serialize();
+		var serialize = new Serialize(),
 			revelation = {};
 
 		/* Revelation pattern */
@@ -1184,7 +1184,7 @@ window.B.Model = (function (BIZZY) {
 
 		get: function () {
 
-			return context.Bizzy.format("{0}/{1}", this.__url, this.data[this._idName]);
+			return BIZZY.uitls.format("{0}/{1}", this.__url, this.data[this._idName]);
 
 		},
 
@@ -1446,7 +1446,7 @@ window.B.View = (function (BIZZY) {
 
 		set: function (value) {
 
-			this.__el = document.querySelector(value);
+			this.__el = window.document.querySelector(value);
 
 		}
 
@@ -1510,7 +1510,7 @@ window.B.View = (function (BIZZY) {
 
 		for (name in this.events) {
 
-			document.querySelector(name.split(" ")[1]).addEventListener(name.split(" ")[0], this.events[name], false);
+			window.document.querySelector(name.split(" ")[1]).addEventListener(name.split(" ")[0], this.events[name], false);
 
 		}
 
@@ -1529,7 +1529,7 @@ window.B.View = (function (BIZZY) {
 
 		for (name in this.events) {
 
-			document.querySelector(name.split(" ")[1]).removeEventListener(name.split(" ")[0], this.events[name], false);
+			window.document.querySelector(name.split(" ")[1]).removeEventListener(name.split(" ")[0], this.events[name], false);
 
 		}
 
@@ -1600,8 +1600,9 @@ window.B.View = (function (BIZZY) {
 		/**
 		* Revelation pattern
 		*/
-		revelation._initialize = view._initialize;
 		revelation._el = view._el;
+
+		revelation._initialize = view._initialize;
 		revelation._template = view._template;
 		revelation._model = view._model;
 		revelation._subscribeEvents = view._subscribeEvents;

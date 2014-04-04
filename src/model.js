@@ -79,7 +79,7 @@ window.B.Model = (function (BIZZY) {
 
 		get: function () {
 
-			return context.Bizzy.format("{0}/{1}", this.__url, this.data[this._idName]);
+			return BIZZY.uitls.format("{0}/{1}", this.__url, this.data[this._idName]);
 
 		},
 

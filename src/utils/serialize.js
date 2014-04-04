@@ -207,7 +207,7 @@ window.B.utils.serialize = (function (BIZZY) {
 	*/
 	function Facade () {
 
-		var serialize = new Serialize();
+		var serialize = new Serialize(),
 			revelation = {};
 
 		/* Revelation pattern */
