@@ -218,8 +218,9 @@ window.B.View = (function (BIZZY) {
 		/**
 		* Revelation pattern
 		*/
-		revelation._initialize = view._initialize;
 		revelation._el = view._el;
+
+		revelation._initialize = view._initialize;
 		revelation._template = view._template;
 		revelation._model = view._model;
 		revelation._subscribeEvents = view._subscribeEvents;

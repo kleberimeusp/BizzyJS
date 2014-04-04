@@ -12,5 +12,12 @@
 	"boss": true,
 	"eqnull": true,
 	"node": true,
-	"es5": false
+	"es5": true,
+
+	"globals": {
+
+		"window": true
+
+	}
+
 }
