@@ -106,7 +106,7 @@
             },
             "tag": "module",
             "file": "src\\view.js",
-            "line": 189
+            "line": 197
         }
     },
     "classes": {
@@ -164,7 +164,9 @@
             "namespace": "B",
             "file": "src\\view.js",
             "line": 20,
-            "description": "Classe Base View que representa Modelo de Dados no DOM"
+            "description": "Classe Base View que representa Modelo de Dados no DOM",
+            "access": "private",
+            "tagname": ""
         },
         "B.FacadeView": {
             "name": "B.FacadeView",
@@ -177,8 +179,9 @@
             "module": "View",
             "namespace": "B",
             "file": "src\\view.js",
-            "line": 189,
-            "description": "Revelation pattern"
+            "line": 197,
+            "access": "public",
+            "tagname": ""
         }
     },
     "classitems": [
@@ -985,7 +988,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 33,
+            "line": 34,
             "itemtype": "property",
             "name": "__el",
             "access": "private",
@@ -998,7 +1001,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 48,
+            "line": 49,
             "description": "Container referente ao Objeto DOM criado no Navegador",
             "itemtype": "property",
             "name": "_el",
@@ -1012,7 +1015,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 72,
+            "line": 73,
             "description": "Representacao do Modelo de Dados",
             "itemtype": "property",
             "name": "_model",
@@ -1026,7 +1029,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 87,
+            "line": 88,
             "description": "Micro Template que carrega o Modelo de Dados no Elemento DOM",
             "itemtype": "property",
             "name": "_template",
@@ -1040,7 +1043,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 102,
+            "line": 103,
             "itemtype": "property",
             "name": "events",
             "access": "public",
@@ -1053,55 +1056,87 @@
         },
         {
             "file": "src\\view.js",
-            "line": 117,
+            "line": 118,
             "itemtype": "method",
             "name": "_subscribeEvents",
             "access": "protected",
-            "tagname": "returnt {void}",
+            "tagname": "return {void}",
             "class": "B.View",
             "module": "View",
             "namespace": "B"
         },
         {
             "file": "src\\view.js",
-            "line": 136,
+            "line": 137,
+            "itemtype": "method",
+            "name": "_deleteEvents",
+            "access": "protected",
+            "tagname": "return {void}",
             "class": "B.View",
             "module": "View",
             "namespace": "B"
         },
         {
             "file": "src\\view.js",
-            "line": 151,
+            "line": 156,
             "description": "Metodo executado na inicializacao da Classe",
             "itemtype": "method",
             "name": "_initialize",
             "access": "protected",
             "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
             "class": "B.View",
             "module": "View",
             "namespace": "B"
         },
         {
             "file": "src\\view.js",
-            "line": 163,
+            "line": 169,
             "description": "Renderiza o Micro Template no Elemento Container",
             "itemtype": "method",
             "name": "render",
             "access": "public",
             "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
             "class": "B.View",
             "module": "View",
             "namespace": "B"
         },
         {
             "file": "src\\view.js",
-            "line": 176,
+            "line": 183,
             "description": "Destroi o Micro Template renderizado no Elemento Container",
             "itemtype": "method",
             "name": "destroy",
             "access": "public",
             "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
             "class": "B.View",
+            "module": "View",
+            "namespace": "B"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 206,
+            "description": "Funcao construtora auto invocavel",
+            "class": "B.FacadeView",
+            "module": "View",
+            "namespace": "B"
+        },
+        {
+            "file": "src\\view.js",
+            "line": 218,
+            "description": "Revelation pattern",
+            "class": "B.FacadeView",
             "module": "View",
             "namespace": "B"
         }
@@ -1340,8 +1375,12 @@
             "line": " src\\model.js:242"
         },
         {
-            "message": "Missing item type",
-            "line": " src\\view.js:136"
+            "message": "Missing item type\nFuncao construtora auto invocavel",
+            "line": " src\\view.js:206"
+        },
+        {
+            "message": "Missing item type\nRevelation pattern",
+            "line": " src\\view.js:218"
         }
     ]
 }

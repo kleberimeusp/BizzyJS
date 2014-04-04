@@ -1404,6 +1404,7 @@ window.B.View = (function (BIZZY) {
 	* 
 	* @namespace B
 	* @class View
+	* @private
 	*/
 	function View () {
 
@@ -1501,7 +1502,7 @@ window.B.View = (function (BIZZY) {
 	* 
 	* @method _subscribeEvents
 	* @protected
-	* returnt {void}
+	* return {void}
 	*/
 	View.prototype._subscribeEvents = function () {
 
@@ -1517,6 +1518,10 @@ window.B.View = (function (BIZZY) {
 
 	/**
 	* 
+	* 
+	* @method _deleteEvents
+	* @protected
+	* return {void}
 	*/
 	View.prototype._deleteEvents = function () {
 
@@ -1535,6 +1540,7 @@ window.B.View = (function (BIZZY) {
 	*
 	* @method _initialize
 	* @protected
+	* @return {void}
 	*/
 	View.prototype._initialize = function () {
 
@@ -1547,6 +1553,7 @@ window.B.View = (function (BIZZY) {
 	* 
 	* @method render
 	* @public
+	* @return {void}
 	*/
 	View.prototype.render = function () {
 
@@ -1560,6 +1567,7 @@ window.B.View = (function (BIZZY) {
 	* 
 	* @method destroy
 	* @public
+	* @return {void}
 	*/
 	View.prototype.destory = function () {
 
@@ -1569,13 +1577,17 @@ window.B.View = (function (BIZZY) {
 	};
 
 	/**
-	* Revelation pattern
+	* 
 	* 
 	* @namespace B
 	* @class FacadeView
+	* @public
 	*/
 	function FacadeView () {
 
+		/**
+		* Funcao construtora auto invocavel
+		*/
 		if (!(this instanceof FacadeView)) {
 
 			return new FacadeView();
@@ -1585,7 +1597,9 @@ window.B.View = (function (BIZZY) {
 		var view = new View(),
 			revelation = {};
 
-		// Revelaton Pattern
+		/**
+		* Revelation pattern
+		*/
 		revelation._initialize = view._initialize;
 		revelation._el = view._el;
 		revelation._template = view._template;
