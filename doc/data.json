@@ -989,7 +989,8 @@
         },
         {
             "file": "src\\view.js",
-            "line": 35,
+            "line": 34,
+            "description": "Utilizado como repositorio pela propriedade _el, que de fato\narmazena o Objeto DOM",
             "itemtype": "property",
             "name": "__el",
             "access": "private",

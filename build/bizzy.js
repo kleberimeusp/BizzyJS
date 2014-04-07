@@ -1410,12 +1410,12 @@ window.B.View = (function (BIZZY) {
 	function View () {
 
 		this._initialize();
-		BIZZY.utils.Dispatcher.call(this);
 
 	}
 
 	/**
-	* 
+	* Utilizado como repositorio pela propriedade _el, que de fato
+	* armazena o Objeto DOM
 	* 
 	* @property __el
 	* @private

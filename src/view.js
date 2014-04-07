@@ -82,7 +82,7 @@ window.B.View = (function (BIZZY) {
 	Object.defineProperty(View.prototype, "_model", {
 
 		writable: true,
-		value: {}
+		value: { data: {} }
 
 	});
 
