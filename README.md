@@ -1,4 +1,4 @@
-bizzy
+BizzyJS
 =====
 
-bizzy lib
+Uma biblioteca JavaScript MV*
