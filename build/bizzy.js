@@ -1390,8 +1390,8 @@ window.B.Model = (function (BIZZY) {
  */
 
 /**
-* Modulo que isola a Classe base View, utilizando a classe FacadeView para revelar
-* controlar a visibilidade das propriedades e methodos privados
+* Modulo que isola a Classe View, utilizando a classe FacadeView para controlar
+* visibilidade das propriedades e methodos privados
 * 
 * @namespace B
 * @module View

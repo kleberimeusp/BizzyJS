@@ -14,7 +14,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "View",
             "name": "View",
-            "description": "Modulo que isola a Classe base View, utilizando a classe FacadeView para revelar\ncontrolar a visibilidade das propriedades e methodos privados"
+            "description": "Modulo que isola a Classe View, utilizando a classe FacadeView para controlar\nvisibilidade das propriedades e methodos privados"
         }
     ]
 } };
