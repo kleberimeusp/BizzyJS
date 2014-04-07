@@ -8,7 +8,8 @@
  */
 
 /**
-* 
+* Modulo que isola a Classe View, utilizando a classe FacadeView para controlar
+* visibilidade das propriedades e methodos privados
 * 
 * @namespace B
 * @module View
@@ -199,7 +200,7 @@ window.B.View = (function (BIZZY) {
 	* 
 	* @namespace B
 	* @class FacadeView
-	* @public
+	* @private
 	*/
 	function FacadeView () {
 
