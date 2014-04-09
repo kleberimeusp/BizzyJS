@@ -31,7 +31,8 @@ window.B.utils.Ajax = (function (BIZZY) {
 	*/
 	Object.defineProperty(Ajax.prototype, "__method", {
 
-		writable: true
+		writable: true,
+		value: "GET"
 
 	});
 
@@ -42,18 +43,20 @@ window.B.utils.Ajax = (function (BIZZY) {
 	*/
 	Object.defineProperty(Ajax.prototype, "__url", {
 
-		writable: true
+		writable: true,
+		value: ""
 
 	});
 
 	/**
 	* Propriedade que indica se a requisica sera sync ou async
 	* @property __sync
-  * @default true
+ 	* @default true
 	*/
 	Object.defineProperty(Ajax.prototype, "__sync", {
 
-		writable: true
+		writable: true,
+		value: true
 
 	});
 
@@ -64,7 +67,8 @@ window.B.utils.Ajax = (function (BIZZY) {
 	*/
 	Object.defineProperty(Ajax.prototype, "__data", {
 
-		writable: true
+		writable: true,
+		value: {}
 
 	});
 
@@ -75,7 +79,8 @@ window.B.utils.Ajax = (function (BIZZY) {
 	*/
 	Object.defineProperty(Ajax.prototype, "__headers", {
 
-		writable: true
+		writable: true,
+		value: []
 
 	});
 
@@ -86,7 +91,8 @@ window.B.utils.Ajax = (function (BIZZY) {
 	*/
 	Object.defineProperty(Ajax.prototype, "__onCompleted", {
 
-		writable: true
+		writable: true,
+		value: function () {}
 
 	});
 
@@ -97,7 +103,8 @@ window.B.utils.Ajax = (function (BIZZY) {
 	*/
 	Object.defineProperty(Ajax.prototype, "__onFailed", {
 
-		writable: true
+		writable: true,
+		value: function () {}
 
 	});
 
@@ -108,7 +115,8 @@ window.B.utils.Ajax = (function (BIZZY) {
 	*/
 	Object.defineProperty(Ajax.prototype, "__xhr", {
 
-		writable: true
+		writable: true,
+		value: {}
 
 	});
 
@@ -119,7 +127,8 @@ window.B.utils.Ajax = (function (BIZZY) {
 	*/
 	Object.defineProperty(Ajax.prototype, "__readyState", {
 
-		writable: true
+		writable: true,
+		value: []
 
 	});
 
@@ -130,7 +139,8 @@ window.B.utils.Ajax = (function (BIZZY) {
 	*/
 	Object.defineProperty(Ajax.prototype, "__status", {
 
-		writable: true
+		writable: true,
+		value: []
 
 	});
 
@@ -177,12 +187,12 @@ window.B.utils.Ajax = (function (BIZZY) {
 	*/
 	Ajax.prototype.__defineReadyState = function () {
 
-		this.__readyState[0] = function () {};								// request not initialized
-		this.__readyState[1] = function () {};								// server connection established
-		this.__readyState[2] = function () {};								// request received
-		this.__readyState[3] = function () {};								// processing request
+		this.__readyState[0] = function () {};
+		this.__readyState[1] = function () {};
+		this.__readyState[2] = function () {};
+		this.__readyState[3] = function () {};
 
-		this.__readyState[4] = this.__finishedRequest.bind(this);			// request finished and response is ready
+		this.__readyState[4] = this.__finishedRequest.bind(this);
 
 	};
 
@@ -350,11 +360,11 @@ window.B.utils.Ajax = (function (BIZZY) {
 	* @method FacadeAjax
 	* @return { request: Ajax.request }
 	*/
-	function Facade () {
+	function FacadeAjax () {
 
-		if (!(this instanceof Facade)) {
+		if (!(this instanceof FacadeAjax)) {
 
-			return new Facade();
+			return new FacadeAjax();
 
 		}
 
@@ -367,6 +377,6 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	}
 
-	return Facade;
+	return FacadeAjax;
 
 })(window.B || {});
