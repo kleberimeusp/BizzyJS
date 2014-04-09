@@ -32,23 +32,7 @@ window.B.View = (function (BIZZY) {
 	}
 
 	/**
-	* Utilizado como repositorio pela propriedade _el, que de fato
-	* armazena o Objeto DOM
-	* 
-	* @property __el
-	* @private
-	* @type Object
-	* @default Objeto literal vazio
-	*/
-	Object.defineProperty(View.prototype, "__el", {
-
-		writable: true,
-		value: {}
-
-	});
-
-	/**
-	* Container referente ao Objeto DOM criado no Navegador
+	* Objeto DOM criado no Navegador
 	* 
 	* @property _el
 	* @protected
@@ -57,17 +41,8 @@ window.B.View = (function (BIZZY) {
 	*/
 	Object.defineProperty(View.prototype, "_el", {
 
-		get: function () {
-
-			return this.__el;
-
-		},
-
-		set: function (value) {
-
-			this.__el = window.document.querySelector(value);
-
-		}
+		writable: true,
+		value: {}
 
 	});
 

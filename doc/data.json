@@ -106,7 +106,7 @@
             },
             "tag": "module",
             "file": "src\\view.js",
-            "line": 198,
+            "line": 173,
             "description": "Modulo que isola a Classe View, utilizando a classe FacadeView para controlar\nvisibilidade das propriedades e methodos privados"
         }
     },
@@ -180,7 +180,7 @@
             "module": "View",
             "namespace": "B",
             "file": "src\\view.js",
-            "line": 198,
+            "line": 173,
             "access": "private",
             "tagname": ""
         }
@@ -990,21 +990,7 @@
         {
             "file": "src\\view.js",
             "line": 34,
-            "description": "Utilizado como repositorio pela propriedade _el, que de fato\narmazena o Objeto DOM",
-            "itemtype": "property",
-            "name": "__el",
-            "access": "private",
-            "tagname": "",
-            "type": "Object",
-            "default": "Objeto literal vazio",
-            "class": "B.View",
-            "module": "View",
-            "namespace": "B"
-        },
-        {
-            "file": "src\\view.js",
-            "line": 50,
-            "description": "Container referente ao Objeto DOM criado no Navegador",
+            "description": "Objeto DOM criado no Navegador",
             "itemtype": "property",
             "name": "_el",
             "access": "protected",
@@ -1017,7 +1003,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 74,
+            "line": 49,
             "description": "Representacao do Modelo de Dados",
             "itemtype": "property",
             "name": "_model",
@@ -1031,7 +1017,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 89,
+            "line": 64,
             "description": "Micro Template que carrega o Modelo de Dados no Elemento DOM",
             "itemtype": "property",
             "name": "_template",
@@ -1045,7 +1031,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 104,
+            "line": 79,
             "itemtype": "property",
             "name": "events",
             "access": "public",
@@ -1058,7 +1044,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 119,
+            "line": 94,
             "itemtype": "method",
             "name": "_subscribeEvents",
             "access": "protected",
@@ -1069,7 +1055,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 138,
+            "line": 113,
             "itemtype": "method",
             "name": "_deleteEvents",
             "access": "protected",
@@ -1080,7 +1066,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 157,
+            "line": 132,
             "description": "Metodo executado na inicializacao da Classe",
             "itemtype": "method",
             "name": "_initialize",
@@ -1096,7 +1082,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 170,
+            "line": 145,
             "description": "Renderiza o Micro Template no Elemento Container",
             "itemtype": "method",
             "name": "render",
@@ -1112,7 +1098,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 184,
+            "line": 159,
             "description": "Destroi o Micro Template renderizado no Elemento Container",
             "itemtype": "method",
             "name": "destroy",
@@ -1128,7 +1114,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 207,
+            "line": 182,
             "description": "Funcao construtora auto invocavel",
             "class": "B.FacadeView",
             "module": "View",
@@ -1136,7 +1122,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 219,
+            "line": 194,
             "description": "Revelation pattern",
             "class": "B.FacadeView",
             "module": "View",
@@ -1378,11 +1364,11 @@
         },
         {
             "message": "Missing item type\nFuncao construtora auto invocavel",
-            "line": " src\\view.js:207"
+            "line": " src\\view.js:182"
         },
         {
             "message": "Missing item type\nRevelation pattern",
-            "line": " src\\view.js:219"
+            "line": " src\\view.js:194"
         }
     ]
 }
