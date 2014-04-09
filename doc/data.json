@@ -80,8 +80,7 @@
                 "View": 1
             },
             "classes": {
-                "B.View": 1,
-                "B.FacadeView": 1
+                "B.View": 1
             },
             "fors": {},
             "namespaces": {
@@ -97,8 +96,7 @@
                 "App.Ajax": 1,
                 "Bizzy.Dispacher": 1,
                 "Bizzy.Model": 1,
-                "B.View": 1,
-                "B.FacadeView": 1
+                "B.View": 1
             },
             "fors": {},
             "namespaces": {
@@ -106,7 +104,7 @@
             },
             "tag": "module",
             "file": "src\\view.js",
-            "line": 173,
+            "line": 21,
             "description": "Modulo que isola a Classe View, utilizando a classe FacadeView para controlar\nvisibilidade das propriedades e methodos privados"
         }
     },
@@ -166,21 +164,6 @@
             "file": "src\\view.js",
             "line": 21,
             "description": "Classe Base View que representa Modelo de Dados no DOM",
-            "access": "private",
-            "tagname": ""
-        },
-        "B.FacadeView": {
-            "name": "B.FacadeView",
-            "shortname": "B.FacadeView",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "View",
-            "namespace": "B",
-            "file": "src\\view.js",
-            "line": 173,
             "access": "private",
             "tagname": ""
         }
@@ -1111,22 +1094,6 @@
             "class": "B.View",
             "module": "View",
             "namespace": "B"
-        },
-        {
-            "file": "src\\view.js",
-            "line": 182,
-            "description": "Funcao construtora auto invocavel",
-            "class": "B.FacadeView",
-            "module": "View",
-            "namespace": "B"
-        },
-        {
-            "file": "src\\view.js",
-            "line": 194,
-            "description": "Revelation pattern",
-            "class": "B.FacadeView",
-            "module": "View",
-            "namespace": "B"
         }
     ],
     "warnings": [
@@ -1361,14 +1328,6 @@
         {
             "message": "Missing item type",
             "line": " src\\model.js:242"
-        },
-        {
-            "message": "Missing item type\nFuncao construtora auto invocavel",
-            "line": " src\\view.js:182"
-        },
-        {
-            "message": "Missing item type\nRevelation pattern",
-            "line": " src\\view.js:194"
         }
     ]
 }

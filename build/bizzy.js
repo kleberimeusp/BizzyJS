@@ -1406,7 +1406,7 @@ window.B.Model = (function (BIZZY) {
 * @namespace B
 * @module View
 */
-window.B.View = (function (BIZZY) {
+window.B.View = (function () {
 
 	"use strict";
 
@@ -1562,45 +1562,6 @@ window.B.View = (function (BIZZY) {
 
 	};
 
-	/**
-	* 
-	* 
-	* @namespace B
-	* @class FacadeView
-	* @private
-	*/
-	function FacadeView () {
+	return View;
 
-		/**
-		* Funcao construtora auto invocavel
-		*/
-		if (!(this instanceof FacadeView)) {
-
-			return new FacadeView();
-
-		}
-
-		var view = new View(),
-			revelation = {};
-
-		/**
-		* Revelation pattern
-		*/
-		revelation._el = view._el;
-
-		revelation._initialize = view._initialize;
-		revelation._template = view._template;
-		revelation._model = view._model;
-		revelation._subscribeEvents = view._subscribeEvents;
-		revelation._deleteEvents = view._deleteEvents;
-
-		revelation.render = view.render;
-		revelation.destory = view.destory;
-
-		return revelation;
-
-	}
-
-	return FacadeView;
-
-})(window.B || {});
+})();
