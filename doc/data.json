@@ -198,7 +198,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 38,
+            "line": 39,
             "description": "Propriedade que contem a url da requisicao",
             "itemtype": "property",
             "name": "__url",
@@ -208,7 +208,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 49,
+            "line": 51,
             "description": "Propriedade que indica se a requisica sera sync ou async",
             "itemtype": "property",
             "name": "__sync",
@@ -218,7 +218,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 60,
+            "line": 63,
             "description": "Propriedade que contem os dados que trafegados na requisicao",
             "itemtype": "property",
             "name": "__data",
@@ -228,7 +228,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 71,
+            "line": 75,
             "description": "Propriedade que contem a lista de headers da requisicao",
             "itemtype": "property",
             "name": "__headers",
@@ -238,7 +238,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 82,
+            "line": 87,
             "description": "Propriedade que contem o callback que sera executado quando a requisicao terminar",
             "itemtype": "property",
             "name": "__onCompleted",
@@ -248,7 +248,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 93,
+            "line": 99,
             "description": "Propriedade que contem o callback que sera executado quando a requisicao falhar]",
             "itemtype": "property",
             "name": "__onFailed",
@@ -258,7 +258,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 104,
+            "line": 111,
             "description": "Propriedade que contem o objeto responsavel por tratar as requisicoes",
             "itemtype": "property",
             "name": "__xhr",
@@ -268,7 +268,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 115,
+            "line": 123,
             "description": "Propriedade que contem uma lista de callbacks que serao executados durantes os status do readyState da requisicao",
             "itemtype": "property",
             "name": "__readyState",
@@ -278,7 +278,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 126,
+            "line": 135,
             "description": "Propriedade que contem uma lista de callbacks que serao executados conforme o status code da requisicao",
             "itemtype": "property",
             "name": "__status",
@@ -288,7 +288,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 137,
+            "line": 147,
             "description": "Metodo de initializacao da classe, responsavel pela configuracao inicial",
             "itemtype": "method",
             "name": "__initialize",
@@ -301,7 +301,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 151,
+            "line": 161,
             "description": "Metodo responsavel pela configuracao do xhr",
             "itemtype": "method",
             "name": "__defineXhr",
@@ -314,7 +314,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 162,
+            "line": 172,
             "description": "Metodo responsavel pela configuracao do evento do ready state",
             "itemtype": "method",
             "name": "__defineReadyStateChange",
@@ -327,7 +327,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 173,
+            "line": 183,
             "description": "Metodo responsavel pela configuracao dos callbacks do ready state",
             "itemtype": "method",
             "name": "__defineReadyState",
@@ -340,7 +340,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 189,
+            "line": 199,
             "description": "Metodo responsavel pela configuracao dos callbacks do status code da requisicao http",
             "itemtype": "method",
             "name": "__defineStatus",
@@ -353,7 +353,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 205,
+            "line": 215,
             "description": "Metodo que trata quando a requisicao completar",
             "itemtype": "method",
             "name": "__completed",
@@ -366,7 +366,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 216,
+            "line": 226,
             "description": "Metodo que trata quando a requisicao falhar",
             "itemtype": "method",
             "name": "__failed",
@@ -379,7 +379,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 227,
+            "line": 237,
             "description": "Metodo que trata quando a requisicao terminar",
             "itemtype": "method",
             "name": "__finishedRequest",
@@ -392,7 +392,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 238,
+            "line": 248,
             "description": "Metodo responsavel por disparar o callback conforme o status do ready state",
             "itemtype": "method",
             "name": "__onreadystatechange",
@@ -405,7 +405,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 249,
+            "line": 259,
             "description": "Metodo responsavel por resetar as propriedades da classe para os valores default",
             "itemtype": "method",
             "name": "__resetProperties",
@@ -418,7 +418,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 266,
+            "line": 276,
             "description": "Metodo responsavel por setar as propriedades da classe",
             "itemtype": "method",
             "name": "__addProperties",
@@ -431,7 +431,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 285,
+            "line": 295,
             "description": "Metodo responsavel por abrir a requisicao",
             "itemtype": "method",
             "name": "__open",
@@ -444,7 +444,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 296,
+            "line": 306,
             "description": "Metodo responsavel os headers da requisicao",
             "itemtype": "method",
             "name": "__setRequestHeader",
@@ -457,7 +457,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 313,
+            "line": 323,
             "description": "Metodo responsavel por enviar a requisicao http",
             "itemtype": "method",
             "name": "__send",
@@ -470,7 +470,7 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 324,
+            "line": 334,
             "description": "Metodo responsavel por executar a requisicao http (open, setRequestHeaders, send)",
             "itemtype": "method",
             "name": "__execute",
@@ -483,14 +483,14 @@
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 337,
+            "line": 347,
             "description": "Metodo responsavel por enviar a requisicao http (resetProperties, addProperties, execute)",
             "class": "App.Ajax",
             "namespace": "App"
         },
         {
             "file": "src\\utils\\ajax.js",
-            "line": 348,
+            "line": 358,
             "description": "Construtor do padrão Facade, responsavel por expor apenas apenas o escopo necessario",
             "itemtype": "method",
             "name": "FacadeAjax",
@@ -1146,7 +1146,7 @@
     "warnings": [
         {
             "message": "Missing item type\nMetodo responsavel por enviar a requisicao http (resetProperties, addProperties, execute)",
-            "line": " src\\utils\\ajax.js:337"
+            "line": " src\\utils\\ajax.js:347"
         },
         {
             "message": "Missing item type",
