@@ -21,7 +21,7 @@ window.B.utils.Require = (function (BIZZY) {
 	*/
 	Object.defineProperty(Require.prototype, "__ajax", {
 
-		value: new BIZZY.uitls.Ajax()
+		value: new BIZZY.utils.Ajax()
 
 	});
 
