@@ -195,7 +195,7 @@ window.B.Model = (function (BIZZY) {
 	* @property _idName
 	* @type String
 	*/
-	Object.definePrototype(Model.prototype, &quot;_idName&quot;, {
+	Object.defineProperty(Model.prototype, &quot;_idName&quot;, {
 
 		writable: true
 
@@ -207,7 +207,7 @@ window.B.Model = (function (BIZZY) {
 	* @property data
 	* @type Object
 	*/
-	Object.definePrototype(Model.prototype, &quot;data&quot;, {
+	Object.defineProperty(Model.prototype, &quot;data&quot;, {
 
 		writable: true,
 		value: {}
@@ -217,7 +217,7 @@ window.B.Model = (function (BIZZY) {
 	/**
 	* 
 	*/
-	Object.definePrototype(Model.prototype, &quot;defaults&quot;, {
+	Object.defineProperty(Model.prototype, &quot;defaults&quot;, {
 
 		writable: true,
 		value: {}
