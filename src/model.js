@@ -7,7 +7,7 @@
  *
  */
 
-window.B.Model = (function (BIZZY) {
+window.B.Model = (function () {
 
 	"use strict";
 
@@ -20,7 +20,6 @@ window.B.Model = (function (BIZZY) {
 	function Model () {
 
 		this._initialize();
-		BIZZY.utils.Dispatcher.call(this);
 
 	}
 
@@ -29,7 +28,7 @@ window.B.Model = (function (BIZZY) {
 	*/
 	Object.defineProperty(Model.prototype, "__dispatcher", {
 
-		value: new BIZZY.utils.Dispatcher()
+		value: new window.B.utils.Dispatcher()
 
 	});
 
@@ -38,7 +37,7 @@ window.B.Model = (function (BIZZY) {
 	*/
 	Object.defineProperty(Model.prototype, "_ajax", {
 
-		value: new BIZZY.utils.Ajax()
+		value: new window.B.utils.Ajax()
 
 	});
 
@@ -79,7 +78,7 @@ window.B.Model = (function (BIZZY) {
 
 		get: function () {
 
-			return BIZZY.uitls.format("{0}/{1}", this.__url, this.data[this._idName]);
+			return window.B.uitls.format("{0}/{1}", this.__url, this.data[this._idName]);
 
 		},
 
