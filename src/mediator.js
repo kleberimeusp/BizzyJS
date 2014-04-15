@@ -7,10 +7,10 @@
  *
  */
 
- window.B.Mediator = (function (BIZZY) {
+ window.B.Mediator = (function () {
 
 	"use strict";
 
-	return new BIZZY.utils.Dispatcher();
+	return new window.B.utils.Dispatcher();
 
- })(window.B || {});
+ })();

@@ -7,22 +7,35 @@
  *
  */
 
-window.B = (function (BIZZY) {
+window.B = (function () {
 
 	"use strict";
 
 	/**
 	* 
-	*/	
-	BIZZY.utils = {};
+	*/
+	function Bizzy () {}
 
 	/**
 	* 
 	*/
-	BIZZY.templates = {};
-	BIZZY.views = {};
-	BIZZY.models = {};
+	Object.defineProperty(Bizzy.prototype, "utils", { value:  {} });
 
-	return BIZZY;
+	/**
+	* 
+	*/
+	Object.defineProperty(Bizzy.prototype, "templates", { value: {} });
 
-})(window.B || {});
+	/**
+	* 
+	*/
+	Object.defineProperty(Bizzy.prototype, "views", {  value: {} });
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Bizzy.prototype, "models", { value: {} });
+
+	return new Bizzy();
+
+})();
