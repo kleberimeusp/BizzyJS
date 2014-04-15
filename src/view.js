@@ -98,17 +98,21 @@ window.B.View = (function () {
 	* @protected
 	* return {void}
 	*/
-	View.prototype._subscribeEvents = function () {
+	Object.defineProperty(View.prototype, "_subscribeEvents", {
 
-		var name = "";
+		value: function () {
 
-		for (name in this.events) {
+			var name = "";
 
-			window.document.querySelector(name.split(" ")[1]).addEventListener(name.split(" ")[0], this.events[name], false);
+			for (name in this.events) {
+
+				window.document.querySelector(name.split(" ")[1]).addEventListener(name.split(" ")[0], this.events[name], false);
+
+			}
 
 		}
 
-	};
+	});
 
 	/**
 	* 
@@ -117,17 +121,21 @@ window.B.View = (function () {
 	* @protected
 	* return {void}
 	*/
-	View.prototype._deleteEvents = function () {
+	Object.defineProperty(View.prototype, "_deleteEvents", {
 
-		var name = "";
+		value: function () {
 
-		for (name in this.events) {
+			var name = "";
 
-			window.document.querySelector(name.split(" ")[1]).removeEventListener(name.split(" ")[0], this.events[name], false);
+			for (name in this.events) {
+
+				window.document.querySelector(name.split(" ")[1]).removeEventListener(name.split(" ")[0], this.events[name], false);
+
+			}
 
 		}
 
-	};
+	});
 
 	/**
 	* Metodo executado na inicializacao da Classe
@@ -136,11 +144,15 @@ window.B.View = (function () {
 	* @protected
 	* @return {void}
 	*/
-	View.prototype._initialize = function () {
+	Object.defineProperty(View.prototype, "_initialize", {
 
-		// Este metodo nao foi implementado
+		value: function () {
 
-	};
+			// Este metodo nao foi implementado
+
+		}
+
+	});
 
 	/**
 	* Renderiza o Micro Template no Elemento Container
@@ -149,12 +161,16 @@ window.B.View = (function () {
 	* @public
 	* @return {void}
 	*/
-	View.prototype.render = function () {
+	Object.defineProperty(View.prototype, "render", {
 
-		this._el.innerHTML = this._template(this._model.data);
-		this._subscribeEvents();
+		value: function () {
 
-	};
+			this._el.innerHTML = this._template(this._model.data);
+			this._subscribeEvents();
+
+		}
+
+	});
 
 	/**
 	* Destroi o Micro Template renderizado no Elemento Container
@@ -163,12 +179,16 @@ window.B.View = (function () {
 	* @public
 	* @return {void}
 	*/
-	View.prototype.destory = function () {
+	Object.defineProperty(View.prototype, "destory", {
 
-		this._el.innerHTML = "";
-		this._deleteEvents();
+		value: function () {
 
-	};
+			this._el.innerHTML = "";
+			this._deleteEvents();
+
+		}
+
+	});
 
 	return View;
 
