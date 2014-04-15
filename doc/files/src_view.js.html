@@ -43,15 +43,17 @@
             
                 <li><a href="../classes/App.Ajax.html">App.Ajax</a></li>
             
+                <li><a href="../classes/B.Model.html">B.Model</a></li>
+            
                 <li><a href="../classes/B.View.html">B.View</a></li>
             
                 <li><a href="../classes/Bizzy.Dispacher.html">Bizzy.Dispacher</a></li>
             
-                <li><a href="../classes/Bizzy.Model.html">Bizzy.Model</a></li>
-            
             </ul>
 
             <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Model.html">Model</a></li>
             
                 <li><a href="../modules/View.html">View</a></li>
             
@@ -104,8 +106,7 @@
  */
 
 /**
-* Modulo que isola a Classe View, utilizando a classe FacadeView para controlar
-* visibilidade das propriedades e methodos privados
+* Modulo que isola a Classe View
 * 
 * @namespace B
 * @module View
@@ -194,17 +195,21 @@ window.B.View = (function () {
 	* @protected
 	* return {void}
 	*/
-	View.prototype._subscribeEvents = function () {
+	Object.defineProperty(View.prototype, &quot;_subscribeEvents&quot;, {
 
-		var name = &quot;&quot;;
+		value: function () {
 
-		for (name in this.events) {
+			var name = &quot;&quot;;
 
-			window.document.querySelector(name.split(&quot; &quot;)[1]).addEventListener(name.split(&quot; &quot;)[0], this.events[name], false);
+			for (name in this.events) {
+
+				window.document.querySelector(name.split(&quot; &quot;)[1]).addEventListener(name.split(&quot; &quot;)[0], this.events[name], false);
+
+			}
 
 		}
 
-	};
+	});
 
 	/**
 	* 
@@ -213,17 +218,21 @@ window.B.View = (function () {
 	* @protected
 	* return {void}
 	*/
-	View.prototype._deleteEvents = function () {
+	Object.defineProperty(View.prototype, &quot;_deleteEvents&quot;, {
 
-		var name = &quot;&quot;;
+		value: function () {
 
-		for (name in this.events) {
+			var name = &quot;&quot;;
 
-			window.document.querySelector(name.split(&quot; &quot;)[1]).removeEventListener(name.split(&quot; &quot;)[0], this.events[name], false);
+			for (name in this.events) {
+
+				window.document.querySelector(name.split(&quot; &quot;)[1]).removeEventListener(name.split(&quot; &quot;)[0], this.events[name], false);
+
+			}
 
 		}
 
-	};
+	});
 
 	/**
 	* Metodo executado na inicializacao da Classe
@@ -232,11 +241,15 @@ window.B.View = (function () {
 	* @protected
 	* @return {void}
 	*/
-	View.prototype._initialize = function () {
+	Object.defineProperty(View.prototype, &quot;_initialize&quot;, {
 
-		// Este metodo nao foi implementado
+		value: function () {
 
-	};
+			// Este metodo nao foi implementado
+
+		}
+
+	});
 
 	/**
 	* Renderiza o Micro Template no Elemento Container
@@ -245,12 +258,16 @@ window.B.View = (function () {
 	* @public
 	* @return {void}
 	*/
-	View.prototype.render = function () {
+	Object.defineProperty(View.prototype, &quot;render&quot;, {
 
-		this._el.innerHTML = this._template(this._model.data);
-		this._subscribeEvents();
+		value: function () {
 
-	};
+			this._el.innerHTML = this._template(this._model.data);
+			this._subscribeEvents();
+
+		}
+
+	});
 
 	/**
 	* Destroi o Micro Template renderizado no Elemento Container
@@ -259,12 +276,16 @@ window.B.View = (function () {
 	* @public
 	* @return {void}
 	*/
-	View.prototype.destory = function () {
+	Object.defineProperty(View.prototype, &quot;destory&quot;, {
 
-		this._el.innerHTML = &quot;&quot;;
-		this._deleteEvents();
+		value: function () {
 
-	};
+			this._el.innerHTML = &quot;&quot;;
+			this._deleteEvents();
+
+		}
+
+	});
 
 	return View;
 

@@ -65,13 +65,15 @@
         },
         "src\\model.js": {
             "name": "src\\model.js",
-            "modules": {},
+            "modules": {
+                "Model": 1
+            },
             "classes": {
-                "Bizzy.Model": 1
+                "B.Model": 1
             },
             "fors": {},
             "namespaces": {
-                "Bizzy": 1
+                "B": 1
             }
         },
         "src\\view.js": {
@@ -89,13 +91,27 @@
         }
     },
     "modules": {
-        "View": {
-            "name": "View",
+        "Model": {
+            "name": "Model",
             "submodules": {},
             "classes": {
                 "App.Ajax": 1,
                 "Bizzy.Dispacher": 1,
-                "Bizzy.Model": 1,
+                "B.Model": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "B": 1
+            },
+            "tag": "module",
+            "file": "src\\model.js",
+            "line": 20,
+            "description": "Modulo que isola a Classe Model"
+        },
+        "View": {
+            "name": "View",
+            "submodules": {},
+            "classes": {
                 "B.View": 1
             },
             "fors": {},
@@ -104,8 +120,8 @@
             },
             "tag": "module",
             "file": "src\\view.js",
-            "line": 21,
-            "description": "Modulo que isola a Classe View, utilizando a classe FacadeView para controlar\nvisibilidade das propriedades e methodos privados"
+            "line": 20,
+            "description": "Modulo que isola a Classe View"
         }
     },
     "classes": {
@@ -117,7 +133,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "View",
+            "module": "Model",
             "namespace": "App",
             "file": "src\\utils\\ajax.js",
             "line": 14,
@@ -131,24 +147,24 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "View",
+            "module": "Model",
             "namespace": "Bizzy",
             "file": "src\\utils\\dispatcher.js",
             "line": 14,
             "description": "Classe que implementa o padrao PubSub"
         },
-        "Bizzy.Model": {
-            "name": "Bizzy.Model",
-            "shortname": "Bizzy.Model",
+        "B.Model": {
+            "name": "B.Model",
+            "shortname": "B.Model",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "View",
-            "namespace": "Bizzy",
+            "module": "Model",
+            "namespace": "B",
             "file": "src\\model.js",
-            "line": 14,
+            "line": 20,
             "description": "Classe Base Model que representa o Modelo de Dados"
         },
         "B.View": {
@@ -162,7 +178,7 @@
             "module": "View",
             "namespace": "B",
             "file": "src\\view.js",
-            "line": 21,
+            "line": 20,
             "description": "Classe Base View que representa Modelo de Dados no DOM",
             "access": "private",
             "tagname": ""
@@ -598,381 +614,423 @@
         {
             "file": "src\\utils\\format.js",
             "line": 14,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\require.js",
             "line": 14,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\require.js",
             "line": 19,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\require.js",
             "line": 28,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\require.js",
             "line": 37,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\require.js",
             "line": 46,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\require.js",
             "line": 56,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\require.js",
             "line": 75,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 14,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 23,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 32,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 41,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 50,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 60,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 78,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 106,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 121,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 130,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 139,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 148,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 168,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 183,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\router.js",
             "line": 192,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 14,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 23,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 32,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 41,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 51,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 60,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 70,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 87,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 113,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 122,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 131,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 146,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 155,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 164,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 185,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\utils\\serialize.js",
             "line": 205,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\bizzy.js",
             "line": 14,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\bizzy.js",
             "line": 19,
-            "class": "Bizzy.Model",
+            "class": "B.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\bizzy.js",
+            "line": 24,
+            "class": "B.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\bizzy.js",
+            "line": 29,
+            "class": "B.Model",
+            "namespace": "Bizzy"
+        },
+        {
+            "file": "src\\bizzy.js",
+            "line": 34,
+            "class": "B.Model",
             "namespace": "Bizzy"
         },
         {
             "file": "src\\model.js",
-            "line": 27,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 32,
+            "itemtype": "property",
+            "name": "__dispatcher",
+            "access": "private",
+            "tagname": "",
+            "type": "Object",
+            "default": "Uma nova instancia do modulo Dispatcher",
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 36,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 46,
+            "itemtype": "property",
+            "name": "_ajax",
+            "access": "protected",
+            "tagname": "",
+            "type": "Object",
+            "default": "Uma nova instancia do modulo Ajax",
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 45,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 60,
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 62,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 77,
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 72,
+            "line": 87,
             "description": "Url para transferencia ou requisicao do Modelo de Dados",
             "itemtype": "property",
             "name": "_url",
             "type": "String",
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 94,
+            "line": 109,
             "description": "Nome do identificador unico da representacao do Modelo de Dados",
             "itemtype": "property",
             "name": "_idName",
             "type": "String",
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 106,
+            "line": 121,
             "description": "Container que transporta a representacao do Modelo de Dados",
             "itemtype": "property",
             "name": "data",
             "type": "Object",
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 119,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 134,
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 129,
+            "line": 144,
             "description": "Metodo executado na inicializacao da Classe",
             "itemtype": "method",
             "name": "_initialize",
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 140,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 159,
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 157,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 180,
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 166,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 193,
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 175,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 206,
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 185,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 220,
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 194,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 233,
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 212,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 255,
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 222,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 269,
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 232,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
-        },
-        {
-            "file": "src\\model.js",
-            "line": 242,
-            "class": "Bizzy.Model",
-            "namespace": "Bizzy"
+            "line": 283,
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
         },
         {
             "file": "src\\view.js",
-            "line": 34,
+            "line": 33,
             "description": "Objeto DOM criado no Navegador",
             "itemtype": "property",
             "name": "_el",
@@ -986,7 +1044,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 49,
+            "line": 48,
             "description": "Representacao do Modelo de Dados",
             "itemtype": "property",
             "name": "_model",
@@ -1000,7 +1058,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 64,
+            "line": 63,
             "description": "Micro Template que carrega o Modelo de Dados no Elemento DOM",
             "itemtype": "property",
             "name": "_template",
@@ -1014,7 +1072,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 79,
+            "line": 78,
             "itemtype": "property",
             "name": "events",
             "access": "public",
@@ -1027,7 +1085,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 94,
+            "line": 93,
             "itemtype": "method",
             "name": "_subscribeEvents",
             "access": "protected",
@@ -1038,7 +1096,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 113,
+            "line": 116,
             "itemtype": "method",
             "name": "_deleteEvents",
             "access": "protected",
@@ -1049,7 +1107,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 132,
+            "line": 139,
             "description": "Metodo executado na inicializacao da Classe",
             "itemtype": "method",
             "name": "_initialize",
@@ -1065,7 +1123,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 145,
+            "line": 156,
             "description": "Renderiza o Micro Template no Elemento Container",
             "itemtype": "method",
             "name": "render",
@@ -1081,7 +1139,7 @@
         },
         {
             "file": "src\\view.js",
-            "line": 159,
+            "line": 174,
             "description": "Destroi o Micro Template renderizado no Elemento Container",
             "itemtype": "method",
             "name": "destroy",
@@ -1271,63 +1329,63 @@
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:27"
+            "line": " src\\bizzy.js:24"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:36"
+            "line": " src\\bizzy.js:29"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:45"
+            "line": " src\\bizzy.js:34"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:62"
+            "line": " src\\model.js:60"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:119"
+            "line": " src\\model.js:77"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:140"
+            "line": " src\\model.js:134"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:157"
+            "line": " src\\model.js:159"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:166"
+            "line": " src\\model.js:180"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:175"
+            "line": " src\\model.js:193"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:185"
+            "line": " src\\model.js:206"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:194"
+            "line": " src\\model.js:220"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:212"
+            "line": " src\\model.js:233"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:222"
+            "line": " src\\model.js:255"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:232"
+            "line": " src\\model.js:269"
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:242"
+            "line": " src\\model.js:283"
         }
     ]
 }

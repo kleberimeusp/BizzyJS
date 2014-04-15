@@ -43,15 +43,17 @@
             
                 <li><a href="../classes/App.Ajax.html">App.Ajax</a></li>
             
+                <li><a href="../classes/B.Model.html">B.Model</a></li>
+            
                 <li><a href="../classes/B.View.html">B.View</a></li>
             
                 <li><a href="../classes/Bizzy.Dispacher.html">Bizzy.Dispacher</a></li>
             
-                <li><a href="../classes/Bizzy.Model.html">Bizzy.Model</a></li>
-            
             </ul>
 
             <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Model.html">Model</a></li>
             
                 <li><a href="../modules/View.html">View</a></li>
             
@@ -103,38 +105,53 @@
  *
  */
 
-window.B.Model = (function (BIZZY) {
+/**
+* Modulo que isola a Classe Model
+* 
+* @namespace B
+* @module Model
+*/
+window.B.Model = (function () {
 
 	&quot;use strict&quot;;
 
 	/**
 	* Classe Base Model que representa o Modelo de Dados
 	* 
-	* @namespace Bizzy
+	* @namespace B
 	* @class Model
 	*/
 	function Model () {
 
 		this._initialize();
-		BIZZY.utils.Dispatcher.call(this);
 
 	}
 
 	/**
 	* 
+	* 
+	* @property __dispatcher
+	* @private
+	* @type Object
+	* @default Uma nova instancia do modulo Dispatcher
 	*/
 	Object.defineProperty(Model.prototype, &quot;__dispatcher&quot;, {
 
-		value: new BIZZY.utils.Dispatcher()
+		value: new window.B.utils.Dispatcher()
 
 	});
 
 	/**
 	* 
+	* 
+	* @property _ajax
+	* @protected
+	* @type Object
+	* @default Uma nova instancia do modulo Ajax
 	*/
 	Object.defineProperty(Model.prototype, &quot;_ajax&quot;, {
 
-		value: new BIZZY.utils.Ajax()
+		value: new window.B.utils.Ajax()
 
 	});
 
@@ -175,7 +192,7 @@ window.B.Model = (function (BIZZY) {
 
 		get: function () {
 
-			return BIZZY.uitls.format(&quot;{0}/{1}&quot;, this.__url, this.data[this._idName]);
+			return window.B.uitls.format(&quot;{0}/{1}&quot;, this.__url, this.data[this._idName]);
 
 		},
 
@@ -227,150 +244,157 @@ window.B.Model = (function (BIZZY) {
 	*
 	* @method _initialize
 	*/
-	Model.prototype._initialize = function () {
+	Object.defineProperty(Model.prototype, &quot;_initialize&quot;, {
 
-		this.reset();
+		value: function () {
 
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.reset = function () {
-
-		var name = &quot;&quot;;
-
-		for (name in this.defaults) {
-
-			this.data[name] = this.defaults[name].value;
+			this.reset();
 
 		}
 
-		this.__dispatcher.trigger(&quot;model:reset&quot;, this.data);
-
-	};
+	});
 
 	/**
 	* 
 	*/
-	Model.prototype.on = function (event, callback) {
+	Object.defineProperty(Model.prototype, &quot;reset&quot;, {
 
-		this.__dispatcher.on(event, callback);
+		value: function () {
 
-	};
+			var name = &quot;&quot;;
 
-	/**
-	* 
-	*/
-	Model.prototype.off = function (event, callback) {
+			for (name in this.defaults) {
 
-		this.__dispatcher.off(event, callback);
+				this.data[name] = this.defaults[name].value;
 
-	};
+			}
 
-	/**
-	* 
-	*/
-	Model.prototype.__completed = function (data) {
-
-		this.data = JSON.parse(data);
-		this.__dispatcher.trigger(&quot;model:completed&quot;, this.data);
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.__failed = function (data) {
-
-		this.__dispatcher.trigger(&quot;model:failed&quot;, JSON.parse(data));
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.__request = function (method) {
-
-		this._ajax.request({
-
-			method: method,
-			url: this._url,
-			data: this.data,
-			headers: this._headers,
-			onCompleted: this.__completed.bind(this),
-			onFailed: this.__failed.bind(this)
-
-		});
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.fetch = function () {
-
-		this.__dispatcher.trigger(&quot;model:fetch&quot;, this.data);
-		this.__request(&quot;GET&quot;);
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.save = function () {
-
-		this.__dispatcher.trigger(&quot;model:save&quot;, this.data);
-		this.__request(this.data[this._idName] ? &quot;POST&quot; : &quot;PUT&quot;);
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.delete = function() {
-
-		this.__dispatcher.trigger(&quot;model:delete&quot;, this.data);
-		this.__request(&quot;DELETE&quot;);
-
-	};
-
-	/**
-	* 
-	*/
-	function Facade () {
-
-		if (!(this instanceof Facade)) {
-
-			return new Facade();
+			this.__dispatcher.trigger(&quot;model:reset&quot;, this.data);
 
 		}
 
-		var model = new Model(),
-			revelation = {};
+	});
 
-		// Revelation Pattern
-		revelation._initialize = model._initialize;
-		revelation._ajax = model._ajax;
-		revelation._headers = model._headers;
-		revelation._url = model._url;
-		revelation._idName = model._idName;
-		
-		revelation.data = model.data;
-		revelation.onCompleted = model.onCompleted;
-		revelation.onFailed = model.onFailed;
-		revelation.reset = model.reset;
-		revelation.fetch = model.fetch;
-		revelation.save = model.save;
-		revelation.delete = model.delete;
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, &quot;on&quot;, {
 
-		return revelation;
+		value: function (event, callback) {
 
-	}
+			this.__dispatcher.on(event, callback);
 
-	return Facade;
+		}
 
-})(window.B || {});
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, &quot;off&quot;, {
+
+		value: function (event, callback) {
+
+			this.__dispatcher.off(event, callback);
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, &quot;__completed&quot;, {
+
+		value: function (data) {
+
+			this.data = JSON.parse(data);
+			this.__dispatcher.trigger(&quot;model:completed&quot;, this.data);
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, &quot;__failed&quot;, {
+
+		value: function (data) {
+
+			this.__dispatcher.trigger(&quot;model:failed&quot;, JSON.parse(data));
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, &quot;__request&quot;, {
+
+		value: function (method) {
+
+			this._ajax.request({
+
+				method: method,
+				url: this._url,
+				data: this.data,
+				headers: this._headers,
+				onCompleted: this.__completed.bind(this),
+				onFailed: this.__failed.bind(this)
+
+			});
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, &quot;fetch&quot;, {
+
+		value: function () {
+
+			this.__dispatcher.trigger(&quot;model:fetch&quot;, this.data);
+			this.__request(&quot;GET&quot;);
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, &quot;save&quot;, {
+
+		value: function () {
+
+			this.__dispatcher.trigger(&quot;model:save&quot;, this.data);
+			this.__request(this.data[this._idName] ? &quot;POST&quot; : &quot;PUT&quot;);
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, &quot;delete&quot;, {
+
+		value: function () {
+
+			this.__dispatcher.trigger(&quot;model:delete&quot;, this.data);
+			this.__request(&quot;DELETE&quot;);
+
+		}
+
+	});
+
+	return Model;
+
+})();
     </pre>
 </div>
 

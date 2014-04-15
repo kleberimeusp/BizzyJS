@@ -7,6 +7,12 @@
  *
  */
 
+/**
+* Modulo que isola a Classe Model
+* 
+* @namespace B
+* @module Model
+*/
 window.B.Model = (function () {
 
 	"use strict";
@@ -14,7 +20,7 @@ window.B.Model = (function () {
 	/**
 	* Classe Base Model que representa o Modelo de Dados
 	* 
-	* @namespace Bizzy
+	* @namespace B
 	* @class Model
 	*/
 	function Model () {
@@ -25,6 +31,11 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @property __dispatcher
+	* @private
+	* @type Object
+	* @default Uma nova instancia do modulo Dispatcher
 	*/
 	Object.defineProperty(Model.prototype, "__dispatcher", {
 
@@ -34,6 +45,11 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @property _ajax
+	* @protected
+	* @type Object
+	* @default Uma nova instancia do modulo Ajax
 	*/
 	Object.defineProperty(Model.prototype, "_ajax", {
 
@@ -43,6 +59,11 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @property _headers
+	* @protected
+	* @type Array
+	* @defatul Um Array literal com o cabecalho Content-Type JSON padrao
 	*/
 	Object.defineProperty(Model.prototype, "_headers", {
 
@@ -60,6 +81,11 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @property __url
+	* @private
+	* @type String
+	* @default Um Objeto literal de String vazio
 	*/
 	Object.defineProperty(Model.prototype, "__url", {
 
@@ -72,7 +98,9 @@ window.B.Model = (function () {
 	* Url para transferencia ou requisicao do Modelo de Dados
 	* 
 	* @property _url
+	* @protected
 	* @type String
+	* @default Um Objeto litaral de String vazio
 	*/
 	Object.defineProperty(Model.prototype, "_url", {
 
@@ -106,7 +134,9 @@ window.B.Model = (function () {
 	* Container que transporta a representacao do Modelo de Dados
 	* 
 	* @property data
+	* @public
 	* @type Object
+	* @default Um Objeto literal vazio
 	*/
 	Object.defineProperty(Model.prototype, "data", {
 
@@ -117,6 +147,11 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @propety defaults
+	* @public
+	* @type Object
+	* @default Um Objeto literal vazio
 	*/
 	Object.defineProperty(Model.prototype, "defaults", {
 
@@ -129,6 +164,8 @@ window.B.Model = (function () {
 	* Metodo executado na inicializacao da Classe
 	*
 	* @method _initialize
+	* @protected
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, "_initialize", {
 
@@ -142,6 +179,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method reset
+	* @public
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, "reset", {
 
@@ -163,6 +204,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method on
+	* @public
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, "on", {
 
@@ -176,6 +221,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method off
+	* @public
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, "off", {
 
@@ -189,6 +238,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method __completed
+	* @private
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, "__completed", {
 
@@ -203,6 +256,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method __failed
+	* @private
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, "__failed", {
 
@@ -216,6 +273,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method __request
+	* @private
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, "__request", {
 
@@ -238,6 +299,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method fetch
+	* @public
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, "fetch", {
 
@@ -252,6 +317,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method save
+	* @public
+	* @default {void}
 	*/
 	Object.defineProperty(Model.prototype, "save", {
 
@@ -266,6 +335,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method delete
+	* @public
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, "delete", {
 

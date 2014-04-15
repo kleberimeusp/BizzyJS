@@ -7,25 +7,38 @@
  *
  */
 
-window.B = (function (BIZZY) {
+window.B = (function () {
 
 	"use strict";
 
 	/**
 	* 
-	*/	
-	BIZZY.utils = {};
+	*/
+	function Bizzy () {}
 
 	/**
 	* 
 	*/
-	BIZZY.templates = {};
-	BIZZY.views = {};
-	BIZZY.models = {};
+	Object.defineProperty(Bizzy.prototype, "utils", { value:  {} });
 
-	return BIZZY;
+	/**
+	* 
+	*/
+	Object.defineProperty(Bizzy.prototype, "templates", { value: {} });
 
-})(window.B || {});
+	/**
+	* 
+	*/
+	Object.defineProperty(Bizzy.prototype, "views", {  value: {} });
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Bizzy.prototype, "models", { value: {} });
+
+	return new Bizzy();
+
+})();
 /*
  * BizzyJS
  * https://github.com/Bibizzy/BizzyJS
@@ -1106,13 +1119,13 @@ window.B.utils.serialize = (function (BIZZY) {
  *
  */
 
- window.B.Mediator = (function (BIZZY) {
+ window.B.Mediator = (function () {
 
 	"use strict";
 
-	return new BIZZY.utils.Dispatcher();
+	return new window.B.utils.Dispatcher();
 
- })(window.B || {});
+ })();
 /*
  * BizzyJS
  * https://github.com/Bibizzy/BizzyJS
@@ -1122,38 +1135,53 @@ window.B.utils.serialize = (function (BIZZY) {
  *
  */
 
-window.B.Model = (function (BIZZY) {
+/**
+* Modulo que isola a Classe Model
+* 
+* @namespace B
+* @module Model
+*/
+window.B.Model = (function () {
 
 	"use strict";
 
 	/**
 	* Classe Base Model que representa o Modelo de Dados
 	* 
-	* @namespace Bizzy
+	* @namespace B
 	* @class Model
 	*/
 	function Model () {
 
 		this._initialize();
-		BIZZY.utils.Dispatcher.call(this);
 
 	}
 
 	/**
 	* 
+	* 
+	* @property __dispatcher
+	* @private
+	* @type Object
+	* @default Uma nova instancia do modulo Dispatcher
 	*/
 	Object.defineProperty(Model.prototype, "__dispatcher", {
 
-		value: new BIZZY.utils.Dispatcher()
+		value: new window.B.utils.Dispatcher()
 
 	});
 
 	/**
 	* 
+	* 
+	* @property _ajax
+	* @protected
+	* @type Object
+	* @default Uma nova instancia do modulo Ajax
 	*/
 	Object.defineProperty(Model.prototype, "_ajax", {
 
-		value: new BIZZY.utils.Ajax()
+		value: new window.B.utils.Ajax()
 
 	});
 
@@ -1194,7 +1222,7 @@ window.B.Model = (function (BIZZY) {
 
 		get: function () {
 
-			return BIZZY.uitls.format("{0}/{1}", this.__url, this.data[this._idName]);
+			return window.B.uitls.format("{0}/{1}", this.__url, this.data[this._idName]);
 
 		},
 
@@ -1246,150 +1274,157 @@ window.B.Model = (function (BIZZY) {
 	*
 	* @method _initialize
 	*/
-	Model.prototype._initialize = function () {
+	Object.defineProperty(Model.prototype, "_initialize", {
 
-		this.reset();
+		value: function () {
 
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.reset = function () {
-
-		var name = "";
-
-		for (name in this.defaults) {
-
-			this.data[name] = this.defaults[name].value;
+			this.reset();
 
 		}
 
-		this.__dispatcher.trigger("model:reset", this.data);
-
-	};
+	});
 
 	/**
 	* 
 	*/
-	Model.prototype.on = function (event, callback) {
+	Object.defineProperty(Model.prototype, "reset", {
 
-		this.__dispatcher.on(event, callback);
+		value: function () {
 
-	};
+			var name = "";
 
-	/**
-	* 
-	*/
-	Model.prototype.off = function (event, callback) {
+			for (name in this.defaults) {
 
-		this.__dispatcher.off(event, callback);
+				this.data[name] = this.defaults[name].value;
 
-	};
+			}
 
-	/**
-	* 
-	*/
-	Model.prototype.__completed = function (data) {
-
-		this.data = JSON.parse(data);
-		this.__dispatcher.trigger("model:completed", this.data);
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.__failed = function (data) {
-
-		this.__dispatcher.trigger("model:failed", JSON.parse(data));
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.__request = function (method) {
-
-		this._ajax.request({
-
-			method: method,
-			url: this._url,
-			data: this.data,
-			headers: this._headers,
-			onCompleted: this.__completed.bind(this),
-			onFailed: this.__failed.bind(this)
-
-		});
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.fetch = function () {
-
-		this.__dispatcher.trigger("model:fetch", this.data);
-		this.__request("GET");
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.save = function () {
-
-		this.__dispatcher.trigger("model:save", this.data);
-		this.__request(this.data[this._idName] ? "POST" : "PUT");
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.delete = function() {
-
-		this.__dispatcher.trigger("model:delete", this.data);
-		this.__request("DELETE");
-
-	};
-
-	/**
-	* 
-	*/
-	function Facade () {
-
-		if (!(this instanceof Facade)) {
-
-			return new Facade();
+			this.__dispatcher.trigger("model:reset", this.data);
 
 		}
 
-		var model = new Model(),
-			revelation = {};
+	});
 
-		// Revelation Pattern
-		revelation._initialize = model._initialize;
-		revelation._ajax = model._ajax;
-		revelation._headers = model._headers;
-		revelation._url = model._url;
-		revelation._idName = model._idName;
-		
-		revelation.data = model.data;
-		revelation.onCompleted = model.onCompleted;
-		revelation.onFailed = model.onFailed;
-		revelation.reset = model.reset;
-		revelation.fetch = model.fetch;
-		revelation.save = model.save;
-		revelation.delete = model.delete;
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "on", {
 
-		return revelation;
+		value: function (event, callback) {
 
-	}
+			this.__dispatcher.on(event, callback);
 
-	return Facade;
+		}
 
-})(window.B || {});
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "off", {
+
+		value: function (event, callback) {
+
+			this.__dispatcher.off(event, callback);
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "__completed", {
+
+		value: function (data) {
+
+			this.data = JSON.parse(data);
+			this.__dispatcher.trigger("model:completed", this.data);
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "__failed", {
+
+		value: function (data) {
+
+			this.__dispatcher.trigger("model:failed", JSON.parse(data));
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "__request", {
+
+		value: function (method) {
+
+			this._ajax.request({
+
+				method: method,
+				url: this._url,
+				data: this.data,
+				headers: this._headers,
+				onCompleted: this.__completed.bind(this),
+				onFailed: this.__failed.bind(this)
+
+			});
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "fetch", {
+
+		value: function () {
+
+			this.__dispatcher.trigger("model:fetch", this.data);
+			this.__request("GET");
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "save", {
+
+		value: function () {
+
+			this.__dispatcher.trigger("model:save", this.data);
+			this.__request(this.data[this._idName] ? "POST" : "PUT");
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "delete", {
+
+		value: function () {
+
+			this.__dispatcher.trigger("model:delete", this.data);
+			this.__request("DELETE");
+
+		}
+
+	});
+
+	return Model;
+
+})();
 /*
  * BizzyJS
  * https://github.com/Bibizzy/BizzyJS
@@ -1400,8 +1435,7 @@ window.B.Model = (function (BIZZY) {
  */
 
 /**
-* Modulo que isola a Classe View, utilizando a classe FacadeView para controlar
-* visibilidade das propriedades e methodos privados
+* Modulo que isola a Classe View
 * 
 * @namespace B
 * @module View
@@ -1490,17 +1524,21 @@ window.B.View = (function () {
 	* @protected
 	* return {void}
 	*/
-	View.prototype._subscribeEvents = function () {
+	Object.defineProperty(View.prototype, "_subscribeEvents", {
 
-		var name = "";
+		value: function () {
 
-		for (name in this.events) {
+			var name = "";
 
-			window.document.querySelector(name.split(" ")[1]).addEventListener(name.split(" ")[0], this.events[name], false);
+			for (name in this.events) {
+
+				window.document.querySelector(name.split(" ")[1]).addEventListener(name.split(" ")[0], this.events[name], false);
+
+			}
 
 		}
 
-	};
+	});
 
 	/**
 	* 
@@ -1509,17 +1547,21 @@ window.B.View = (function () {
 	* @protected
 	* return {void}
 	*/
-	View.prototype._deleteEvents = function () {
+	Object.defineProperty(View.prototype, "_deleteEvents", {
 
-		var name = "";
+		value: function () {
 
-		for (name in this.events) {
+			var name = "";
 
-			window.document.querySelector(name.split(" ")[1]).removeEventListener(name.split(" ")[0], this.events[name], false);
+			for (name in this.events) {
+
+				window.document.querySelector(name.split(" ")[1]).removeEventListener(name.split(" ")[0], this.events[name], false);
+
+			}
 
 		}
 
-	};
+	});
 
 	/**
 	* Metodo executado na inicializacao da Classe
@@ -1528,11 +1570,15 @@ window.B.View = (function () {
 	* @protected
 	* @return {void}
 	*/
-	View.prototype._initialize = function () {
+	Object.defineProperty(View.prototype, "_initialize", {
 
-		// Este metodo nao foi implementado
+		value: function () {
 
-	};
+			// Este metodo nao foi implementado
+
+		}
+
+	});
 
 	/**
 	* Renderiza o Micro Template no Elemento Container
@@ -1541,12 +1587,16 @@ window.B.View = (function () {
 	* @public
 	* @return {void}
 	*/
-	View.prototype.render = function () {
+	Object.defineProperty(View.prototype, "render", {
 
-		this._el.innerHTML = this._template(this._model.data);
-		this._subscribeEvents();
+		value: function () {
 
-	};
+			this._el.innerHTML = this._template(this._model.data);
+			this._subscribeEvents();
+
+		}
+
+	});
 
 	/**
 	* Destroi o Micro Template renderizado no Elemento Container
@@ -1555,12 +1605,16 @@ window.B.View = (function () {
 	* @public
 	* @return {void}
 	*/
-	View.prototype.destory = function () {
+	Object.defineProperty(View.prototype, "destory", {
 
-		this._el.innerHTML = "";
-		this._deleteEvents();
+		value: function () {
 
-	};
+			this._el.innerHTML = "";
+			this._deleteEvents();
+
+		}
+
+	});
 
 	return View;
 

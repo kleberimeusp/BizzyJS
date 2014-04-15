@@ -8,8 +8,7 @@
  */
 
 /**
-* Modulo que isola a Classe View, utilizando a classe FacadeView para controlar
-* visibilidade das propriedades e methodos privados
+* Modulo que isola a Classe View
 * 
 * @namespace B
 * @module View
