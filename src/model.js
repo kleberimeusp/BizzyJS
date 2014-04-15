@@ -130,147 +130,154 @@ window.B.Model = (function () {
 	*
 	* @method _initialize
 	*/
-	Model.prototype._initialize = function () {
+	Object.defineProperty(Model.prototype, "_initialize", {
 
-		this.reset();
+		value: function () {
 
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.reset = function () {
-
-		var name = "";
-
-		for (name in this.defaults) {
-
-			this.data[name] = this.defaults[name].value;
+			this.reset();
 
 		}
 
-		this.__dispatcher.trigger("model:reset", this.data);
-
-	};
+	});
 
 	/**
 	* 
 	*/
-	Model.prototype.on = function (event, callback) {
+	Object.defineProperty(Model.prototype, "reset", {
 
-		this.__dispatcher.on(event, callback);
+		value: function () {
 
-	};
+			var name = "";
 
-	/**
-	* 
-	*/
-	Model.prototype.off = function (event, callback) {
+			for (name in this.defaults) {
 
-		this.__dispatcher.off(event, callback);
+				this.data[name] = this.defaults[name].value;
 
-	};
+			}
 
-	/**
-	* 
-	*/
-	Model.prototype.__completed = function (data) {
-
-		this.data = JSON.parse(data);
-		this.__dispatcher.trigger("model:completed", this.data);
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.__failed = function (data) {
-
-		this.__dispatcher.trigger("model:failed", JSON.parse(data));
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.__request = function (method) {
-
-		this._ajax.request({
-
-			method: method,
-			url: this._url,
-			data: this.data,
-			headers: this._headers,
-			onCompleted: this.__completed.bind(this),
-			onFailed: this.__failed.bind(this)
-
-		});
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.fetch = function () {
-
-		this.__dispatcher.trigger("model:fetch", this.data);
-		this.__request("GET");
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.save = function () {
-
-		this.__dispatcher.trigger("model:save", this.data);
-		this.__request(this.data[this._idName] ? "POST" : "PUT");
-
-	};
-
-	/**
-	* 
-	*/
-	Model.prototype.delete = function() {
-
-		this.__dispatcher.trigger("model:delete", this.data);
-		this.__request("DELETE");
-
-	};
-
-	/**
-	* 
-	*/
-	function Facade () {
-
-		if (!(this instanceof Facade)) {
-
-			return new Facade();
+			this.__dispatcher.trigger("model:reset", this.data);
 
 		}
 
-		var model = new Model(),
-			revelation = {};
+	});
 
-		// Revelation Pattern
-		revelation._initialize = model._initialize;
-		revelation._ajax = model._ajax;
-		revelation._headers = model._headers;
-		revelation._url = model._url;
-		revelation._idName = model._idName;
-		
-		revelation.data = model.data;
-		revelation.onCompleted = model.onCompleted;
-		revelation.onFailed = model.onFailed;
-		revelation.reset = model.reset;
-		revelation.fetch = model.fetch;
-		revelation.save = model.save;
-		revelation.delete = model.delete;
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "on", {
 
-		return revelation;
+		value: function (event, callback) {
 
-	}
+			this.__dispatcher.on(event, callback);
 
-	return Facade;
+		}
 
-})(window.B || {});
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "off", {
+
+		value: function (event, callback) {
+
+			this.__dispatcher.off(event, callback);
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "__completed", {
+
+		value: function (data) {
+
+			this.data = JSON.parse(data);
+			this.__dispatcher.trigger("model:completed", this.data);
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "__failed", {
+
+		value: function (data) {
+
+			this.__dispatcher.trigger("model:failed", JSON.parse(data));
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "__request", {
+
+		value: function (method) {
+
+			this._ajax.request({
+
+				method: method,
+				url: this._url,
+				data: this.data,
+				headers: this._headers,
+				onCompleted: this.__completed.bind(this),
+				onFailed: this.__failed.bind(this)
+
+			});
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "fetch", {
+
+		value: function () {
+
+			this.__dispatcher.trigger("model:fetch", this.data);
+			this.__request("GET");
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "save", {
+
+		value: function () {
+
+			this.__dispatcher.trigger("model:save", this.data);
+			this.__request(this.data[this._idName] ? "POST" : "PUT");
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Model.prototype, "delete", {
+
+		value: function () {
+
+			this.__dispatcher.trigger("model:delete", this.data);
+			this.__request("DELETE");
+
+		}
+
+	});
+
+	return Model;
+
+})();
