@@ -106,7 +106,7 @@ window.B.Model = (function () {
 
 		get: function () {
 
-			return window.B.uitls.format("{0}/{1}", this.__url, this.data[this._idName]);
+			return window.B.uitls.String.format("{0}/{1}", this.__url, this.data[this._idName]);
 
 		},
 

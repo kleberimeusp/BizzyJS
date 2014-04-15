@@ -7,26 +7,35 @@
  *
  */
 
-window.B.utils.format = (function (BIZZY) {
+window.B.utils.String = (function () {
 
 	"use string";
 
 	/**
 	* 
 	*/
-	function format () {
+	function Str () {}
 
-		var text = arguments[0],
-			itens = Array.prototype.slice.call(arguments, 1);
+	/**
+	* 
+	*/
+	Object.defineProperty(Str.prototype, "format", {
 
-		return text.replace(/{(\d+)}/g, function(match, number) {
+		value: function () {
 
-			return itens[number] || "";
+			var text = arguments[0],
+				itens = Array.prototype.slice.call(arguments, 1);
 
-		});
+			return text.replace(/{(\d+)}/g, function(match, number) {
 
-	}
+				return itens[number] || "";
 
-	return format;
+			});
 
-})(window.B || {});
+		}
+
+	});
+
+	return new Str();
+
+})();
