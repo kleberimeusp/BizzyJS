@@ -904,31 +904,46 @@
         {
             "file": "src\\model.js",
             "line": 60,
+            "itemtype": "property",
+            "name": "_headers",
+            "access": "protected",
+            "tagname": "",
+            "type": "Array",
+            "defatul": "Um Array literal com o cabecalho Content-Type JSON padrao",
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 77,
+            "line": 82,
+            "itemtype": "property",
+            "name": "__url",
+            "access": "private",
+            "tagname": "",
+            "type": "String",
+            "default": "Um Objeto literal de String vazio",
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 87,
+            "line": 97,
             "description": "Url para transferencia ou requisicao do Modelo de Dados",
             "itemtype": "property",
             "name": "_url",
+            "access": "protected",
+            "tagname": "",
             "type": "String",
+            "default": "Um Objeto litaral de String vazio",
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 109,
+            "line": 121,
             "description": "Nome do identificador unico da representacao do Modelo de Dados",
             "itemtype": "property",
             "name": "_idName",
@@ -939,35 +954,42 @@
         },
         {
             "file": "src\\model.js",
-            "line": 121,
+            "line": 133,
             "description": "Container que transporta a representacao do Modelo de Dados",
             "itemtype": "property",
             "name": "data",
+            "access": "public",
+            "tagname": "",
             "type": "Object",
+            "default": "Um Objeto literal vazio",
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 134,
+            "line": 148,
+            "propety": "defaults",
+            "access": "public",
+            "tagname": "",
+            "type": "Object",
+            "default": "Um Objeto literal vazio",
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 144,
+            "line": 163,
             "description": "Metodo executado na inicializacao da Classe",
             "itemtype": "method",
             "name": "_initialize",
-            "class": "B.Model",
-            "module": "Model",
-            "namespace": "B"
-        },
-        {
-            "file": "src\\model.js",
-            "line": 159,
+            "access": "protected",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
@@ -975,55 +997,131 @@
         {
             "file": "src\\model.js",
             "line": 180,
+            "itemtype": "method",
+            "name": "reset",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 193,
+            "line": 205,
+            "itemtype": "method",
+            "name": "on",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 206,
+            "line": 222,
+            "itemtype": "method",
+            "name": "off",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 220,
+            "line": 239,
+            "itemtype": "method",
+            "name": "__completed",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 233,
+            "line": 257,
+            "itemtype": "method",
+            "name": "__failed",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 255,
+            "line": 274,
+            "itemtype": "method",
+            "name": "__request",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 269,
+            "line": 300,
+            "itemtype": "method",
+            "name": "fetch",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
         },
         {
             "file": "src\\model.js",
-            "line": 283,
+            "line": 318,
+            "itemtype": "method",
+            "name": "save",
+            "access": "public",
+            "tagname": "",
+            "default": "{void}",
+            "class": "B.Model",
+            "module": "Model",
+            "namespace": "B"
+        },
+        {
+            "file": "src\\model.js",
+            "line": 336,
+            "itemtype": "method",
+            "name": "delete",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
             "class": "B.Model",
             "module": "Model",
             "namespace": "B"
@@ -1075,7 +1173,7 @@
             "line": 78,
             "itemtype": "property",
             "name": "events",
-            "access": "public",
+            "access": "protected",
             "tagname": "",
             "type": "Array",
             "default": "Array literal vazio",
@@ -1155,6 +1253,14 @@
         }
     ],
     "warnings": [
+        {
+            "message": "unknown tag: defatul",
+            "line": " src\\model.js:60"
+        },
+        {
+            "message": "unknown tag: propety",
+            "line": " src\\model.js:148"
+        },
         {
             "message": "Missing item type\nMetodo responsavel por enviar a requisicao http (resetProperties, addProperties, execute)",
             "line": " src\\utils\\ajax.js:347"
@@ -1341,51 +1447,7 @@
         },
         {
             "message": "Missing item type",
-            "line": " src\\model.js:60"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\model.js:77"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\model.js:134"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\model.js:159"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\model.js:180"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\model.js:193"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\model.js:206"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\model.js:220"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\model.js:233"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\model.js:255"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\model.js:269"
-        },
-        {
-            "message": "Missing item type",
-            "line": " src\\model.js:283"
+            "line": " src\\model.js:148"
         }
     ]
 }

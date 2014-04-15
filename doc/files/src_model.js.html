@@ -157,6 +157,11 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @property _headers
+	* @protected
+	* @type Array
+	* @defatul Um Array literal com o cabecalho Content-Type JSON padrao
 	*/
 	Object.defineProperty(Model.prototype, &quot;_headers&quot;, {
 
@@ -174,6 +179,11 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @property __url
+	* @private
+	* @type String
+	* @default Um Objeto literal de String vazio
 	*/
 	Object.defineProperty(Model.prototype, &quot;__url&quot;, {
 
@@ -186,7 +196,9 @@ window.B.Model = (function () {
 	* Url para transferencia ou requisicao do Modelo de Dados
 	* 
 	* @property _url
+	* @protected
 	* @type String
+	* @default Um Objeto litaral de String vazio
 	*/
 	Object.defineProperty(Model.prototype, &quot;_url&quot;, {
 
@@ -220,7 +232,9 @@ window.B.Model = (function () {
 	* Container que transporta a representacao do Modelo de Dados
 	* 
 	* @property data
+	* @public
 	* @type Object
+	* @default Um Objeto literal vazio
 	*/
 	Object.defineProperty(Model.prototype, &quot;data&quot;, {
 
@@ -231,6 +245,11 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @propety defaults
+	* @public
+	* @type Object
+	* @default Um Objeto literal vazio
 	*/
 	Object.defineProperty(Model.prototype, &quot;defaults&quot;, {
 
@@ -243,6 +262,8 @@ window.B.Model = (function () {
 	* Metodo executado na inicializacao da Classe
 	*
 	* @method _initialize
+	* @protected
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, &quot;_initialize&quot;, {
 
@@ -256,6 +277,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method reset
+	* @public
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, &quot;reset&quot;, {
 
@@ -277,6 +302,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method on
+	* @public
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, &quot;on&quot;, {
 
@@ -290,6 +319,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method off
+	* @public
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, &quot;off&quot;, {
 
@@ -303,6 +336,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method __completed
+	* @private
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, &quot;__completed&quot;, {
 
@@ -317,6 +354,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method __failed
+	* @private
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, &quot;__failed&quot;, {
 
@@ -330,6 +371,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method __request
+	* @private
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, &quot;__request&quot;, {
 
@@ -352,6 +397,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method fetch
+	* @public
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, &quot;fetch&quot;, {
 
@@ -366,6 +415,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method save
+	* @public
+	* @default {void}
 	*/
 	Object.defineProperty(Model.prototype, &quot;save&quot;, {
 
@@ -380,6 +433,10 @@ window.B.Model = (function () {
 
 	/**
 	* 
+	* 
+	* @method delete
+	* @public
+	* @return {void}
 	*/
 	Object.defineProperty(Model.prototype, &quot;delete&quot;, {
 

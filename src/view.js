@@ -79,11 +79,11 @@ window.B.View = (function () {
 	* 
 	* 
 	* @property events
-	* @public
+	* @protected
 	* @type Array
 	* @default Array literal vazio
 	*/
-	Object.defineProperty(View.prototype, "events", {
+	Object.defineProperty(View.prototype, "_events", {
 
 		writable: true,
 		value: []
