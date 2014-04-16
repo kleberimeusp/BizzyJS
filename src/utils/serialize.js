@@ -8,7 +8,10 @@
  *                                                     *
  ******************************************************/
 
-window.B.utils.serialize = (function (BIZZY) {
+/**
+* 
+*/
+window.B.utils.Serialize = (function (BIZZY) {
 
 	"use strict";
 
@@ -26,7 +29,8 @@ window.B.utils.serialize = (function (BIZZY) {
 	*/
 	Object.defineProperty(Serialize.prototype, "__form", {
 
-		writable: true
+		writable: true,
+		value: {}
 
 	});
 
@@ -35,7 +39,8 @@ window.B.utils.serialize = (function (BIZZY) {
 	*/
 	Object.defineProperty(Serialize.prototype, "__data", {
 
-		writable: true
+		writable: true,
+		value: {}
 
 	});
 
@@ -54,170 +59,196 @@ window.B.utils.serialize = (function (BIZZY) {
 	*/
 	Object.defineProperty(Serialize.prototype, "_type", {
 
-		writable: true
+		writable: true,
+		value: {}
 
 	});
 
 	/**
 	* 
 	*/
-	Serialize.prototype.__initialize = function () {
+	Object.defineProperty(Serialize.prototype, "__initialize", {
 
-		this.__defineNodeName();
-		this.__defineType();
+		value: function () {
 
-	};
-
-	/**
-	* 
-	*/
-	Serialize.prototype.__defineNodeName = function () {
-
-		this.__nodeName = {
-
-			"INPUT": this.__searchForNodeType.bind(this),
-			"BUTTON": this.__searchForNodeType.bind(this),
-			"SELECT": this.__searchForNodeType.bind(this),
-
-			"TEXTAREA": this.__push.bind(this)
-
-		};
-
-	};
-
-	/**
-	* 
-	*/
-	Serialize.prototype.__defineType = function () {
-
-		this.__type = {
-
-			"button": this.__push.bind(this),
-			"hidden": this.__push.bind(this),
-			"text": this.__push.bind(this),
-			"password": this.__push.bind(this),
-			"reset": this.__push.bind(this),
-			"select-one": this.__push.bind(this),
-			"submit": this.__push.bind(this),
-
-			"checkbox": this.__pushChecked.bind(this),
-			"radio": this.__pushChecked.bind(this),
-
-			"select-multiple": this.__pushSelectMultiple.bind(this),
-
-			"file": function () {}
-
-		};
-
-	};
-
-	/**
-	* 
-	*/
-	Serialize.prototype.__push = function (element) {
-
-		this.__data[element.name] = element.value;
-
-	};
-
-	/**
-	* 
-	*/
-	Serialize.prototype.__pushChecked = function (element) {
-
-		this.__data[element.name] = element.checked ? element.value : null;
-
-	};
-
-	/**
-	* 
-	*/
-	Serialize.prototype.__pushSelectMultiple = function (element) {
-
-		var i = element.options.length;
-
-		while (--i) {
-
-			this.__data[element.name] = element.options[i].selected ? element.options[i].value : null;
+			this.__defineNodeName();
+			this.__defineType();
 
 		}
 
-	};
+	});
 
 	/**
 	* 
 	*/
-	Serialize.prototype.__searchForNodeType = function (element) {
+	Object.defineProperty(Serialize.prototype, "__defineNodeName", {
 
-		this.__type[element.name](element);
+		value: function () {
 
-	};
+			this.__nodeName = {
+
+				"INPUT": this.__searchForNodeType.bind(this),
+				"BUTTON": this.__searchForNodeType.bind(this),
+				"SELECT": this.__searchForNodeType.bind(this),
+
+				"TEXTAREA": this.__push.bind(this)
+
+			};
+
+		}
+
+	});
 
 	/**
 	* 
 	*/
-	Serialize.prototype.__serachForNodeName = function (element) {
+	Object.defineProperty(Serialize.prototype, "__defineType", {
 
-		this.__nodeName[element.name](element);
+		value: function () {
 
-	};
+			this.__type = {
+
+				"button": this.__push.bind(this),
+				"hidden": this.__push.bind(this),
+				"text": this.__push.bind(this),
+				"password": this.__push.bind(this),
+				"reset": this.__push.bind(this),
+				"select-one": this.__push.bind(this),
+				"submit": this.__push.bind(this),
+
+				"checkbox": this.__pushChecked.bind(this),
+				"radio": this.__pushChecked.bind(this),
+
+				"select-multiple": this.__pushSelectMultiple.bind(this),
+
+				"file": function () {}
+
+			};
+
+		}
+
+	});
 
 	/**
 	* 
 	*/
-	Serialize.prototype.__execute = function () {
+	Object.defineProperty(Serialize.prototype, "__push", {
 
-		var i = this.__form.elements.length;
+		value: function (element) {
 
-		while (--i) {
+			this.__data[element.name] = element.value;
 
-			if (this.__form.elements[i].name === "") {
+		}
 
-				continue;
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Serialize.prototype, "__pushChecked", {
+
+		value: function (element) {
+
+			this.__data[element.name] = element.checked ? element.value : null;
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Serialize.prototype, "__pushSelectMultiple", {
+
+		value: function (element) {
+
+			var i = element.options.length;
+
+			while (--i) {
+
+				this.__data[element.name] = element.options[i].selected ? element.options[i].value : null;
 
 			}
 
-			this.__serachForNodeName(this.__form.elements[i]);
-
 		}
 
-	};
+	});
 
 	/**
 	* 
 	*/
-	Serialize.prototype.toJSON = function (form)  {
+	Object.defineProperty(Serialize.prototype, "__searchForNodeType", {
 
-		if (!form || form.nodeName !== "FORM") {
+		value: function (element) {
 
-			return {};
+			this.__type[element.name](element);
 
 		}
 
-		this.__form = form;
-		this.__data = {};
-
-		this.__execute();
-
-		return this.__data;
-
-	};
+	});
 
 	/**
 	* 
 	*/
-	function Facade () {
+	Object.defineProperty(Serialize.prototype, "__serachForNodeName", {
 
-		var serialize = new Serialize(),
-			revelation = {};
+		value: function (element) {
 
-		/* Revelation pattern */
-		revelation.toJSON = serialize.toJSON;
+			this.__nodeName[element.name](element);
 
-		return revelation;
+		}
 
-	}
+	});
 
-	return new Facade();
+	/**
+	* 
+	*/
+	Object.defineProperty(Serialize.prototype, "__execute", {
 
-})(window.B || {});
+		value: function () {
+
+			var i = this.__form.elements.length;
+
+			while (--i) {
+
+				if (this.__form.elements[i].name === "") {
+
+					continue;
+
+				}
+
+				this.__serachForNodeName(this.__form.elements[i]);
+
+			}
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Serialize.prototype, "toJSON", {
+
+		value: function (form)  {
+
+			if (!form || form.nodeName !== "FORM") {
+
+				return {};
+
+			}
+
+			this.__form = form;
+			this.__data = {};
+
+			this.__execute();
+
+			return this.__data;
+
+		}
+
+	});
+
+	return new Serialize();
+
+})();
