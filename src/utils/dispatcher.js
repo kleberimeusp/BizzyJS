@@ -1,11 +1,12 @@
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
  
 window.B.utils.Dispatcher = (function (BIZZY) {
 
@@ -14,7 +15,7 @@ window.B.utils.Dispatcher = (function (BIZZY) {
 	/**
 	* Classe que implementa o padrao PubSub
 	*
-	* @namespace Bizzy
+	* @namespace B.utils
 	* @class Dispacher
 	*/
 	function Dispatcher () {}

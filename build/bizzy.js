@@ -1,52 +1,88 @@
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
 
+/**
+* Modulo que isola o namespace raiz
+* 
+* @namespace B
+*/
 window.B = (function () {
 
 	"use strict";
 
 	/**
+	* Classe que raiz que cria todos nos namespace raiz que sera
+	* utilizado para o encapsulamento das classes de Template, View e Model
 	* 
+	* @namespace B
+	* @class Bizzy
+	* @private
 	*/
 	function Bizzy () {}
 
 	/**
+	* Propriedade utilizado para representar os namespaces que
+	* agrupa as classes pertencentes a utils
 	* 
+	* @property utils
+	* @public
+	* @type Object
+	* @defatult Objeto literal vazio
 	*/
 	Object.defineProperty(Bizzy.prototype, "utils", { value:  {} });
 
 	/**
+	* Propriedade utilizado para representar os namespaces que
+	* agrupa as classes pertencentes a templates
 	* 
+	* @property templates
+	* @public
+	* @type Object
+	* @default Objeto literal vazio
 	*/
 	Object.defineProperty(Bizzy.prototype, "templates", { value: {} });
 
 	/**
+	* Propriedade utilizado para represetar os namespaces que
+	* agrupa as classes pertencentes a templates
 	* 
+	* @property views
+	* @public
+	* @type Object
+	* @default Objeto literal vazio
 	*/
 	Object.defineProperty(Bizzy.prototype, "views", {  value: {} });
 
 	/**
+	* Propriedade utilizado para representar os namespaces que
+	* agrupa as classes pertencentes a models
 	* 
+	* @property models
+	* @public
+	* @type Object
+	* @default Objeto literal vazio
 	*/
 	Object.defineProperty(Bizzy.prototype, "models", { value: {} });
 
 	return new Bizzy();
 
 })();
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
 
 window.B.utils.Ajax = (function (BIZZY) {
 
@@ -55,7 +91,7 @@ window.B.utils.Ajax = (function (BIZZY) {
 	/**
 	* Classe para requisicoes Ajax
 	* 
-	* @namespace App
+	* @namespace B.utils
 	* @class Ajax
 	*/
 	function Ajax () {
@@ -421,14 +457,15 @@ window.B.utils.Ajax = (function (BIZZY) {
 	return FacadeAjax;
 
 })(window.B || {});
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
  
 window.B.utils.Dispatcher = (function (BIZZY) {
 
@@ -437,7 +474,7 @@ window.B.utils.Dispatcher = (function (BIZZY) {
 	/**
 	* Classe que implementa o padrao PubSub
 	*
-	* @namespace Bizzy
+	* @namespace B.utils
 	* @class Dispacher
 	*/
 	function Dispatcher () {}
@@ -554,46 +591,57 @@ window.B.utils.Dispatcher = (function (BIZZY) {
 	return Facade;
 	
 })(window.B || {});
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
 
-window.B.utils.format = (function (BIZZY) {
+window.B.utils.String = (function () {
 
 	"use string";
 
 	/**
 	* 
 	*/
-	function format () {
+	function Str () {}
 
-		var text = arguments[0],
-			itens = Array.prototype.slice.call(arguments, 1);
+	/**
+	* 
+	*/
+	Object.defineProperty(Str.prototype, "format", {
 
-		return text.replace(/{(\d+)}/g, function(match, number) {
+		value: function () {
 
-			return itens[number] || "";
+			var text = arguments[0],
+				itens = Array.prototype.slice.call(arguments, 1);
 
-		});
+			return text.replace(/{(\d+)}/g, function(match, number) {
 
-	}
+				return itens[number] || "";
 
-	return format;
+			});
 
-})(window.B || {});
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+		}
+
+	});
+
+	return new Str();
+
+})();
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
 
 window.B.utils.Require = (function (BIZZY) {
 
@@ -678,14 +726,15 @@ window.B.utils.Require = (function (BIZZY) {
 	return new Facade();
 
 })(window.B || {});
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
 
 window.B.utils.router = (function (BIZZY) {
 
@@ -888,14 +937,15 @@ window.B.utils.router = (function (BIZZY) {
 	return new Facade();
 
 })(window.B || {});
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
 
 window.B.utils.serialize = (function (BIZZY) {
 
@@ -1110,15 +1160,23 @@ window.B.utils.serialize = (function (BIZZY) {
 	return new Facade();
 
 })(window.B || {});
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
 
+/**
+* Modulo que isola uma instancia do modulo Dispatcher, para ser
+* utilizado no padrao de projeto Mediator
+*
+* @namespace B
+* @module Mediator
+*/
  window.B.Mediator = (function () {
 
 	"use strict";
@@ -1126,14 +1184,15 @@ window.B.utils.serialize = (function (BIZZY) {
 	return new window.B.utils.Dispatcher();
 
  })();
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
 
 /**
 * Modulo que isola a Classe Model
@@ -1234,7 +1293,7 @@ window.B.Model = (function () {
 
 		get: function () {
 
-			return window.B.uitls.format("{0}/{1}", this.__url, this.data[this._idName]);
+			return window.B.uitls.String.format("{0}/{1}", this.__url, this.data[this._idName]);
 
 		},
 
@@ -1482,14 +1541,15 @@ window.B.Model = (function () {
 	return Model;
 
 })();
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
 
 /**
 * Modulo que isola a Classe View

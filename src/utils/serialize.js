@@ -1,11 +1,12 @@
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
 
 window.B.utils.serialize = (function (BIZZY) {
 

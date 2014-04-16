@@ -1,11 +1,12 @@
-/*
- * BizzyJS
- * https://github.com/Bibizzy/BizzyJS
- *
- * Copyright (c) 2014 Bibizzy
- * Licensed under the MIT license.
- *
- */
+/*******************************************************
+ *                                                     *
+ * BizzyJS                                             *
+ * https://github.com/Bibizzy/BizzyJS                  *
+ *                                                     *
+ * Copyright (c) 2014 Bibizzy                          *
+ * Licensed under the MIT license.                     *
+ *                                                     *
+ ******************************************************/
 
 window.B.utils.Ajax = (function (BIZZY) {
 
@@ -14,7 +15,7 @@ window.B.utils.Ajax = (function (BIZZY) {
 	/**
 	* Classe para requisicoes Ajax
 	* 
-	* @namespace App
+	* @namespace B.utils
 	* @class Ajax
 	*/
 	function Ajax () {
