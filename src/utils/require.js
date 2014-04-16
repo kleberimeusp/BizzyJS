@@ -8,7 +8,10 @@
  *                                                     *
  ******************************************************/
 
-window.B.utils.Require = (function (BIZZY) {
+/**
+* 
+*/
+window.B.utils.Require = (function () {
 
 	"use strict";
 
@@ -22,7 +25,7 @@ window.B.utils.Require = (function (BIZZY) {
 	*/
 	Object.defineProperty(Require.prototype, "__ajax", {
 
-		value: new BIZZY.utils.Ajax()
+		value: new window.B.utils.Ajax()
 
 	});
 
@@ -47,47 +50,40 @@ window.B.utils.Require = (function (BIZZY) {
 	/**
 	* 
 	*/
-	Require.prototype.__appendChild = function (data) {
+	Object.defineProperty(Require.prototype, "__appendChild", {
 
-		this.__script.text = data;
-		this.__head.appendChild(this.__script);
+		value: function (data) {
 
-	};
+			this.__script.text = data;
+			this.__head.appendChild(this.__script);
 
-	/**
-	* 
-	*/
-	Require.prototype.use = function (urlDocuments) {
+		}
 
-		urlDocuments.forEach(function (url) {
-
-			this.__ajax.request({
-
-				url: url,
-				sync: false,
-				onCompleted: this.__appendChild.bind(this)
-
-			});
-
-		}, this);
-
-	};
+	});
 
 	/**
 	* 
 	*/
-	function Facade	() {
+	Object.defineProperty(Require.prototype, "use", {
 
-		var require =  new Require(),
-			revelation = {};
+		value: function (urlDocuments) {
 
-		/* Revelation pattern */
-		revelation.use = require.use;
+			urlDocuments.forEach(function (url) {
 
-		return revelation;
-		
-	}
+				this.__ajax.request({
 
-	return new Facade();
+					url: url,
+					sync: false,
+					onCompleted: this.__appendChild.bind(this)
 
-})(window.B || {});
+				});
+
+			}, this);
+
+		}
+
+	});
+
+	return new Require();
+
+})();
