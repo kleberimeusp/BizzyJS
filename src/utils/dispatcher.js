@@ -30,11 +30,14 @@ window.B.utils.Dispatcher = (function () {
 	* Propriedade que contem os callbacks que serao tratados pelo dispatcher
 	*
 	* @property __listeners
+	* @private
+	* @type Array
 	* @default []
 	*/
 	Object.defineProperty(Dispatcher.prototype, "__listeners", {
 
-		writable: true
+		writable: true,
+		value: []
 
 	});
 
@@ -42,99 +45,96 @@ window.B.utils.Dispatcher = (function () {
 	* Recupera a lista de callbacks para um determinado evento
 	*
 	* @method __getEvent
+	* @private
 	* @param {String} event Nome do evento
 	* @return {Array} Lista de callbacks registrados para o evento
 	*/
-	Dispatcher.prototype.__getEvent = function (event) {
+	Object.defineProperty(Dispatcher.prototype, "__getEvent", {
 
-		this.__listeners[event] = this.__listeners[event] || [];
-		return this.__listeners[event];
+		value: function (event) {
 
-	};
+			this.__listeners[event] = this.__listeners[event] || [];
+			return this.__listeners[event];
+
+		}
+
+	});
 
 	/**
 	* Registra um novo callback de um determinado evento
 	*
 	* @method on
+	* @public
 	* @param {String} event Nome do evento
 	* @param {Function} callback Funcao de callback que a ser registrada
 	* @return {Void}
 	*/
-	Dispatcher.prototype.on = function (event, callback) {
+	Object.defineProperty(Dispatcher.prototype, "on", {
 
-		this.__getEvent(event).push(callback);
+		value: function (event, callback) {
 
-	};
+			this.__getEvent(event).push(callback);
+
+		}
+
+	});
 
 	/**
 	* Deleta um callback de um determinado evento
 	*
 	* @method off
+	* @public
 	* @param {String} event Nome do evento
 	* @param {Function} callback Funcao de callback que a ser registrada
 	* @return {Void}
 	*/
-	Dispatcher.prototype.off = function (event, callback) {
+	Object.defineProperty(Dispatcher.prototype, "off", {
 
-		var listener = this.__getEvent(event),
-			i = listener.length;
+		value: function (event, callback) {
 
-		while (--i) {
+			var listener = this.__getEvent(event),
+				i = listener.length;
 
-			if (listener[i] === callback) {
+			while (--i) {
 
-				delete listener[i];
+				if (listener[i] === callback) {
+
+					delete listener[i];
+
+				}
 
 			}
 
 		}
 
-	};
+	});
 
 	/**
 	* Dispara os callbacks de um determinado evento
 	*
 	* @method trigger
+	* @public
 	* @param {String} event Nome do evento
 	* @param {Object} data Objeto contendo os dados que serao passados para o callbach
 	* @return {Void}
 	*/
-	Dispatcher.prototype.trigger = function (event, data) {
+	Object.defineProperty(Dispatcher.prototype, "trigger", {
 
-		var listener = this.__getEvent(event),
-			i = listener.length;
+		value: function (event, data) {
 
-		while (--i) {
+			var listener = this.__getEvent(event),
+				i = listener.length;
 
-			listener[i](data);
+			while (--i) {
 
-		}
+				listener[i](data);
 
-	};
-
-	/**
-	* 
-	*/
-	function Facade () {
-
-		if (!(this instanceof Facade)) {
-
-			return new Facade();
+			}
 
 		}
 
-		var dispatcher = new Dispatcher(),
-			revelation = {};
+	});
 
-		// Revelation Pattern
-		revelation.on = dispatcher.on;
-		revelation.off = dispatcher.off;
-		revelation.trigger = dispatcher.trigger;
-
-		return revelation;
-
-	}
-
-	return Facade;
+	return Dispatcher;
 	
-})(window.B || {});
+})();
