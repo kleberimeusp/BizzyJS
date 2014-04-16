@@ -8,7 +8,13 @@
  *                                                     *
  ******************************************************/
 
-window.B.utils.Ajax = (function (BIZZY) {
+/**
+* Modulo que isola a classe Ajax
+* 
+* @namespace B.uitls
+* @module Ajax
+*/
+window.B.utils.Ajax = (function () {
 
 	"use strict";
 
@@ -28,6 +34,8 @@ window.B.utils.Ajax = (function (BIZZY) {
 	* Propriedade que contem o verbo http da requisicao
 	*
 	* @property __method
+	* @private
+	* @type String
 	* @default "GET"
 	*/
 	Object.defineProperty(Ajax.prototype, "__method", {
@@ -39,7 +47,10 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Propriedade que contem a url da requisicao
+	* 
 	* @property __url
+	* @private
+	* @type String
 	* @default ""
 	*/
 	Object.defineProperty(Ajax.prototype, "__url", {
@@ -51,7 +62,10 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Propriedade que indica se a requisica sera sync ou async
+	* 
 	* @property __sync
+	* @private
+	* @type Boolena
  	* @default true
 	*/
 	Object.defineProperty(Ajax.prototype, "__sync", {
@@ -63,7 +77,10 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Propriedade que contem os dados que trafegados na requisicao
+	* 
 	* @property __data
+	* @private
+	* @type Object
 	* @default {}
 	*/
 	Object.defineProperty(Ajax.prototype, "__data", {
@@ -75,7 +92,10 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Propriedade que contem a lista de headers da requisicao
+	* 
 	* @property __headers
+	* @private
+	* @type Array
 	* @default []
 	*/
 	Object.defineProperty(Ajax.prototype, "__headers", {
@@ -87,7 +107,10 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Propriedade que contem o callback que sera executado quando a requisicao terminar
+	* 
 	* @property __onCompleted
+	* @private
+	* @type Function
 	* @default function () {}
 	*/
 	Object.defineProperty(Ajax.prototype, "__onCompleted", {
@@ -98,8 +121,11 @@ window.B.utils.Ajax = (function (BIZZY) {
 	});
 
 	/**
-	* Propriedade que contem o callback que sera executado quando a requisicao falhar]
+	* Propriedade que contem o callback que sera executado quando a requisicao falhar
+	* 
 	* @property __onFailed
+	* @private
+	* @type Function
 	* @default function () {}
 	*/
 	Object.defineProperty(Ajax.prototype, "__onFailed", {
@@ -111,7 +137,10 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Propriedade que contem o objeto responsavel por tratar as requisicoes
+	* 
 	* @property __xhr
+	* @private
+	* @type Objetct
 	* @default {}
 	*/
 	Object.defineProperty(Ajax.prototype, "__xhr", {
@@ -122,8 +151,12 @@ window.B.utils.Ajax = (function (BIZZY) {
 	});
 
 	/**
-	* Propriedade que contem uma lista de callbacks que serao executados durantes os status do readyState da requisicao
+	* Propriedade que contem uma lista de callbacks que serao executados
+	* durantes os status do readyState da requisicao
+	* 
 	* @property __readyState
+	* @private
+	* @type Array
 	* @default []
 	*/
 	Object.defineProperty(Ajax.prototype, "__readyState", {
@@ -134,8 +167,12 @@ window.B.utils.Ajax = (function (BIZZY) {
 	});
 
 	/**
-	* Propriedade que contem uma lista de callbacks que serao executados conforme o status code da requisicao
+	* Propriedade que contem uma lista de callbacks que serao executados
+	*  conforme o status code da requisicao
+	* 
 	* @property __status
+	* @private
+	* @type Array
 	* @default []
 	*/
 	Object.defineProperty(Ajax.prototype, "__status", {
@@ -147,237 +184,313 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Metodo de initializacao da classe, responsavel pela configuracao inicial
+	* 
 	* @method __initialize
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__initialize = function () {
+	Object.defineProperty(Ajax.prototype, "__initialize", {
 
-		this.__defineXhr();
-		this.__defineReadyStateChange();
-		this.__defineReadyState();
-		this.__defineStatus();
+		value: function () {
 
-	};
+			this.__defineXhr();
+			this.__defineReadyStateChange();
+			this.__defineReadyState();
+			this.__defineStatus();
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel pela configuracao do xhr
+	* 
 	* @method __defineXhr
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__defineXhr = function () {
+	Object.defineProperty(Ajax.prototype, "__defineXhr", {
 
-		this.__xhr = new window.XMLHttpRequest();
+		value: function () { 
 
-	};
+			this.__xhr = new window.XMLHttpRequest();
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel pela configuracao do evento do ready state
+	* 
 	* @method __defineReadyStateChange
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__defineReadyStateChange = function () {
+	Object.defineProperty(Ajax.prototype, "__defineReadyStateChange", {
 
-		this.__xhr.onreadystatechange = this.__onreadystatechange.bind(this);
+		value: function () {
 
-	};
+			this.__xhr.onreadystatechange = this.__onreadystatechange.bind(this);
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel pela configuracao dos callbacks do ready state
+	* 
 	* @method __defineReadyState
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__defineReadyState = function () {
+	Object.defineProperty(Ajax.prototype, "__defineReadyState", {
 
-		this.__readyState[0] = function () {};
-		this.__readyState[1] = function () {};
-		this.__readyState[2] = function () {};
-		this.__readyState[3] = function () {};
+		valeu: function () {
 
-		this.__readyState[4] = this.__finishedRequest.bind(this);
+			this.__readyState[0] = function () {};
+			this.__readyState[1] = function () {};
+			this.__readyState[2] = function () {};
+			this.__readyState[3] = function () {};
 
-	};
+			this.__readyState[4] = this.__finishedRequest.bind(this);
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel pela configuracao dos callbacks do status code da requisicao http
+	* 
 	* @method __defineStatus
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__defineStatus = function () {
+	Object.defineProperty(Ajax.prototype, "__defineStatus", {
 
-		this.__status[200] = this.__completed.bind(this);
+		value: function () {
 
-		this.__status[400] = this.__failed.bind(this);
-		this.__status[401] = this.__failed.bind(this);
-		this.__status[404] = this.__failed.bind(this);
-		this.__status[500] = this.__failed.bind(this);
+			this.__status[200] = this.__completed.bind(this);
 
-	};
+			this.__status[400] = this.__failed.bind(this);
+			this.__status[401] = this.__failed.bind(this);
+			this.__status[404] = this.__failed.bind(this);
+			this.__status[500] = this.__failed.bind(this);
+
+		}
+
+	});
 
 	/**
 	* Metodo que trata quando a requisicao completar
+	* 
 	* @method __completed
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__completed = function () {
+	Object.defineProperty(Ajax.prototype, "__completed", {
 
-		this.__onCompleted(this.__xhr.responseText);
+		value: function () {
 
-	};
+			this.__onCompleted(this.__xhr.responseText);
+
+		}
+
+	});
 
 	/**
 	* Metodo que trata quando a requisicao falhar
+	* 
 	* @method __failed
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__failed = function () {
+	Object.defineProperty(Ajax.prototype, "__failed", {
 
-		this.__onFailed(this.__xhr.responseText);
+		value: function () {
 
-	};
+			this.__onFailed(this.__xhr.responseText);
+
+		}
+
+	});
 
 	/**
 	* Metodo que trata quando a requisicao terminar
+
 	* @method __finishedRequest
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__finishedRequest = function () {
+	Object.defineProperty(Ajax.prototype, "__finishedRequest", {
 
-		this.__status[this.__xhr.status]();
+		value: function () {
 
-	};
+			this.__status[this.__xhr.status]();
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel por disparar o callback conforme o status do ready state
+	* 
 	* @method __onreadystatechange
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__onreadystatechange = function () {
+	Object.defineProperty(Ajax.prototype, "__onreadystatechange", {
 
-		this.__readyState[this.__xhr.readyState]();
+		value: function () {
 
-	};
+			this.__readyState[this.__xhr.readyState]();
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel por resetar as propriedades da classe para os valores default
+	*
 	* @method __resetProperties
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__resetProperties = function () {
+	Object.defineProperty(Ajax.prototype, "__resetProperties", {
 
-		this.__method = "GET";
-		this.__url = "";
-		this.__sync = true;
-		this.__data = {};
-		this.__headers = [];
-		this.__onCompleted = function () {};
-		this.__onFailed = function () {};
+		value: function () {
 
-	};
+			this.__method = "GET";
+			this.__url = "";
+			this.__sync = true;
+			this.__data = {};
+			this.__headers = [];
+			this.__onCompleted = function () {};
+			this.__onFailed = function () {};
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel por setar as propriedades da classe
+	* 
 	* @method __addProperties
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__addProperties = function (config) {
+	Object.defineProperty(Ajax.prototype, "__addProperties", {
 
-		for (var name in config) {
+		value: function (config) {
 
-			if (this.hasOwnProperty(name)) {
+			for (var name in config) {
 
-				this[name] = config[name];
+				if (this.hasOwnProperty(name)) {
+
+					this[name] = config[name];
+
+				}
 
 			}
 
 		}
 
-	};
+	});
 
 	/**
 	* Metodo responsavel por abrir a requisicao
+	* 
 	* @method __open
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__open = function () {
+	Object.defineProperty(Ajax.prototype, "__open", {
 
-		this.__xhr.open(this.__method, this.__url, this.__sync);
+		value: function () {
 
-	};
+			this.__xhr.open(this.__method, this.__url, this.__sync);
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel os headers da requisicao
+	* 
 	* @method __setRequestHeader
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__setRequestHeader = function () {
+	Object.defineProperty(Ajax.prototype, "__setRequestHeader", {
 
-		var i = this.__headers.length;
+		value: function () {
 
-		while (--i) {
+			var i = this.__headers.length;
 
-			this.__xhr.setRequestHeader(this.__headers[i].key, this.__headers[i].value);
+			while (--i) {
+
+				this.__xhr.setRequestHeader(this.__headers[i].key, this.__headers[i].value);
+
+			}
 
 		}
 
-	};
+	});
 
 	/**
 	* Metodo responsavel por enviar a requisicao http
+	* 
 	* @method __send
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__send = function () {
+	Object.defineProperty(Ajax.prototype, "__send", {
 
-		this.__xhr.send(JSON.stringify(this.__data));
+		value: function () {
 
-	};
-
-	/**
-	* Metodo responsavel por executar a requisicao http (open, setRequestHeaders, send)
-	* @method __execute
-	* @return {void}
-	*/
-	Ajax.prototype.__execute = function () {
-
-		this.__open();
-		this.__setRequestHeader();
-		this.__send();
-
-	};
-
-	/**
-	* Metodo responsavel por enviar a requisicao http (resetProperties, addProperties, execute)
-	*/
-	Ajax.prototype.request = function (config) {
-
-		this.__resetProperties();
-		this.__addProperties(config);
-		this.__execute();
-
-	};
-
-	/**
-	* Construtor do padrão Facade, responsavel por expor apenas apenas o escopo necessario
-	* @method FacadeAjax
-	* @return { request: Ajax.request }
-	*/
-	function FacadeAjax () {
-
-		if (!(this instanceof FacadeAjax)) {
-
-			return new FacadeAjax();
+			this.__xhr.send(JSON.stringify(this.__data));
 
 		}
 
-		var ajax = new Ajax(),
-			revelation = {};
+	});
 
-		revelation.request = ajax.request;
+	/**
+	* Metodo responsavel por executar a requisicao http (open, setRequestHeaders, send)
+	* 
+	* @method __execute
+	* @private
+	* @return {void}
+	*/
+	Object.defineProperty(Ajax.prototype, "__execute", {
 
-		return revelation;
+		value: function () {
 
-	}
+			this.__open();
+			this.__setRequestHeader();
+			this.__send();
 
-	return FacadeAjax;
+		}
 
-})(window.B || {});
+	});
+
+	/**
+	* Metodo responsavel por enviar a requisicao http (resetProperties, addProperties, execute)
+	* 
+	* @method request
+	* @public
+	* @return {void}
+	*/
+	Object.defineProperty(Ajax.prototype, "request", {
+
+		value: function (config) {
+
+			this.__resetProperties();
+			this.__addProperties(config);
+			this.__execute();
+
+		}
+
+	});
+
+	return Ajax;
+
+})();

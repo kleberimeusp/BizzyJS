@@ -8,7 +8,13 @@
  *                                                     *
  ******************************************************/
  
-window.B.utils.Dispatcher = (function (BIZZY) {
+/**
+* Modulo que isola a classe Dispatcher
+* 
+* @namespace B.utils
+* @module Dispatcher
+*/
+window.B.utils.Dispatcher = (function () {
 
 	"use strict";
 
