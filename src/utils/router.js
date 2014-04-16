@@ -81,7 +81,7 @@ window.B.utils.router = (function () {
 
 			});
 
-			this.__validator = new RegExp(BIZZY.uitls.format("^({0})$", regularExpression));
+			this.__validator = new RegExp(window.B.uitls.String.format("^({0})$", regularExpression));
 
 		}
 

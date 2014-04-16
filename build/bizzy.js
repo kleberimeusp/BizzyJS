@@ -84,7 +84,13 @@ window.B = (function () {
  *                                                     *
  ******************************************************/
 
-window.B.utils.Ajax = (function (BIZZY) {
+/**
+* Modulo que isola a classe Ajax
+* 
+* @namespace B.uitls
+* @module Ajax
+*/
+window.B.utils.Ajax = (function () {
 
 	"use strict";
 
@@ -104,6 +110,8 @@ window.B.utils.Ajax = (function (BIZZY) {
 	* Propriedade que contem o verbo http da requisicao
 	*
 	* @property __method
+	* @private
+	* @type String
 	* @default "GET"
 	*/
 	Object.defineProperty(Ajax.prototype, "__method", {
@@ -115,7 +123,10 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Propriedade que contem a url da requisicao
+	* 
 	* @property __url
+	* @private
+	* @type String
 	* @default ""
 	*/
 	Object.defineProperty(Ajax.prototype, "__url", {
@@ -127,7 +138,10 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Propriedade que indica se a requisica sera sync ou async
+	* 
 	* @property __sync
+	* @private
+	* @type Boolena
  	* @default true
 	*/
 	Object.defineProperty(Ajax.prototype, "__sync", {
@@ -139,7 +153,10 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Propriedade que contem os dados que trafegados na requisicao
+	* 
 	* @property __data
+	* @private
+	* @type Object
 	* @default {}
 	*/
 	Object.defineProperty(Ajax.prototype, "__data", {
@@ -151,7 +168,10 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Propriedade que contem a lista de headers da requisicao
+	* 
 	* @property __headers
+	* @private
+	* @type Array
 	* @default []
 	*/
 	Object.defineProperty(Ajax.prototype, "__headers", {
@@ -163,7 +183,10 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Propriedade que contem o callback que sera executado quando a requisicao terminar
+	* 
 	* @property __onCompleted
+	* @private
+	* @type Function
 	* @default function () {}
 	*/
 	Object.defineProperty(Ajax.prototype, "__onCompleted", {
@@ -174,8 +197,11 @@ window.B.utils.Ajax = (function (BIZZY) {
 	});
 
 	/**
-	* Propriedade que contem o callback que sera executado quando a requisicao falhar]
+	* Propriedade que contem o callback que sera executado quando a requisicao falhar
+	* 
 	* @property __onFailed
+	* @private
+	* @type Function
 	* @default function () {}
 	*/
 	Object.defineProperty(Ajax.prototype, "__onFailed", {
@@ -187,7 +213,10 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Propriedade que contem o objeto responsavel por tratar as requisicoes
+	* 
 	* @property __xhr
+	* @private
+	* @type Objetct
 	* @default {}
 	*/
 	Object.defineProperty(Ajax.prototype, "__xhr", {
@@ -198,8 +227,12 @@ window.B.utils.Ajax = (function (BIZZY) {
 	});
 
 	/**
-	* Propriedade que contem uma lista de callbacks que serao executados durantes os status do readyState da requisicao
+	* Propriedade que contem uma lista de callbacks que serao executados
+	* durantes os status do readyState da requisicao
+	* 
 	* @property __readyState
+	* @private
+	* @type Array
 	* @default []
 	*/
 	Object.defineProperty(Ajax.prototype, "__readyState", {
@@ -210,8 +243,12 @@ window.B.utils.Ajax = (function (BIZZY) {
 	});
 
 	/**
-	* Propriedade que contem uma lista de callbacks que serao executados conforme o status code da requisicao
+	* Propriedade que contem uma lista de callbacks que serao executados
+	*  conforme o status code da requisicao
+	* 
 	* @property __status
+	* @private
+	* @type Array
 	* @default []
 	*/
 	Object.defineProperty(Ajax.prototype, "__status", {
@@ -223,240 +260,316 @@ window.B.utils.Ajax = (function (BIZZY) {
 
 	/**
 	* Metodo de initializacao da classe, responsavel pela configuracao inicial
+	* 
 	* @method __initialize
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__initialize = function () {
+	Object.defineProperty(Ajax.prototype, "__initialize", {
 
-		this.__defineXhr();
-		this.__defineReadyStateChange();
-		this.__defineReadyState();
-		this.__defineStatus();
+		value: function () {
 
-	};
+			this.__defineXhr();
+			this.__defineReadyStateChange();
+			this.__defineReadyState();
+			this.__defineStatus();
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel pela configuracao do xhr
+	* 
 	* @method __defineXhr
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__defineXhr = function () {
+	Object.defineProperty(Ajax.prototype, "__defineXhr", {
 
-		this.__xhr = new window.XMLHttpRequest();
+		value: function () { 
 
-	};
+			this.__xhr = new window.XMLHttpRequest();
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel pela configuracao do evento do ready state
+	* 
 	* @method __defineReadyStateChange
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__defineReadyStateChange = function () {
+	Object.defineProperty(Ajax.prototype, "__defineReadyStateChange", {
 
-		this.__xhr.onreadystatechange = this.__onreadystatechange.bind(this);
+		value: function () {
 
-	};
+			this.__xhr.onreadystatechange = this.__onreadystatechange.bind(this);
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel pela configuracao dos callbacks do ready state
+	* 
 	* @method __defineReadyState
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__defineReadyState = function () {
+	Object.defineProperty(Ajax.prototype, "__defineReadyState", {
 
-		this.__readyState[0] = function () {};
-		this.__readyState[1] = function () {};
-		this.__readyState[2] = function () {};
-		this.__readyState[3] = function () {};
+		valeu: function () {
 
-		this.__readyState[4] = this.__finishedRequest.bind(this);
+			this.__readyState[0] = function () {};
+			this.__readyState[1] = function () {};
+			this.__readyState[2] = function () {};
+			this.__readyState[3] = function () {};
 
-	};
+			this.__readyState[4] = this.__finishedRequest.bind(this);
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel pela configuracao dos callbacks do status code da requisicao http
+	* 
 	* @method __defineStatus
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__defineStatus = function () {
+	Object.defineProperty(Ajax.prototype, "__defineStatus", {
 
-		this.__status[200] = this.__completed.bind(this);
+		value: function () {
 
-		this.__status[400] = this.__failed.bind(this);
-		this.__status[401] = this.__failed.bind(this);
-		this.__status[404] = this.__failed.bind(this);
-		this.__status[500] = this.__failed.bind(this);
+			this.__status[200] = this.__completed.bind(this);
 
-	};
+			this.__status[400] = this.__failed.bind(this);
+			this.__status[401] = this.__failed.bind(this);
+			this.__status[404] = this.__failed.bind(this);
+			this.__status[500] = this.__failed.bind(this);
+
+		}
+
+	});
 
 	/**
 	* Metodo que trata quando a requisicao completar
+	* 
 	* @method __completed
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__completed = function () {
+	Object.defineProperty(Ajax.prototype, "__completed", {
 
-		this.__onCompleted(this.__xhr.responseText);
+		value: function () {
 
-	};
+			this.__onCompleted(this.__xhr.responseText);
+
+		}
+
+	});
 
 	/**
 	* Metodo que trata quando a requisicao falhar
+	* 
 	* @method __failed
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__failed = function () {
+	Object.defineProperty(Ajax.prototype, "__failed", {
 
-		this.__onFailed(this.__xhr.responseText);
+		value: function () {
 
-	};
+			this.__onFailed(this.__xhr.responseText);
+
+		}
+
+	});
 
 	/**
 	* Metodo que trata quando a requisicao terminar
+
 	* @method __finishedRequest
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__finishedRequest = function () {
+	Object.defineProperty(Ajax.prototype, "__finishedRequest", {
 
-		this.__status[this.__xhr.status]();
+		value: function () {
 
-	};
+			this.__status[this.__xhr.status]();
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel por disparar o callback conforme o status do ready state
+	* 
 	* @method __onreadystatechange
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__onreadystatechange = function () {
+	Object.defineProperty(Ajax.prototype, "__onreadystatechange", {
 
-		this.__readyState[this.__xhr.readyState]();
+		value: function () {
 
-	};
+			this.__readyState[this.__xhr.readyState]();
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel por resetar as propriedades da classe para os valores default
+	*
 	* @method __resetProperties
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__resetProperties = function () {
+	Object.defineProperty(Ajax.prototype, "__resetProperties", {
 
-		this.__method = "GET";
-		this.__url = "";
-		this.__sync = true;
-		this.__data = {};
-		this.__headers = [];
-		this.__onCompleted = function () {};
-		this.__onFailed = function () {};
+		value: function () {
 
-	};
+			this.__method = "GET";
+			this.__url = "";
+			this.__sync = true;
+			this.__data = {};
+			this.__headers = [];
+			this.__onCompleted = function () {};
+			this.__onFailed = function () {};
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel por setar as propriedades da classe
+	* 
 	* @method __addProperties
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__addProperties = function (config) {
+	Object.defineProperty(Ajax.prototype, "__addProperties", {
 
-		for (var name in config) {
+		value: function (config) {
 
-			if (this.hasOwnProperty(name)) {
+			for (var name in config) {
 
-				this[name] = config[name];
+				if (this.hasOwnProperty(name)) {
+
+					this[name] = config[name];
+
+				}
 
 			}
 
 		}
 
-	};
+	});
 
 	/**
 	* Metodo responsavel por abrir a requisicao
+	* 
 	* @method __open
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__open = function () {
+	Object.defineProperty(Ajax.prototype, "__open", {
 
-		this.__xhr.open(this.__method, this.__url, this.__sync);
+		value: function () {
 
-	};
+			this.__xhr.open(this.__method, this.__url, this.__sync);
+
+		}
+
+	});
 
 	/**
 	* Metodo responsavel os headers da requisicao
+	* 
 	* @method __setRequestHeader
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__setRequestHeader = function () {
+	Object.defineProperty(Ajax.prototype, "__setRequestHeader", {
 
-		var i = this.__headers.length;
+		value: function () {
 
-		while (--i) {
+			var i = this.__headers.length;
 
-			this.__xhr.setRequestHeader(this.__headers[i].key, this.__headers[i].value);
+			while (--i) {
+
+				this.__xhr.setRequestHeader(this.__headers[i].key, this.__headers[i].value);
+
+			}
 
 		}
 
-	};
+	});
 
 	/**
 	* Metodo responsavel por enviar a requisicao http
+	* 
 	* @method __send
+	* @private
 	* @return {void}
 	*/
-	Ajax.prototype.__send = function () {
+	Object.defineProperty(Ajax.prototype, "__send", {
 
-		this.__xhr.send(JSON.stringify(this.__data));
+		value: function () {
 
-	};
-
-	/**
-	* Metodo responsavel por executar a requisicao http (open, setRequestHeaders, send)
-	* @method __execute
-	* @return {void}
-	*/
-	Ajax.prototype.__execute = function () {
-
-		this.__open();
-		this.__setRequestHeader();
-		this.__send();
-
-	};
-
-	/**
-	* Metodo responsavel por enviar a requisicao http (resetProperties, addProperties, execute)
-	*/
-	Ajax.prototype.request = function (config) {
-
-		this.__resetProperties();
-		this.__addProperties(config);
-		this.__execute();
-
-	};
-
-	/**
-	* Construtor do padrão Facade, responsavel por expor apenas apenas o escopo necessario
-	* @method FacadeAjax
-	* @return { request: Ajax.request }
-	*/
-	function FacadeAjax () {
-
-		if (!(this instanceof FacadeAjax)) {
-
-			return new FacadeAjax();
+			this.__xhr.send(JSON.stringify(this.__data));
 
 		}
 
-		var ajax = new Ajax(),
-			revelation = {};
+	});
 
-		revelation.request = ajax.request;
+	/**
+	* Metodo responsavel por executar a requisicao http (open, setRequestHeaders, send)
+	* 
+	* @method __execute
+	* @private
+	* @return {void}
+	*/
+	Object.defineProperty(Ajax.prototype, "__execute", {
 
-		return revelation;
+		value: function () {
 
-	}
+			this.__open();
+			this.__setRequestHeader();
+			this.__send();
 
-	return FacadeAjax;
+		}
 
-})(window.B || {});
+	});
+
+	/**
+	* Metodo responsavel por enviar a requisicao http (resetProperties, addProperties, execute)
+	* 
+	* @method request
+	* @public
+	* @return {void}
+	*/
+	Object.defineProperty(Ajax.prototype, "request", {
+
+		value: function (config) {
+
+			this.__resetProperties();
+			this.__addProperties(config);
+			this.__execute();
+
+		}
+
+	});
+
+	return Ajax;
+
+})();
 /*******************************************************
  *                                                     *
  * BizzyJS                                             *
@@ -467,7 +580,13 @@ window.B.utils.Ajax = (function (BIZZY) {
  *                                                     *
  ******************************************************/
  
-window.B.utils.Dispatcher = (function (BIZZY) {
+/**
+* Modulo que isola a classe Dispatcher
+* 
+* @namespace B.utils
+* @module Dispatcher
+*/
+window.B.utils.Dispatcher = (function () {
 
 	"use strict";
 
@@ -483,11 +602,14 @@ window.B.utils.Dispatcher = (function (BIZZY) {
 	* Propriedade que contem os callbacks que serao tratados pelo dispatcher
 	*
 	* @property __listeners
+	* @private
+	* @type Array
 	* @default []
 	*/
 	Object.defineProperty(Dispatcher.prototype, "__listeners", {
 
-		writable: true
+		writable: true,
+		value: []
 
 	});
 
@@ -495,102 +617,99 @@ window.B.utils.Dispatcher = (function (BIZZY) {
 	* Recupera a lista de callbacks para um determinado evento
 	*
 	* @method __getEvent
+	* @private
 	* @param {String} event Nome do evento
 	* @return {Array} Lista de callbacks registrados para o evento
 	*/
-	Dispatcher.prototype.__getEvent = function (event) {
+	Object.defineProperty(Dispatcher.prototype, "__getEvent", {
 
-		this.__listeners[event] = this.__listeners[event] || [];
-		return this.__listeners[event];
+		value: function (event) {
 
-	};
+			this.__listeners[event] = this.__listeners[event] || [];
+			return this.__listeners[event];
+
+		}
+
+	});
 
 	/**
 	* Registra um novo callback de um determinado evento
 	*
 	* @method on
+	* @public
 	* @param {String} event Nome do evento
 	* @param {Function} callback Funcao de callback que a ser registrada
 	* @return {Void}
 	*/
-	Dispatcher.prototype.on = function (event, callback) {
+	Object.defineProperty(Dispatcher.prototype, "on", {
 
-		this.__getEvent(event).push(callback);
+		value: function (event, callback) {
 
-	};
+			this.__getEvent(event).push(callback);
+
+		}
+
+	});
 
 	/**
 	* Deleta um callback de um determinado evento
 	*
 	* @method off
+	* @public
 	* @param {String} event Nome do evento
 	* @param {Function} callback Funcao de callback que a ser registrada
 	* @return {Void}
 	*/
-	Dispatcher.prototype.off = function (event, callback) {
+	Object.defineProperty(Dispatcher.prototype, "off", {
 
-		var listener = this.__getEvent(event),
-			i = listener.length;
+		value: function (event, callback) {
 
-		while (--i) {
+			var listener = this.__getEvent(event),
+				i = listener.length;
 
-			if (listener[i] === callback) {
+			while (--i) {
 
-				delete listener[i];
+				if (listener[i] === callback) {
+
+					delete listener[i];
+
+				}
 
 			}
 
 		}
 
-	};
+	});
 
 	/**
 	* Dispara os callbacks de um determinado evento
 	*
 	* @method trigger
+	* @public
 	* @param {String} event Nome do evento
 	* @param {Object} data Objeto contendo os dados que serao passados para o callbach
 	* @return {Void}
 	*/
-	Dispatcher.prototype.trigger = function (event, data) {
+	Object.defineProperty(Dispatcher.prototype, "trigger", {
 
-		var listener = this.__getEvent(event),
-			i = listener.length;
+		value: function (event, data) {
 
-		while (--i) {
+			var listener = this.__getEvent(event),
+				i = listener.length;
 
-			listener[i](data);
+			while (--i) {
 
-		}
+				listener[i](data);
 
-	};
-
-	/**
-	* 
-	*/
-	function Facade () {
-
-		if (!(this instanceof Facade)) {
-
-			return new Facade();
+			}
 
 		}
 
-		var dispatcher = new Dispatcher(),
-			revelation = {};
+	});
 
-		// Revelation Pattern
-		revelation.on = dispatcher.on;
-		revelation.off = dispatcher.off;
-		revelation.trigger = dispatcher.trigger;
-
-		return revelation;
-
-	}
-
-	return Facade;
+	return Dispatcher;
 	
-})(window.B || {});
+})();
 /*******************************************************
  *                                                     *
  * BizzyJS                                             *
@@ -643,7 +762,10 @@ window.B.utils.String = (function () {
  *                                                     *
  ******************************************************/
 
-window.B.utils.Require = (function (BIZZY) {
+/**
+* 
+*/
+window.B.utils.Require = (function () {
 
 	"use strict";
 
@@ -657,7 +779,7 @@ window.B.utils.Require = (function (BIZZY) {
 	*/
 	Object.defineProperty(Require.prototype, "__ajax", {
 
-		value: new BIZZY.utils.Ajax()
+		value: new window.B.utils.Ajax()
 
 	});
 
@@ -682,50 +804,43 @@ window.B.utils.Require = (function (BIZZY) {
 	/**
 	* 
 	*/
-	Require.prototype.__appendChild = function (data) {
+	Object.defineProperty(Require.prototype, "__appendChild", {
 
-		this.__script.text = data;
-		this.__head.appendChild(this.__script);
+		value: function (data) {
 
-	};
+			this.__script.text = data;
+			this.__head.appendChild(this.__script);
 
-	/**
-	* 
-	*/
-	Require.prototype.use = function (urlDocuments) {
+		}
 
-		urlDocuments.forEach(function (url) {
-
-			this.__ajax.request({
-
-				url: url,
-				sync: false,
-				onCompleted: this.__appendChild.bind(this)
-
-			});
-
-		}, this);
-
-	};
+	});
 
 	/**
 	* 
 	*/
-	function Facade	() {
+	Object.defineProperty(Require.prototype, "use", {
 
-		var require =  new Require(),
-			revelation = {};
+		value: function (urlDocuments) {
 
-		/* Revelation pattern */
-		revelation.use = require.use;
+			urlDocuments.forEach(function (url) {
 
-		return revelation;
-		
-	}
+				this.__ajax.request({
 
-	return new Facade();
+					url: url,
+					sync: false,
+					onCompleted: this.__appendChild.bind(this)
 
-})(window.B || {});
+				});
+
+			}, this);
+
+		}
+
+	});
+
+	return new Require();
+
+})();
 /*******************************************************
  *                                                     *
  * BizzyJS                                             *
@@ -736,7 +851,10 @@ window.B.utils.Require = (function (BIZZY) {
  *                                                     *
  ******************************************************/
 
-window.B.utils.router = (function (BIZZY) {
+/**
+* 
+*/
+window.B.utils.router = (function () {
 
 	"use strict";
 
@@ -779,73 +897,89 @@ window.B.utils.router = (function (BIZZY) {
 	/**
 	* 
 	*/
-	RouterModel.prototype.__initialize = function (config) {
+	Object.defineProperty(RouterModel.prototype, "__initialize", {
 
-		this.segments = config.url.split("/");
-		this.callback = (typeof config.callback === "function") ? config.callback : function () {};
+		value: function (config) {
 
-	};
-
-	/**
-	* 
-	*/
-	RouterModel.prototype.__buildValidator = function () {
-
-		var regularExpression = "",
-			url = this.segments.join("/");
-
-		regularExpression = url.replace(/{(\w+)}/g, function (match, number) {
-
-			return "(\\w+)";
-
-		});
-
-		this.__validator = new RegExp(BIZZY.uitls.format("^({0})$", regularExpression));
-
-	};
-
-	/**
-	* 
-	*/
-	RouterModel.prototype.getParameters = function (other) {
-
-		var i = other.segments.length,
-			parameters = [];
-
-		if (!this.equals(other)) {
-
-			return [];
+			this.segments = config.url.split("/");
+			this.callback = (typeof config.callback === "function") ? config.callback : function () {};
 
 		}
 
-		while (--i) {
-		
-			if (/^{(\d+)}$/i.test(this.segments[i])) {
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(RouterModel.prototype, "__buildValidator", {
+
+		value: function () {
+
+			var regularExpression = "",
+				url = this.segments.join("/");
+
+			regularExpression = url.replace(/{(\w+)}/g, function (match, number) {
+
+				return "(\\w+)";
+
+			});
+
+			this.__validator = new RegExp(window.B.uitls.String.format("^({0})$", regularExpression));
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(RouterModel.prototype, "getParameters", {
+
+		value: function (other) {
+
+			var i = other.segments.length,
+				parameters = [];
+
+			if (!this.equals(other)) {
+
+				return [];
+
+			}
+
+			while (--i) {
 			
-				parameters.push(other.segments[i]);
+				if (/^{(\d+)}$/i.test(this.segments[i])) {
+				
+					parameters.push(other.segments[i]);
+				
+				}
 			
 			}
-		
+
+			return parameters;
+
 		}
 
-		return parameters;
-
-	};
+	});
 
 	/**
 	* 
 	*/
-	RouterModel.prototype.equals = function (other) {
+	Object.defineProperty(RouterModel.prototype, "equals", { 
 
-		this.__buildValidator();
+		value: function (other) {
 
-		this.equals = function (other) {
+			this.__buildValidator();
 
-			return this.__validator.test(other.url);
+			this.equals = function (other) {
 
-		}.bind(this)(other);
+				return this.__validator.test(other.url);
 
-	};
+			}.bind(this)(other);
+
+		}
+
+	});
 
 	/**
 	* 
@@ -861,82 +995,83 @@ window.B.utils.router = (function (BIZZY) {
 	*/
 	Object.defineProperty(Router.prototype, "__data", {
 
-		writable: true
+		writable: true,
+		value: {}
 
 	});
 
 	/**
 	* 
 	*/
-	Router.prototype.__initialize = function () {
+	Object.defineProperty(Router.prototype, "__initialize", {
 
-		window.addEventListener("hashchange", this.__hashchange.bind(this), false);
+		value: function () {
 
-	};
+			window.addEventListener("hashchange", this.__hashchange.bind(this), false);
+
+		}
+
+	});
 
 	/**
 	* 
 	*/
-	Router.prototype.__hashchange = function () {
+	Object.defineProperty(Router.prototype, "__hashchange", {
 
-		var i = this.__data.length,
-			other = new RouterModel({ url: window.location.hash.substr(1) });
+		value: function () {
 
-		while (--i) {
+			var i = this.__data.length,
+				other = new RouterModel({ url: window.location.hash.substr(1) });
 
-			if (this.__data[i].equals(other)) {
+			while (--i) {
 
-				this.__data[i].callback(this.__data[i].getParameters(other));
+				if (this.__data[i].equals(other)) {
+
+					this.__data[i].callback(this.__data[i].getParameters(other));
+
+				}
 
 			}
 
 		}
 
-	};
+	});
 
 	/**
 	* 
 	*/
-	Router.prototype.define = function (routesDefination) {
+	Object.defineProperty(Router.prototype, "define", {
 
-		var i = routesDefination.length;
+		value: function (routesDefination) {
 
-		while (--i) {
+			var i = routesDefination.length;
 
-			this.__data.push(new RouterModel(routesDefination[i]));
+			while (--i) {
+
+				this.__data.push(new RouterModel(routesDefination[i]));
+
+			}
 
 		}
 
-	};
+	});
 
 	/**
 	* 
 	*/
-	Router.prototype.start = function () {
+	Object.defineProperty(Router.prototype, "start", {
 
-		window.dispatchEvent(new window.Event("hashchange"));
+		value: function () {
 
-	};
+			window.dispatchEvent(new window.Event("hashchange"));
 
-	/**
-	* 
-	*/
-	function Facade () {
+		}
 
-		var router = new Router(),
-			revelation = {};
+	});
 
-		/* Revelation pattern */
-		revelation.define = router.define;
-		revelation.start = router.start;
+	return new Router();
 
-		return revelation;
-
-	}
-
-	return new Facade();
-
-})(window.B || {});
+})();
 /*******************************************************
  *                                                     *
  * BizzyJS                                             *
@@ -947,7 +1082,10 @@ window.B.utils.router = (function (BIZZY) {
  *                                                     *
  ******************************************************/
 
-window.B.utils.serialize = (function (BIZZY) {
+/**
+* 
+*/
+window.B.utils.Serialize = (function (BIZZY) {
 
 	"use strict";
 
@@ -965,7 +1103,8 @@ window.B.utils.serialize = (function (BIZZY) {
 	*/
 	Object.defineProperty(Serialize.prototype, "__form", {
 
-		writable: true
+		writable: true,
+		value: {}
 
 	});
 
@@ -974,7 +1113,8 @@ window.B.utils.serialize = (function (BIZZY) {
 	*/
 	Object.defineProperty(Serialize.prototype, "__data", {
 
-		writable: true
+		writable: true,
+		value: {}
 
 	});
 
@@ -993,173 +1133,199 @@ window.B.utils.serialize = (function (BIZZY) {
 	*/
 	Object.defineProperty(Serialize.prototype, "_type", {
 
-		writable: true
+		writable: true,
+		value: {}
 
 	});
 
 	/**
 	* 
 	*/
-	Serialize.prototype.__initialize = function () {
+	Object.defineProperty(Serialize.prototype, "__initialize", {
 
-		this.__defineNodeName();
-		this.__defineType();
+		value: function () {
 
-	};
-
-	/**
-	* 
-	*/
-	Serialize.prototype.__defineNodeName = function () {
-
-		this.__nodeName = {
-
-			"INPUT": this.__searchForNodeType.bind(this),
-			"BUTTON": this.__searchForNodeType.bind(this),
-			"SELECT": this.__searchForNodeType.bind(this),
-
-			"TEXTAREA": this.__push.bind(this)
-
-		};
-
-	};
-
-	/**
-	* 
-	*/
-	Serialize.prototype.__defineType = function () {
-
-		this.__type = {
-
-			"button": this.__push.bind(this),
-			"hidden": this.__push.bind(this),
-			"text": this.__push.bind(this),
-			"password": this.__push.bind(this),
-			"reset": this.__push.bind(this),
-			"select-one": this.__push.bind(this),
-			"submit": this.__push.bind(this),
-
-			"checkbox": this.__pushChecked.bind(this),
-			"radio": this.__pushChecked.bind(this),
-
-			"select-multiple": this.__pushSelectMultiple.bind(this),
-
-			"file": function () {}
-
-		};
-
-	};
-
-	/**
-	* 
-	*/
-	Serialize.prototype.__push = function (element) {
-
-		this.__data[element.name] = element.value;
-
-	};
-
-	/**
-	* 
-	*/
-	Serialize.prototype.__pushChecked = function (element) {
-
-		this.__data[element.name] = element.checked ? element.value : null;
-
-	};
-
-	/**
-	* 
-	*/
-	Serialize.prototype.__pushSelectMultiple = function (element) {
-
-		var i = element.options.length;
-
-		while (--i) {
-
-			this.__data[element.name] = element.options[i].selected ? element.options[i].value : null;
+			this.__defineNodeName();
+			this.__defineType();
 
 		}
 
-	};
+	});
 
 	/**
 	* 
 	*/
-	Serialize.prototype.__searchForNodeType = function (element) {
+	Object.defineProperty(Serialize.prototype, "__defineNodeName", {
 
-		this.__type[element.name](element);
+		value: function () {
 
-	};
+			this.__nodeName = {
+
+				"INPUT": this.__searchForNodeType.bind(this),
+				"BUTTON": this.__searchForNodeType.bind(this),
+				"SELECT": this.__searchForNodeType.bind(this),
+
+				"TEXTAREA": this.__push.bind(this)
+
+			};
+
+		}
+
+	});
 
 	/**
 	* 
 	*/
-	Serialize.prototype.__serachForNodeName = function (element) {
+	Object.defineProperty(Serialize.prototype, "__defineType", {
 
-		this.__nodeName[element.name](element);
+		value: function () {
 
-	};
+			this.__type = {
+
+				"button": this.__push.bind(this),
+				"hidden": this.__push.bind(this),
+				"text": this.__push.bind(this),
+				"password": this.__push.bind(this),
+				"reset": this.__push.bind(this),
+				"select-one": this.__push.bind(this),
+				"submit": this.__push.bind(this),
+
+				"checkbox": this.__pushChecked.bind(this),
+				"radio": this.__pushChecked.bind(this),
+
+				"select-multiple": this.__pushSelectMultiple.bind(this),
+
+				"file": function () {}
+
+			};
+
+		}
+
+	});
 
 	/**
 	* 
 	*/
-	Serialize.prototype.__execute = function () {
+	Object.defineProperty(Serialize.prototype, "__push", {
 
-		var i = this.__form.elements.length;
+		value: function (element) {
 
-		while (--i) {
+			this.__data[element.name] = element.value;
 
-			if (this.__form.elements[i].name === "") {
+		}
 
-				continue;
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Serialize.prototype, "__pushChecked", {
+
+		value: function (element) {
+
+			this.__data[element.name] = element.checked ? element.value : null;
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Serialize.prototype, "__pushSelectMultiple", {
+
+		value: function (element) {
+
+			var i = element.options.length;
+
+			while (--i) {
+
+				this.__data[element.name] = element.options[i].selected ? element.options[i].value : null;
 
 			}
 
-			this.__serachForNodeName(this.__form.elements[i]);
-
 		}
 
-	};
+	});
 
 	/**
 	* 
 	*/
-	Serialize.prototype.toJSON = function (form)  {
+	Object.defineProperty(Serialize.prototype, "__searchForNodeType", {
 
-		if (!form || form.nodeName !== "FORM") {
+		value: function (element) {
 
-			return {};
+			this.__type[element.name](element);
 
 		}
 
-		this.__form = form;
-		this.__data = {};
-
-		this.__execute();
-
-		return this.__data;
-
-	};
+	});
 
 	/**
 	* 
 	*/
-	function Facade () {
+	Object.defineProperty(Serialize.prototype, "__serachForNodeName", {
 
-		var serialize = new Serialize(),
-			revelation = {};
+		value: function (element) {
 
-		/* Revelation pattern */
-		revelation.toJSON = serialize.toJSON;
+			this.__nodeName[element.name](element);
 
-		return revelation;
+		}
 
-	}
+	});
 
-	return new Facade();
+	/**
+	* 
+	*/
+	Object.defineProperty(Serialize.prototype, "__execute", {
 
-})(window.B || {});
+		value: function () {
+
+			var i = this.__form.elements.length;
+
+			while (--i) {
+
+				if (this.__form.elements[i].name === "") {
+
+					continue;
+
+				}
+
+				this.__serachForNodeName(this.__form.elements[i]);
+
+			}
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(Serialize.prototype, "toJSON", {
+
+		value: function (form)  {
+
+			if (!form || form.nodeName !== "FORM") {
+
+				return {};
+
+			}
+
+			this.__form = form;
+			this.__data = {};
+
+			this.__execute();
+
+			return this.__data;
+
+		}
+
+	});
+
+	return new Serialize();
+
+})();
 /*******************************************************
  *                                                     *
  * BizzyJS                                             *
