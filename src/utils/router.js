@@ -8,7 +8,10 @@
  *                                                     *
  ******************************************************/
 
-window.B.utils.router = (function (BIZZY) {
+/**
+* 
+*/
+window.B.utils.router = (function () {
 
 	"use strict";
 
@@ -51,73 +54,89 @@ window.B.utils.router = (function (BIZZY) {
 	/**
 	* 
 	*/
-	RouterModel.prototype.__initialize = function (config) {
+	Object.defineProperty(RouterModel.prototype, "__initialize", {
 
-		this.segments = config.url.split("/");
-		this.callback = (typeof config.callback === "function") ? config.callback : function () {};
+		value: function (config) {
 
-	};
-
-	/**
-	* 
-	*/
-	RouterModel.prototype.__buildValidator = function () {
-
-		var regularExpression = "",
-			url = this.segments.join("/");
-
-		regularExpression = url.replace(/{(\w+)}/g, function (match, number) {
-
-			return "(\\w+)";
-
-		});
-
-		this.__validator = new RegExp(BIZZY.uitls.format("^({0})$", regularExpression));
-
-	};
-
-	/**
-	* 
-	*/
-	RouterModel.prototype.getParameters = function (other) {
-
-		var i = other.segments.length,
-			parameters = [];
-
-		if (!this.equals(other)) {
-
-			return [];
+			this.segments = config.url.split("/");
+			this.callback = (typeof config.callback === "function") ? config.callback : function () {};
 
 		}
 
-		while (--i) {
-		
-			if (/^{(\d+)}$/i.test(this.segments[i])) {
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(RouterModel.prototype, "__buildValidator", {
+
+		value: function () {
+
+			var regularExpression = "",
+				url = this.segments.join("/");
+
+			regularExpression = url.replace(/{(\w+)}/g, function (match, number) {
+
+				return "(\\w+)";
+
+			});
+
+			this.__validator = new RegExp(BIZZY.uitls.format("^({0})$", regularExpression));
+
+		}
+
+	});
+
+	/**
+	* 
+	*/
+	Object.defineProperty(RouterModel.prototype, "getParameters", {
+
+		value: function (other) {
+
+			var i = other.segments.length,
+				parameters = [];
+
+			if (!this.equals(other)) {
+
+				return [];
+
+			}
+
+			while (--i) {
 			
-				parameters.push(other.segments[i]);
+				if (/^{(\d+)}$/i.test(this.segments[i])) {
+				
+					parameters.push(other.segments[i]);
+				
+				}
 			
 			}
-		
+
+			return parameters;
+
 		}
 
-		return parameters;
-
-	};
+	});
 
 	/**
 	* 
 	*/
-	RouterModel.prototype.equals = function (other) {
+	Object.defineProperty(RouterModel.prototype, "equals", { 
 
-		this.__buildValidator();
+		value: function (other) {
 
-		this.equals = function (other) {
+			this.__buildValidator();
 
-			return this.__validator.test(other.url);
+			this.equals = function (other) {
 
-		}.bind(this)(other);
+				return this.__validator.test(other.url);
 
-	};
+			}.bind(this)(other);
+
+		}
+
+	});
 
 	/**
 	* 
@@ -133,79 +152,80 @@ window.B.utils.router = (function (BIZZY) {
 	*/
 	Object.defineProperty(Router.prototype, "__data", {
 
-		writable: true
+		writable: true,
+		value: {}
 
 	});
 
 	/**
 	* 
 	*/
-	Router.prototype.__initialize = function () {
+	Object.defineProperty(Router.prototype, "__initialize", {
 
-		window.addEventListener("hashchange", this.__hashchange.bind(this), false);
+		value: function () {
 
-	};
+			window.addEventListener("hashchange", this.__hashchange.bind(this), false);
+
+		}
+
+	});
 
 	/**
 	* 
 	*/
-	Router.prototype.__hashchange = function () {
+	Object.defineProperty(Router.prototype, "__hashchange", {
 
-		var i = this.__data.length,
-			other = new RouterModel({ url: window.location.hash.substr(1) });
+		value: function () {
 
-		while (--i) {
+			var i = this.__data.length,
+				other = new RouterModel({ url: window.location.hash.substr(1) });
 
-			if (this.__data[i].equals(other)) {
+			while (--i) {
 
-				this.__data[i].callback(this.__data[i].getParameters(other));
+				if (this.__data[i].equals(other)) {
+
+					this.__data[i].callback(this.__data[i].getParameters(other));
+
+				}
 
 			}
 
 		}
 
-	};
+	});
 
 	/**
 	* 
 	*/
-	Router.prototype.define = function (routesDefination) {
+	Object.defineProperty(Router.prototype, "define", {
 
-		var i = routesDefination.length;
+		value: function (routesDefination) {
 
-		while (--i) {
+			var i = routesDefination.length;
 
-			this.__data.push(new RouterModel(routesDefination[i]));
+			while (--i) {
+
+				this.__data.push(new RouterModel(routesDefination[i]));
+
+			}
 
 		}
 
-	};
+	});
 
 	/**
 	* 
 	*/
-	Router.prototype.start = function () {
+	Object.defineProperty(Router.prototype, "start", {
 
-		window.dispatchEvent(new window.Event("hashchange"));
+		value: function () {
 
-	};
+			window.dispatchEvent(new window.Event("hashchange"));
 
-	/**
-	* 
-	*/
-	function Facade () {
+		}
 
-		var router = new Router(),
-			revelation = {};
+	});
 
-		/* Revelation pattern */
-		revelation.define = router.define;
-		revelation.start = router.start;
+	return new Router();
 
-		return revelation;
-
-	}
-
-	return new Facade();
-
-})(window.B || {});
+})();
