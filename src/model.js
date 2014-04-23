@@ -31,12 +31,14 @@ window.B.Model = (function () {
 	}
 
 	/**
-	* 
+	* Instancia do Modulo Dispatcher, utilizado para criar os observadores
+	* do Modelo de Dados, que seram diparados a cada evento que o Modelo
+	* for submetido
 	* 
 	* @property __dispatcher
 	* @private
 	* @type Object
-	* @default Uma nova instancia do modulo Dispatcher
+	* @default Instancia do modulo Dispatcher
 	*/
 	Object.defineProperty(Model.prototype, "__dispatcher", {
 
@@ -45,7 +47,8 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* 
+	* Instancia do modulo Ajax, utilizado para realizar as requisicoes
+	* que o modelo for submetido
 	* 
 	* @property _ajax
 	* @protected
@@ -81,7 +84,7 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* 
+	* Url para transferancia ou requisao do Modelo de Dados
 	* 
 	* @property __url
 	* @private
@@ -96,7 +99,8 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* Url para transferencia ou requisicao do Modelo de Dados
+	* Url formatada para transferencia ou requisicao do Modelo de Dados,
+	* exemplo: localhot/modelo/id
 	* 
 	* @property _url
 	* @protected
@@ -132,7 +136,8 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* Container que transporta a representacao do Modelo de Dados
+	* Container que transporta a representacao do Modelo de Dados, se
+	* refindo sempre nas propriedades pre definidas no Defaults
 	* 
 	* @property data
 	* @public
@@ -147,7 +152,10 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* 
+	* Definicao das propriedades com seu valores pre definidos,
+	* estes valores serao utilizados para resetar o modelo e para assegurar
+	* que apenas estas propriedades existirao na representacao
+	* do Modelo de Dados
 	* 
 	* @propety defaults
 	* @public

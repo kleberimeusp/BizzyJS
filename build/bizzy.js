@@ -1085,7 +1085,7 @@ window.B.utils.router = (function () {
 /**
 * 
 */
-window.B.utils.Serialize = (function (BIZZY) {
+window.B.utils.Serialize = (function () {
 
 	"use strict";
 
