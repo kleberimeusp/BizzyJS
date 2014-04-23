@@ -62,7 +62,7 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* 
+	* Cabecalho enviado nas requisicoes ajax
 	* 
 	* @property _headers
 	* @protected
@@ -187,7 +187,8 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* 
+	* Redefine os valores do objeto data para os que foram definidos
+	* na propriedade Defaults
 	* 
 	* @method reset
 	* @public
@@ -195,24 +196,23 @@ window.B.Model = (function () {
 	*/
 	Object.defineProperty(Model.prototype, "reset", {
 
-		value: function () {
+		value: function (data) {
 
-			var name = "";
+			var name = "",
+				values = data || this.defaults;
 
 			for (name in this.defaults) {
 
-				this.data[name] = this.defaults[name].value;
+				this.data[name] = values[name] || this.defaults[name];
 
 			}
-
-			this.__dispatcher.trigger("model:reset", this.data);
 
 		}
 
 	});
 
 	/**
-	* 
+	* Cria ouvinte dos eventos que ocorreram neste Modelo de Dados
 	* 
 	* @method on
 	* @public
@@ -229,7 +229,7 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* 
+	* Deleta um ouvinte, que foi definido no methodo On
 	* 
 	* @method off
 	* @public
@@ -256,7 +256,7 @@ window.B.Model = (function () {
 
 		value: function (data) {
 
-			this.data = JSON.parse(data);
+			this.reset(JSON.parse(data));
 			this.__dispatcher.trigger("model:completed", this.data);
 
 		}
@@ -317,7 +317,6 @@ window.B.Model = (function () {
 
 		value: function () {
 
-			this.__dispatcher.trigger("model:fetch", this.data);
 			this.__request("GET");
 
 		}
@@ -335,7 +334,6 @@ window.B.Model = (function () {
 
 		value: function () {
 
-			this.__dispatcher.trigger("model:save", this.data);
 			this.__request(this.data[this._idName] ? "POST" : "PUT");
 
 		}
@@ -353,7 +351,6 @@ window.B.Model = (function () {
 
 		value: function () {
 
-			this.__dispatcher.trigger("model:delete", this.data);
 			this.__request("DELETE");
 
 		}
