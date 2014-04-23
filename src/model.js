@@ -246,7 +246,8 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* 
+	* Reseta o Modelo de Dados, e dispara uma trigger quando uma requisicao Ajax for
+	* executado com sucesso
 	* 
 	* @method __completed
 	* @private
@@ -264,7 +265,8 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* 
+	* Dispara uma trigger quando uma requisicao Ajax for
+	* executado com erro
 	* 
 	* @method __failed
 	* @private
@@ -281,7 +283,7 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* 
+	* Requisicao Ajax padrao utilizdo pelos metodos Fetch, Save e Delete
 	* 
 	* @method __request
 	* @private
@@ -307,7 +309,7 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* 
+	* Requisicao Get do Modelo de Dados
 	* 
 	* @method fetch
 	* @public
@@ -324,7 +326,9 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* 
+	* Requisicao do Modelo de Dados, executa POST quando o identificador
+	* do Modelo de Dados existir e PUT quanto nao existir um identificador para o
+	* Modelo de Dados, este identificador é definido na propriedado idName
 	* 
 	* @method save
 	* @public
@@ -341,7 +345,7 @@ window.B.Model = (function () {
 	});
 
 	/**
-	* 
+	* Requisicao Delete do Modelo de Dados
 	* 
 	* @method delete
 	* @public
